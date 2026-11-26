@@ -575,12 +575,11 @@
   const RULE_HELP = {
     0: ["full_tank", "fuel_type"],
     3: ["penalty_vs_fine"],
-    4: ["child_seat"],
     6: ["police_report"],
     8: ["hidden_damage"],
     9: ["gross_negligence"]
   };
-  const RULE_NOTE_KEYS = { 3: "ruleNote4", 4: "ruleNote5" };
+  const RULE_NOTE_KEYS = { 3: "ruleNote4" };
   const ROW_HELP = ["property_vehicle", "property_vehicle", "noc", "roadside", "deductible"];
 
   function renderFuelGuide() {

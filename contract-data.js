@@ -69,13 +69,13 @@ window.CONTRACT = {
     totalLoss: "If the vehicle is totaled (beyond repair) in an accident for which the renter is liable, the renter must compensate based on the vehicle's actual market value, with a reference amount starting from ¥600,000, and shall separately bear the applicable NOC and roadside assistance fees. Costs already covered by compensation will not be charged twice.",
     totalLossEmphasis: "¥600,000",
     specialTitle: "Special Reminder",
-    special: "If unreported damage is found upon return, you must contact the police on the spot to file an accident report after the fact. This after-the-fact procedure is extremely complicated and may take up to 5 hours. The Company accepts no liability for any missed flights or additional airfare resulting from this. Please take note.",
+    special: "If unreported damage is only discovered when you return the car, the police usually cannot issue an accident certificate even if you report it then and there, and the process may take up to about 5 hours. Therefore, if an accident occurs, you must report it to the police immediately at the scene. The Company accepts no liability for any missed flights or additional airfare resulting from this. Please take note.",
     rules: [
       {
         num: "1",
         title: "Fuel",
         blocks: [
-          { lead: "Full-tank return:", text: "Before returning the vehicle, please fill the tank at a gas station within 2 km of the shop and show the receipt." },
+          { lead: "Full-tank return:", text: "Before returning the vehicle, please fill the tank at a gas station within 2 km of the shop, keep the receipt, and hand it to a staff member when you return the vehicle." },
           { lead: "Wrong fuel:", text: "If the wrong type of fuel is used, compensation of ¥500,000 will be charged (including engine repair and depreciation); if the actual costs of repair, cleaning and depreciation exceed or fall short of that amount, settlement shall be based on the amount actually incurred." },
           { lead: "Not returned full:", text: "A charge of ¥1,000–13,000 will be collected depending on the remaining fuel level." }
         ]
@@ -107,7 +107,7 @@ window.CONTRACT = {
         title: "Optional Equipment",
         blocks: [
           { lead: "Child seat:", text: "Under Japanese law, children under 6 years of age must use a child seat when travelling in a vehicle. Please install and check it yourself. If it is not installed, the shop will refuse the rental." },
-          { lead: "Car navigation:", text: "No complaints regarding its functions or route guidance will be accepted." }
+          { lead: "Car navigation:", text: "Most in-car navigation systems are in Japanese; we recommend using Google Maps. No complaints regarding its functions or route guidance will be accepted." }
         ]
       },
       {
@@ -228,13 +228,13 @@ window.CONTRACT = {
     totalLoss: "借受人の責に帰すべき事故により車両が全損（修理不能）となった場合、借受人は車両の実際の時価額に基づき賠償するものとし（参考金額600,000円～）、該当するNOC（休業補償）およびロードサービス費用を別途負担するものとします。すでに補償された費用を重複して請求することはありません。",
     totalLossEmphasis: "600,000円～",
     specialTitle: "特記事項",
-    special: "ご返却時に未届出の損傷が見つかった場合、その場で警察に連絡し、事故処理手続きを事後に行っていただく必要があります。事後の手続きは非常に煩雑で、最長5時間程度かかる場合があります。これにより飛行機に乗り遅れた場合や追加の航空券代が発生した場合でも、当社は一切責任を負いませんので、あらかじめご了承ください。",
+    special: "返却時になって届出のない損傷が見つかった場合、その場で警察に連絡しても、警察は通常、事故証明を発行できません。手続きには約5時間かかることがあります。そのため、事故が起きたときは、必ず事故現場で直ちに警察へ届け出てください。これにより飛行機に乗り遅れた場合や追加の航空券代が発生した場合でも、当社は一切責任を負いませんので、あらかじめご了承ください。",
     rules: [
       {
         num: "1",
         title: "燃料について",
         blocks: [
-          { lead: "満タン返却：", text: "ご返却時は、店舗周辺2km以内のガソリンスタンドで満タンに給油し、領収書をご提示ください。" },
+          { lead: "満タン返却：", text: "ご返却時は、店舗周辺2km以内のガソリンスタンドで満タンに給油し、領収書を保管のうえ、スタッフへお渡しください。" },
           { lead: "油種の誤給油：", text: "誤った燃料を給油された場合、50万円（エンジン修理費および減価償却費を含む）をご賠償いただきます。実際の修理・洗浄および減価償却による損失がこれを上回る、または下回る場合は、実際に生じた金額で精算します。" },
           { lead: "満タン未返却：", text: "残量に応じて1,000～13,000円を申し受けます。" }
         ]
@@ -266,7 +266,7 @@ window.CONTRACT = {
         title: "オプション装備について",
         blocks: [
           { lead: "チャイルドシート：", text: "日本の法律により、6歳未満の児童が乗車する場合はチャイルドシートを使用しなければなりません。お客様ご自身で取り付け・確認を行ってください。未装着の場合、当店は貸渡しをお断りいたします。" },
-          { lead: "カーナビ：", text: "機能やルート案内に関するご苦情は一切お受けいたしません。" }
+          { lead: "カーナビ：", text: "車載ナビの多くは日本語です。Googleマップのご利用をおすすめします。機能やルート案内に関するご苦情は一切お受けいたしません。" }
         ]
       },
       {
@@ -340,9 +340,9 @@ window.CONTRACT = {
     planHeaderNotes: {
       basic: "(未购买免责)",
       cdwCompact: "小型车：3,300日元/24h",
-      cdwOther: "其他型车：4,400日元/24h",
+      cdwOther: "其他车型：4,400日元/24h",
       nocCompact: "小型车：5,500日元/24h",
-      nocOther: "其他型车：6,600日元/24h"
+      nocOther: "其他车型：6,600日元/24h"
     },
     tableHeaders: ["项目", "基础补偿*", "安心补偿方案（CDW）", "全面支持方案（CDW+NOC）"],
     tableRows: [
@@ -377,10 +377,10 @@ window.CONTRACT = {
     totalLoss: "若因承租人应承担责任的事故导致车辆全损（无法修复），承租人须按车辆实际市场价值承担赔偿，参考金额600,000日元起，并另行承担适用的NOC营业损失费及道路救援费用，已获补偿的费用不重复收取。",
     totalLossEmphasis: "600,000日元",
     specialTitle: "特别提醒",
-    special: "若还车时发现未经报案的损伤，须当场联系警察补办事故处理手续。由于事后补办程序极其复杂，处理过程最高可能耗时 5 小时。由此导致的误机或产生的额外机票费用，本公司概不承担，请务必知悉。",
+    special: "若还车时才发现未报警的损伤，即使当场报警，警察通常也无法开具事故证明，手续可能长达约 5 小时。因此发生事故时，请务必在事故现场立即报警。由此导致的误机或产生的额外机票费用，本公司概不承担，请务必知悉。",
     rules: [
       { num: "1", title: "关于燃油", blocks: [
-        { lead: "满油归还：", text: "还车时请在店铺周边2km内加油站加满并出示收据。" },
+        { lead: "满油归还：", text: "还车时请在店铺周边2km内加油站加满，请保存收据，并在还车时交给店员。" },
         { lead: "油种错误：", text: "若加错油，需赔偿 50 万日元（含发动机维修及折旧）；如实际维修、清洗及折旧损失超出或不足时，按实际发生金额结算。" },
         { lead: "未满归还：", text: "根据残油量，将收取1000-13000日元" }
       ]},
@@ -396,7 +396,7 @@ window.CONTRACT = {
       ]},
       { num: "5", title: "关于选装配件", blocks: [
         { lead: "儿童座椅：", text: "根据日本法律，未满6岁的儿童乘车时必须使用儿童座椅。请自行安装确认，未安装本店将拒绝租车。" },
-        { lead: "车载导航：", text: "不接受任何关于功能或路线引导的投诉。" }
+        { lead: "车载导航：", text: "大部分车载导航均为日语，建议使用谷歌地图。不接受任何关于功能或路线引导的投诉。" }
       ]},
       { num: "6", title: "关于遗留物品", blocks: [
         { text: "本店概不负责，请务必自行妥善保管贵重物品及随身财物。" }
@@ -479,10 +479,10 @@ window.CONTRACT = {
     totalLoss: "임차인에게 책임이 있는 사고로 차량이 전손(수리 불가)된 경우, 임차인은 차량의 실제 시장가치에 따라 배상해야 하며(참고 금액 ¥600,000부터), 해당되는 NOC 영업손실비 및 긴급출동 비용을 별도로 부담합니다. 이미 보상받은 비용은 중복하여 청구하지 않습니다.",
     totalLossEmphasis: "¥600,000",
     specialTitle: "특별 안내",
-    special: "반납 시 신고되지 않은 손상이 발견된 경우, 즉시 현장에서 경찰에 연락하여 사고 처리 절차를 사후에 진행해야 합니다. 사후 절차는 매우 복잡하여 처리에 최대 5시간이 소요될 수 있습니다. 이로 인해 항공편을 놓치거나 추가 항공권 비용이 발생하더라도 당사는 일절 책임지지 않으니 반드시 숙지해 주십시오.",
+    special: "반납할 때 비로소 신고하지 않은 손상이 발견되면, 그 자리에서 경찰에 신고하더라도 경찰은 보통 사고 증명을 발급하지 못하며, 절차는 약 5시간이 걸릴 수 있습니다. 따라서 사고가 나면 반드시 사고 현장에서 즉시 경찰에 신고해 주십시오. 이로 인해 항공편을 놓치거나 추가 항공권 비용이 발생하더라도 당사는 일절 책임지지 않으니 반드시 숙지해 주십시오.",
     rules: [
       { num: "1", title: "연료", blocks: [
-        { lead: "가득 주유 후 반납:", text: "차량 반납 시 매장 반경 2km 이내의 주유소에서 연료를 가득 채운 후 영수증을 제시해 주십시오." },
+        { lead: "가득 주유 후 반납:", text: "차량 반납 시 매장 반경 2km 이내의 주유소에서 연료를 가득 채우고, 영수증을 보관해 두었다가 반납할 때 직원에게 제출해 주십시오." },
         { lead: "연료 오주유:", text: "잘못된 종류의 연료를 주유한 경우 ¥500,000(엔진 수리비 및 감가상각비 포함)을 배상해야 합니다. 실제 수리·세척 및 감가상각 손실이 이를 초과하거나 부족한 경우에는 실제로 발생한 금액으로 정산합니다." },
         { lead: "가득 주유하지 않은 반납:", text: "남은 연료량에 따라 ¥1,000~13,000을 징수합니다." }
       ]},
@@ -498,7 +498,7 @@ window.CONTRACT = {
       ]},
       { num: "5", title: "옵션 장비", blocks: [
         { lead: "어린이 카시트:", text: "일본 법률에 따라, 만 6세 미만의 어린이가 차량에 탑승할 때에는 어린이 카시트를 사용해야 합니다. 직접 장착 및 확인해 주십시오. 장착하지 않을 경우 당 매장은 대여를 거절합니다." },
-        { lead: "차량 내비게이션:", text: "기능 또는 경로 안내에 관한 어떠한 불만도 접수하지 않습니다." }
+        { lead: "차량 내비게이션:", text: "대부분의 차량 내비게이션은 일본어입니다. 구글 지도를 사용하시기를 권합니다. 기능 또는 경로 안내에 관한 어떠한 불만도 접수하지 않습니다." }
       ]},
       { num: "6", title: "분실물", blocks: [
         { text: "당 매장은 일절 책임지지 않습니다. 귀중품 및 소지품은 반드시 본인이 직접 보관해 주십시오." }
@@ -581,10 +581,10 @@ window.CONTRACT = {
     totalLoss: "หากรถเสียหายทั้งคัน (ไม่สามารถซ่อมได้) จากอุบัติเหตุที่ผู้เช่าต้องรับผิดชอบ ผู้เช่าต้องชดใช้ตามมูลค่าตลาดจริงของรถ โดยมีจำนวนอ้างอิงเริ่มต้นที่ ¥600,000 และต้องรับผิดชอบค่า NOC และค่าบริการช่วยเหลือฉุกเฉินที่เกี่ยวข้องแยกต่างหาก ค่าใช้จ่ายที่ได้รับการชดเชยแล้วจะไม่เรียกเก็บซ้ำ",
     totalLossEmphasis: "¥600,000",
     specialTitle: "ข้อควรทราบพิเศษ",
-    special: "หากพบความเสียหายที่ไม่ได้แจ้งความเมื่อคืนรถ ต้องติดต่อตำรวจ ณ ที่นั้นทันทีเพื่อดำเนินการแจ้งอุบัติเหตุย้อนหลัง ขั้นตอนดังกล่าวซับซ้อนมากและอาจใช้เวลานานถึง 5 ชั่วโมง บริษัทฯ จะไม่รับผิดชอบใด ๆ ต่อการตกเครื่องบินหรือค่าตั๋วเครื่องบินเพิ่มเติมที่เกิดขึ้น โปรดรับทราบ",
+    special: "หากพบความเสียหายที่ยังไม่ได้แจ้งความเมื่อคืนรถ แม้จะแจ้งตำรวจทันที ณ ที่นั้น ตำรวจมักออกหลักฐานการเกิดอุบัติเหตุให้ไม่ได้ และขั้นตอนอาจใช้เวลานานถึงประมาณ 5 ชั่วโมง ดังนั้นหากเกิดอุบัติเหตุ กรุณาแจ้งตำรวจทันทีที่เกิดเหตุ บริษัทฯ จะไม่รับผิดชอบใด ๆ ต่อการตกเครื่องบินหรือค่าตั๋วเครื่องบินเพิ่มเติมที่เกิดขึ้น โปรดรับทราบ",
     rules: [
       { num: "1", title: "น้ำมันเชื้อเพลิง", blocks: [
-        { lead: "คืนรถพร้อมน้ำมันเต็มถัง:", text: "เมื่อคืนรถ กรุณาเติมน้ำมันให้เต็มถังที่สถานีบริการน้ำมันในรัศมี 2 กม. จากร้าน และแสดงใบเสร็จรับเงิน" },
+        { lead: "คืนรถพร้อมน้ำมันเต็มถัง:", text: "เมื่อคืนรถ กรุณาเติมน้ำมันให้เต็มถังที่สถานีบริการน้ำมันในรัศมี 2 กม. จากร้าน โปรดเก็บใบเสร็จไว้ และเมื่อคืนรถมอบให้พนักงาน" },
         { lead: "เติมน้ำมันผิดประเภท:", text: "หากเติมน้ำมันผิดประเภท ต้องชดใช้ค่าเสียหาย ¥500,000 (รวมค่าซ่อมเครื่องยนต์และค่าเสื่อมราคา) หากค่าซ่อม การทำความสะอาด และค่าเสื่อมราคาที่เกิดขึ้นจริงสูงหรือต่ำกว่าจำนวนดังกล่าว ให้คิดตามจำนวนที่เกิดขึ้นจริง" },
         { lead: "คืนรถโดยน้ำมันไม่เต็มถัง:", text: "จะเรียกเก็บเงิน ¥1,000–13,000 ตามปริมาณน้ำมันที่เหลืออยู่" }
       ]},
@@ -600,7 +600,7 @@ window.CONTRACT = {
       ]},
       { num: "5", title: "อุปกรณ์เสริม", blocks: [
         { lead: "คาร์ซีทเด็ก:", text: "ตามกฎหมายญี่ปุ่น เด็กอายุไม่ถึง 6 ปีที่โดยสารในรถต้องใช้คาร์ซีทเด็ก กรุณาติดตั้งและตรวจสอบด้วยตนเอง หากไม่ติดตั้ง ทางร้านจะปฏิเสธการให้เช่า" },
-        { lead: "ระบบนำทางในรถ:", text: "ทางร้านไม่รับข้อร้องเรียนใด ๆ เกี่ยวกับฟังก์ชันหรือการนำทางเส้นทาง" }
+        { lead: "ระบบนำทางในรถ:", text: "ระบบนำทางในรถส่วนใหญ่เป็นภาษาญี่ปุ่น แนะนำให้ใช้ Google Maps ทางร้านไม่รับข้อร้องเรียนใด ๆ เกี่ยวกับฟังก์ชันหรือการนำทางเส้นทาง" }
       ]},
       { num: "6", title: "ทรัพย์สินที่ลืมไว้ในรถ", blocks: [
         { text: "ทางร้านไม่รับผิดชอบใด ๆ ทั้งสิ้น กรุณาเก็บรักษาของมีค่าและทรัพย์สินส่วนตัวด้วยตนเอง" }
