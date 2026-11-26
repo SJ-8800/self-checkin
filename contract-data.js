@@ -56,7 +56,7 @@ window.CONTRACT = {
       { text: "Private settlements with the other party are strictly prohibited; otherwise, the renter shall bear all consequences and costs.", emphasis: "Private settlements with the other party are strictly prohibited" },
       { text: "The compensation system applies only once per rental period; if a second accident occurs, the renter shall bear all costs." }
     ],
-    exclusionsTitle: "Voiding of Compensation & Exclusions",
+    exclusionsTitle: "Compensation Does Not Apply & Exclusions",
     exclusionsLead: "(In the following cases, the customer must pay in full even if enrolled in a plan)",
     exclusions: [
       { lead: "Driving by others:", text: "An accident caused by anyone other than the contract signer driving." },
@@ -364,7 +364,7 @@ window.CONTRACT = {
       { text: "严禁私下与对方和解，否则所有后果及费用由承租人自行承担。", emphasis: "严禁私下与对方和解" },
       { text: "同一租期内补偿制度只生效一次，如果发生二次事故，承租人将承担全部费用。" }
     ],
-    exclusionsTitle: "补偿制度失效与除外责任",
+    exclusionsTitle: "补偿制度不适用与除外责任",
     exclusionsLead: "（以下情况即使加入补偿仍需客户全额赔偿）",
     exclusions: [
       { lead: "他人驾驶：", text: "签约者以外的人驾驶导致事故。" },
@@ -568,7 +568,7 @@ window.CONTRACT = {
       { text: "ห้ามตกลงยอมความกับคู่กรณีเองโดยเด็ดขาด มิฉะนั้นผู้เช่าต้องรับผิดชอบผลที่ตามมาและค่าใช้จ่ายทั้งหมดเอง", emphasis: "ห้ามตกลงยอมความกับคู่กรณีเองโดยเด็ดขาด" },
       { text: "ระบบการชดเชยใช้ได้เพียงครั้งเดียวภายในระยะเวลาเช่าเดียวกัน หากเกิดอุบัติเหตุครั้งที่สอง ผู้เช่าต้องรับผิดชอบค่าใช้จ่ายทั้งหมด" }
     ],
-    exclusionsTitle: "กรณีที่ระบบการชดเชยไม่มีผลและข้อยกเว้นความรับผิด",
+    exclusionsTitle: "กรณีที่ระบบการชดเชยไม่ถูกนำมาใช้และข้อยกเว้นความรับผิด",
     exclusionsLead: "(ในกรณีต่อไปนี้ แม้จะซื้อแผนคุ้มครองแล้ว ลูกค้ายังต้องชดใช้เต็มจำนวน)",
     exclusions: [
       { lead: "ผู้อื่นขับขี่:", text: "อุบัติเหตุที่เกิดจากบุคคลอื่นที่ไม่ใช่ผู้ลงนามในสัญญาเป็นผู้ขับขี่" },

@@ -314,11 +314,11 @@ window.HELP = {
         "th": "48 ชม.หลังล้างรถ"
       },
       "gross_negligence": {
-        "zh": "CDW/NOC失效",
-        "en": "Void CDW/NOC",
-        "ja": "補償無効条件",
-        "ko": "보상 무효",
-        "th": "การสิ้นผลCDW/NOC"
+        "zh": "CDW/NOC不适用",
+        "en": "CDW/NOC does not apply",
+        "ja": "CDW/NOC不適用",
+        "ko": "CDW/NOC 미적용",
+        "th": "CDW/NOCไม่ถูกนำมาใช้"
       }
     }
   },
@@ -897,11 +897,11 @@ window.HELP = {
     },
     "gross_negligence": {
       "title": {
-        "zh": "第 10 条：重大过失（保险与 CDW/NOC 失效）",
-        "en": "Term 10: Gross negligence (insurance & CDW/NOC void)",
+        "zh": "第 10 条：重大过失（本店补偿制度（CDW/NOC）不适用）",
+        "en": "Term 10: Gross negligence (shop compensation system (CDW/NOC) does not apply)",
         "ja": "第10条：重大な過失（CDW/NOC の不適用）",
-        "ko": "제10조: 중대한 과실（보험 및 CDW/NOC 무효）",
-        "th": "ข้อ 10: ความประมาทเลินเล่ออย่างร้ายแรง (ประกันและ CDW/NOC สิ้นผล)"
+        "ko": "제10조: 중대한 과실（보상제도(CDW/NOC) 미적용）",
+        "th": "ข้อ 10: ความประมาทเลินเล่ออย่างร้ายแรง (ระบบการชดเชย (CDW/NOC) ไม่ถูกนำมาใช้)"
       },
       "body": {
         "zh": [

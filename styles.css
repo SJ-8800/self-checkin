@@ -912,19 +912,9 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
 .choice.fuel-diesel.selected { border-color: var(--green); background: var(--green-soft); }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 
-#print-frame {
-  /* Off-screen but laid out. iOS Safari will not print all PDF pages from a
-     0×0 or visibility:hidden iframe, so this frame stays at A4 size.
-     Height is 4 pages by default; printPdf() sets it to pageCount × 297mm. */
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 210mm;
-  height: 1188mm;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
-  z-index: -1;
+#print-root {
+  /* Same-document print pages. Hidden on screen; only this node is printed. */
+  display: none;
 }
 
 /* Confirm overlay */
@@ -1013,10 +1003,49 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   .sign-tools .btn { min-height: 44px; font-size: 15px; padding: 8px 10px; }
 }
 
-/* Print (fallback if someone prints the page itself) */
+/* Print: only #print-root (4 pre-rendered A4 pages). App UI is hidden. */
 @media print {
-  body { background: #fff; overflow: visible; height: auto; }
-  .screen, .topbar, .footer, .staff-corner, .modal, .btn { display: none !important; }
+  @page { size: A4; margin: 0; }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  body > *:not(#print-root) { display: none !important; }
+  #print-root {
+    display: block !important;
+    position: static;
+    left: auto;
+    top: auto;
+    width: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  #print-root .print-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  #print-root .print-page.last {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  #print-root img {
+    width: 210mm;
+    height: 297mm;
+    display: block;
+    border: 0;
+  }
 }
 
 

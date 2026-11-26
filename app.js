@@ -175,7 +175,7 @@
       summaryTitle: "办理完成",
       summaryIntro: "已生成含店铺联与客户联的 4 页签字合同。点一次打印即可直接印出两份。",
       pdfReady: "PDF 已准备好",
-      returnDevice: "请将设备交还给店员",
+      returnDevice: "请将设备还给店员",
       download: "保存 PDF（店员用）",
       print: "打印合同（两份）",
       reset: "为下一位客人重置",
@@ -324,7 +324,7 @@
     signedAt: null,
     pdfBlob: null,
     pdfUrl: null,
-    printHtml: null,
+    printReady: false,
     screen: "language"
   };
 
@@ -962,6 +962,7 @@
       URL.revokeObjectURL(state.pdfUrl);
       state.pdfUrl = null;
     }
+    clearPrintRoot();
     const dataUrl = state.signatureDataUrl || exportSignature();
     state.signatureDataUrl = dataUrl;
     const blob = await fillContractPdf({
@@ -975,17 +976,33 @@
     state.pdfBlob = blob;
     state.pdfUrl = URL.createObjectURL(blob);
     try {
-      state.printHtml = await buildPrintHtml(blob);
+      await preparePrintRoot(blob);
     } catch (err) {
       console.error(err);
-      state.printHtml = null;
+      clearPrintRoot();
     }
     return blob;
   }
 
   const PRINT_DPI = 200;
 
-  async function buildPrintHtml(blob) {
+  function clearPrintRoot() {
+    state.printReady = false;
+    const root = $("#print-root");
+    if (root) root.innerHTML = "";
+  }
+
+  function waitForImages(imgs) {
+    return Promise.all(imgs.map((img) => {
+      if (img.complete && img.naturalWidth) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    }));
+  }
+
+  async function renderPrintImages(blob) {
     const lib = window.pdfjsLib;
     if (!lib) throw new Error("pdf.js failed to load");
     const bytes = new Uint8Array(await blob.arrayBuffer());
@@ -1008,17 +1025,19 @@
       canvas.height = 0;
     }
     if (srcDoc.destroy) await srcDoc.destroy();
-    const pages = images.map((src, i) => {
+    return images;
+  }
+
+  async function preparePrintRoot(blob) {
+    const images = await renderPrintImages(blob);
+    const root = $("#print-root");
+    if (!root) throw new Error("print root missing");
+    root.innerHTML = images.map((src, i) => {
       const last = i === images.length - 1 ? " last" : "";
       return '<div class="print-page' + last + '"><img src="' + src + '" width="210" height="297" alt=""></div>';
     }).join("");
-    return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Print</title><style>'
-      + '@page { size: A4; margin: 0; }'
-      + 'html, body { margin: 0; padding: 0; background: #fff; }'
-      + '.print-page { width: 210mm; height: 297mm; margin: 0; padding: 0; overflow: hidden; page-break-after: always; break-after: page; }'
-      + '.print-page.last { page-break-after: auto; break-after: auto; }'
-      + '.print-page img { width: 210mm; height: 297mm; display: block; border: 0; }'
-      + '</style></head><body>' + pages + '</body></html>';
+    await waitForImages(Array.from(root.querySelectorAll("img")));
+    state.printReady = root.querySelectorAll(".print-page").length > 0;
   }
 
   const STAFF_UI = {
@@ -1029,7 +1048,8 @@
     cancel: "キャンセル",
     resetQ: "このお客様の内容を消去して最初に戻りますか？車両クラスもクリアされます。",
     printGo: "印刷画面を開く",
-    preparing: "契約書を作成しています…"
+    preparing: "契約書を作成しています…",
+    printNotReady: "契約書の印刷準備中です。完了後にもう一度押してください。"
   };
 
   function staffJa(key) {
@@ -1093,7 +1113,7 @@
         status.classList.add("hidden");
       }
       $("#btn-download").disabled = false;
-      $("#btn-print").disabled = false;
+      $("#btn-print").disabled = !state.printReady;
     } catch (err) {
       if (status) {
         status.textContent = String(err.message || err);
@@ -1114,11 +1134,14 @@
   }
 
   function openPrintConfirm() {
-    if (!state.pdfUrl) return;
+    if (!state.printReady) return;
     const text = $("#print-confirm-text");
     if (text) text.textContent = staffJa("printConfirm");
     const go = $("#btn-print-go");
-    if (go) go.textContent = STAFF_UI.printGo;
+    if (go) {
+      go.textContent = STAFF_UI.printGo;
+      go.disabled = false;
+    }
     const modal = $("#print-modal");
     if (modal) modal.classList.remove("hidden");
   }
@@ -1126,63 +1149,18 @@
     const modal = $("#print-modal");
     if (modal) modal.classList.add("hidden");
   }
-  function waitForFrameImages(frame) {
-    const doc = frame.contentDocument;
-    if (!doc) return Promise.resolve();
-    const imgs = Array.from(doc.images || []);
-    return Promise.all(imgs.map((img) => {
-      if (img.complete) return Promise.resolve();
-      return new Promise((resolve) => {
-        img.onload = resolve;
-        img.onerror = resolve;
-      });
-    }));
-  }
-
-  function pageCountFromPrintHtml(html) {
-    const matches = String(html || "").match(/class="print-page/g);
-    return (matches && matches.length) || 4;
-  }
-
-  function sizePrintFrame(frame, pageCount) {
-    const n = Math.max(1, Number(pageCount) || 4);
-    frame.style.width = "210mm";
-    frame.style.height = (n * 297) + "mm";
-  }
-
-  function loadPrintFrame(frame, html, onReady) {
-    sizePrintFrame(frame, pageCountFromPrintHtml(html));
-    frame.onload = onReady;
-    frame.srcdoc = html;
-  }
-
   function printPdf() {
-    if (!state.printHtml && !state.pdfBlob) return;
+    // iOS Safari ignores print() after await / Promise / onload.
+    // Only call window.print() synchronously in this click handler.
+    if (!state.printReady) {
+      const text = $("#print-confirm-text");
+      if (text) text.textContent = STAFF_UI.printNotReady;
+      const go = $("#btn-print-go");
+      if (go) go.textContent = STAFF_UI.printNotReady;
+      return;
+    }
     closePrintConfirm();
-    const frame = $("#print-frame");
-    const html = state.printHtml;
-    const runPrint = () => {
-      waitForFrameImages(frame).then(() => {
-        try {
-          frame.contentWindow.focus();
-          frame.contentWindow.print();
-        } catch (err) {
-          // Do not fall back to window.open: Guided Access blocks it.
-          console.error(err);
-        }
-      });
-    };
-    const go = () => {
-      if (!html) {
-        buildPrintHtml(state.pdfBlob).then((built) => {
-          state.printHtml = built;
-          loadPrintFrame(frame, built, runPrint);
-        }).catch((err) => console.error(err));
-        return;
-      }
-      loadPrintFrame(frame, html, runPrint);
-    };
-    go();
+    window.print();
   }
 
   let idleTimer = null;
@@ -1252,8 +1230,7 @@
     closeAllModals();
     hideFlowToast();
     if (state.pdfUrl) URL.revokeObjectURL(state.pdfUrl);
-    const frame = $("#print-frame");
-    if (frame) frame.src = "about:blank";
+    clearPrintRoot();
     state.plan = null;
     state.fuel = null;
     state.thirdPartyAck = false;
@@ -1264,7 +1241,6 @@
     state.signedAt = null;
     state.pdfBlob = null;
     state.pdfUrl = null;
-    state.printHtml = null;
     state.langSelected = false;
     state.vehicleClass = null;
     clearPersistedStaff();
@@ -1552,7 +1528,7 @@
 
   // Test helpers for Playwright (draw a signature, read state)
   window.__checkin = {
-    getState: () => ({ ...state, pdfUrl: !!state.pdfUrl }),
+    getState: () => ({ ...state, pdfUrl: !!state.pdfUrl, printReady: !!state.printReady, pdfBlob: undefined }),
     tickAllRules: () => {
       state.rulesChecked = state.rulesChecked.map(() => true);
       document.querySelectorAll(".rule").forEach((el) => el.classList.add("checked"));
@@ -1564,26 +1540,19 @@
       if (el) el.classList.add("checked");
       updateRulesProgress();
     },
-    getPrintHtml: async () => {
-      if (state.printHtml) return state.printHtml;
-      let blob = state.pdfBlob;
-      if (!blob) blob = await generatePdf();
-      if (!state.printHtml) state.printHtml = await buildPrintHtml(blob);
-      return state.printHtml;
-    },
     loadPrintPreview: async () => {
-      const html = await window.__checkin.getPrintHtml();
-      const frame = document.getElementById("print-frame");
-      if (!frame || !html) return null;
-      return new Promise((resolve) => {
-        sizePrintFrame(frame, pageCountFromPrintHtml(html));
-        frame.onload = () => resolve({
-          pageCount: pageCountFromPrintHtml(html),
-          styleHeight: frame.style.height,
-          styleWidth: frame.style.width
-        });
-        frame.srcdoc = html;
-      });
+      if (!state.printReady) {
+        let blob = state.pdfBlob;
+        if (!blob) blob = await generatePdf();
+        else await preparePrintRoot(blob);
+      }
+      const root = document.getElementById("print-root");
+      const pages = root ? root.querySelectorAll(".print-page") : [];
+      return {
+        pageCount: pages.length,
+        ready: !!state.printReady,
+        lastHasClass: pages.length ? pages[pages.length - 1].classList.contains("last") : false
+      };
     },
     getPdfBase64: async () => {
       let blob = state.pdfBlob;
