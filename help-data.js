@@ -703,35 +703,45 @@ window.HELP = {
           "没有警察开具的事故证明，保险公司一律不予理赔。严禁私下与对方和解。",
           "若还车时才发现未报警的损伤，即使当场报警，警察通常也无法开具事故证明，手续可能长达约 5 小时。因此发生事故时，请务必在事故现场立即报警。",
           "事故证明（交通事故证明书）无法当场取得，事后需向警察申请，一般至少需要 2～3 周才能拿到。",
-          "取得后，本店工作人员会以 PDF 形式发送给承租人。"
+          "取得后，本店工作人员会以 PDF 形式发送给承租人。",
+          "未按规定履行事故报告义务且无正当理由的，本店CDW及NOC免责补偿制度不予适用。",
+          "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用及NOC营业损失费。仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。"
         ],
         "en": [
           "No matter how small the accident (even a minor scratch), you must immediately call 110 to report it to the police and contact the shop.",
           "Without an accident certificate issued by the police, the insurance company will not process any claim. Private settlements with the other party are strictly prohibited.",
           "If unreported damage is only discovered when you return the car, the police usually cannot issue an accident certificate even if you report it then and there, and the process may take up to about 5 hours. Therefore, if an accident occurs, you must report it to the police immediately at the scene.",
           "The accident certificate (Traffic Accident Certificate) cannot be obtained on the spot. You must apply to the police afterwards, and it generally takes at least 2–3 weeks to receive.",
-          "Once it has been obtained, our staff will send it to you as a PDF."
+          "Once it has been obtained, our staff will send it to you as a PDF.",
+          "If the required accident-reporting obligation is not fulfilled without a justifiable reason, the shop’s CDW and NOC compensation system shall not apply.",
+          "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2."
         ],
         "ja": [
           "事故の大小にかかわらず（軽い擦り傷でも）、直ちに110番して警察に届け出、当店にも連絡してください。",
           "警察が発行する事故証明がない場合、保険会社は保険金の支払いに応じません。相手方との示談は禁止されています。",
           "返却時になって届出のない損傷が見つかった場合、その場で警察に連絡しても、警察は通常、事故証明を発行できません。手続きには約5時間かかることがあります。そのため、事故が起きたときは、必ず事故現場で直ちに警察へ届け出てください。",
           "事故証明（交通事故証明書）は、その場では取得できません。後日警察に申請する必要があり、入手まで一般的に少なくとも2～3週間かかります。",
-          "取得後、当店のスタッフがPDF形式でお送りします。"
+          "取得後、当店のスタッフがPDF形式でお送りします。",
+          "所定の事故報告義務を正当な理由なく履行しなかった場合、当店のCDWおよびNOCの免責補償制度は適用されません。",
+          "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用およびNOC営業損失費を負担しなければなりません。簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。"
         ],
         "ko": [
           "사고의 크기와 관계없이(가벼운 긁힘이라도) 즉시 110에 전화해 경찰에 신고하고, 당 매장에도 연락해야 합니다.",
           "경찰이 발급한 사고 증명이 없으면 보험회사는 보험 처리를 하지 않습니다. 상대방과의 사적 합의는 금지됩니다.",
           "반납할 때 비로소 신고하지 않은 손상이 발견되면, 그 자리에서 경찰에 신고하더라도 경찰은 보통 사고 증명을 발급하지 못하며, 절차는 약 5시간이 걸릴 수 있습니다. 따라서 사고가 나면 반드시 사고 현장에서 즉시 경찰에 신고해 주십시오.",
           "사고 증명(교통사고 증명서)은 현장에서 바로 받을 수 없습니다. 나중에 경찰에 신청해야 하며, 받는 데 일반적으로 최소 2～3주가 걸립니다.",
-          "발급된 후, 당 매장 직원이 PDF 파일로 보내 드립니다."
+          "발급된 후, 당 매장 직원이 PDF 파일로 보내 드립니다.",
+          "정당한 사유 없이 소정의 사고 보고 의무를 이행하지 않은 경우, 당 매장의 CDW 및 NOC 면책 보상제도는 적용되지 않습니다.",
+          "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용 및 NOC 영업손실비를 부담해야 합니다. 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다."
         ],
         "th": [
           "ไม่ว่าอุบัติเหตุจะเล็กหรือใหญ่ (แม้เป็นเพียงรอยขีดข่วนเล็กน้อย) ต้องโทร 110 แจ้งตำรวจทันที และติดต่อทางร้านด้วย",
           "หากไม่มีหลักฐานการเกิดอุบัติเหตุที่ออกโดยตำรวจ บริษัทประกันจะไม่ดำเนินการเคลม ห้ามตกลงยอมความกับคู่กรณีเอง",
           "หากพบความเสียหายที่ยังไม่ได้แจ้งความเมื่อคืนรถ แม้จะแจ้งตำรวจทันที ณ ที่นั้น ตำรวจมักออกหลักฐานการเกิดอุบัติเหตุให้ไม่ได้ และขั้นตอนอาจใช้เวลานานถึงประมาณ 5 ชั่วโมง ดังนั้นหากเกิดอุบัติเหตุ กรุณาแจ้งตำรวจทันทีที่เกิดเหตุ",
           "หลักฐานการเกิดอุบัติเหตุ (ใบรับรองอุบัติเหตุจราจร) ไม่สามารถขอรับได้ทันที ณ ที่เกิดเหตุ ต้องยื่นคำร้องต่อตำรวจในภายหลัง และโดยทั่วไปต้องใช้เวลาอย่างน้อย 2–3 สัปดาห์จึงจะได้รับ",
-          "หลังจากได้รับแล้ว พนักงานของร้านจะส่งให้ในรูปแบบ PDF"
+          "หลังจากได้รับแล้ว พนักงานของร้านจะส่งให้ในรูปแบบ PDF",
+          "หากไม่ปฏิบัติตามหน้าที่ในการรายงานอุบัติเหตุตามที่กำหนดโดยไม่มีเหตุอันสมควร ระบบการชดเชย CDW และ NOC ของทางร้านจะไม่ถูกนำมาใช้",
+          "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้องและค่าขาดรายได้ NOC รอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2"
         ]
       }
     },
@@ -884,24 +894,29 @@ window.HELP = {
       },
       "body": {
         "zh": [
-          "车辆归还时的现场检查属于初步检查。因积雪、泥泞、雨水、光线不足、车辆结构或其他合理原因，现场可能未能发现损伤。",
-          "合同写明：本公司原则上在车辆归还后48小时内完成复检，并保留进一步检查及索赔的权利。如通过取车及还车影像、车辆检查记录或其他合理证据确认损伤发生于承租人的租赁期间，承租人须承担相应赔偿责任。"
+          "取车时请仔细检查车辆，并拍摄车辆影像留存。本店亦将记录车辆交接时的状态，相关影像及检查记录可作为损伤认定及赔偿依据。",
+          "还车时的现场检查仅为初步检查。因积雪、泥泞、雨水、光线不足、车辆结构等原因，现场可能未能发现损伤。本店保留还车后48小时内复检及追偿的权利。",
+          "完成还车手续不代表本店放弃对租赁期间产生的损伤及未结算费用的追偿权。经相关证据确认属于租赁期间产生且应由承租人承担责任的损伤，承租人须承担相应赔偿责任。"
         ],
         "en": [
-          "The on-site inspection at return is a preliminary inspection. Damage may go undetected on site because of snow, mud, rain, insufficient lighting, the vehicle’s structure, or other reasonable causes.",
-          "The contract states that, in principle, the shop will complete the re-inspection within 48 hours after the vehicle is returned, and reserves the right to conduct a further inspection and to claim compensation. If pickup and return footage, vehicle inspection records, or other reasonable evidence confirms that the damage occurred during the renter’s rental period, the renter shall bear the corresponding liability."
+          "Please inspect the vehicle carefully at pick-up and take images of the vehicle to keep. The shop will also record the vehicle’s condition at handover; such images and inspection records may be used as a basis for determining damage and compensation.",
+          "The on-site inspection at return is only a preliminary inspection. Damage may go undetected on site because of snow, mud, rain, insufficient lighting, the vehicle’s structure, or similar causes. The shop reserves the right to re-inspect and to claim compensation within 48 hours after return.",
+          "Completion of the return formalities does not mean that the shop waives its right to claim for damage or unpaid charges arising during the rental period. If relevant evidence confirms that the damage occurred during the rental period and that the renter is liable, the renter shall bear the corresponding liability."
         ],
         "ja": [
-          "ご返却時の現場点検は予備的な点検です。積雪、泥汚れ、雨水、光線不足、車両構造またはその他の合理的な理由により、その場では損傷を発見できないことがあります。",
-          "契約書では、当社は原則として車両ご返却後48時間以内に再点検を完了し、追加の点検および賠償請求の権利を留保すると定められています。貸出時および返却時の映像、車両点検記録またはその他の合理的な証拠により、損傷が借受人の貸渡期間中に生じたと確認された場合、借受人は相応の賠償責任を負うものとします。"
+          "ご貸渡時に車両をよく点検し、車両の映像を撮影して保管してください。当店も車両引渡し時の状態を記録します。関連する映像および点検記録は、損傷の認定および賠償の根拠とすることができます。",
+          "ご返却時の現場点検は予備的な点検にすぎません。積雪、泥汚れ、雨水、光線不足、車両構造などの理由により、その場では損傷を発見できないことがあります。当店はご返却後48時間以内に再点検し、賠償を請求する権利を留保します。",
+          "ご返却手続の完了は、貸渡期間中に生じた損傷および未精算費用に対する当店の請求権を放棄したことを意味しません。関連する証拠により、損傷が貸渡期間中に生じ、借受人が責任を負うべきものと確認された場合、借受人は相応の賠償責任を負うものとします。"
         ],
         "ko": [
-          "차량 반납 시의 현장 검사는 예비 검사에 해당합니다. 적설, 진흙, 빗물, 조명 부족, 차량 구조 또는 그 밖의 합리적인 이유로 현장에서 손상을 발견하지 못할 수 있습니다.",
-          "계약서에는 당사가 원칙적으로 차량 반납 후 48시간 이내에 재점검을 완료하며, 추가 검사 및 배상 청구의 권리를 보유한다고 적혀 있습니다. 차량 인수 및 반납 영상, 차량 검사 기록 또는 그 밖의 합리적인 증거로 손상이 임차인의 대여 기간 중에 발생한 것으로 확인되는 경우, 임차인은 그에 상응하는 배상 책임을 져야 합니다."
+          "차량 인수 시 차량을 주의 깊게 확인하고, 차량 영상을 촬영해 보관해 주십시오. 당 매장 또한 차량 인도 시의 상태를 기록하며, 관련 영상 및 검사 기록은 손상 인정 및 배상의 근거가 될 수 있습니다.",
+          "반납 시의 현장 검사는 예비 검사에 불과합니다. 적설, 진흙, 빗물, 조명 부족, 차량 구조 등의 이유로 현장에서 손상을 발견하지 못할 수 있습니다. 당 매장은 반납 후 48시간 이내에 재점검하고 배상을 청구할 권리를 보유합니다.",
+          "반납 절차를 마쳤다고 해서, 대여 기간 중에 발생한 손상 및 미정산 비용에 대한 당 매장의 청구권을 포기한 것은 아닙니다. 관련 증거로 해당 손상이 대여 기간 중에 발생하였고 임차인이 책임을 져야 하는 것으로 확인되는 경우, 임차인은 그에 상응하는 배상 책임을 져야 합니다."
         ],
         "th": [
-          "การตรวจสอบ ณ จุดคืนรถถือเป็นการตรวจสอบเบื้องต้น ความเสียหายอาจตรวจไม่พบ ณ จุดนั้นเนื่องจากหิมะ โคลน น้ำฝน แสงไม่เพียงพอ โครงสร้างของตัวรถ หรือเหตุผลอันสมเหตุสมผลอื่น",
-          "สัญญาระบุว่า โดยหลักแล้วทางร้านจะทำการตรวจซ้ำให้เสร็จภายใน 48 ชั่วโมงหลังคืนรถ และขอสงวนสิทธิ์ในการตรวจสอบเพิ่มเติมและเรียกร้องค่าเสียหาย หากภาพตอนรับรถและคืนรถ บันทึกการตรวจรถ หรือหลักฐานอันสมเหตุสมผลอื่น ยืนยันว่าความเสียหายเกิดขึ้นในระหว่างระยะเวลาเช่าของผู้เช่า ผู้เช่าต้องรับผิดชอบค่าเสียหายตามที่เกิดขึ้น"
+          "เมื่อรับรถ กรุณาตรวจสอบรถอย่างละเอียด และถ่ายภาพหรือวิดีโอของรถเก็บไว้ ทางร้านจะบันทึกสภาพรถ ณ เวลาส่งมอบด้วย ภาพและบันทึกการตรวจที่เกี่ยวข้องสามารถใช้เป็นหลักฐานในการพิจารณาความเสียหายและการชดเชยได้",
+          "การตรวจสอบ ณ จุดคืนรถเป็นการตรวจสอบเบื้องต้นเท่านั้น ความเสียหายอาจตรวจไม่พบ ณ จุดนั้นเนื่องจากหิมะ โคลน น้ำฝน แสงไม่เพียงพอ โครงสร้างของตัวรถ เป็นต้น ทางร้านขอสงวนสิทธิ์ในการตรวจซ้ำและเรียกร้องค่าเสียหายภายใน 48 ชั่วโมงหลังคืนรถ",
+          "การทำพิธีการคืนรถเสร็จสิ้นแล้ว ไม่ได้หมายความว่าทางร้านสละสิทธิ์ในการเรียกร้องความเสียหายและค่าใช้จ่ายที่ยังไม่ได้ชำระซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า หากหลักฐานที่เกี่ยวข้องยืนยันว่าความเสียหายเกิดขึ้นในระหว่างระยะเวลาเช่า และผู้เช่าต้องรับผิดชอบ ผู้เช่าต้องรับผิดชอบค่าเสียหายตามที่เกิดขึ้น"
         ]
       }
     },

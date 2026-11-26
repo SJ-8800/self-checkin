@@ -122,9 +122,8 @@ window.CONTRACT = {
         title: "Insurance Coverage & Unreported Damage",
         highlight: true,
         blocks: [
-          { text: "In any accident (including collisions with animals and single-vehicle accidents), insurance is void without a police report, and the renter shall bear all losses in full.", highlight: true },
-          { text: "If unreported damage is found upon return, repair costs from ¥20,000 plus a loss-of-business fee from ¥20,000 will be charged.", highlight: true },
-          { text: "Therefore, please take a video of the vehicle at pick-up as evidence.", highlight: true }
+          { text: "In any accident (including a minor collision, a collision with an animal, and a single-vehicle accident), the renter must immediately report it to the police and contact the shop. If the required accident-reporting obligation is not fulfilled without a justifiable reason, the shop’s CDW and NOC compensation system shall not apply.", highlight: true },
+          { text: "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2.", highlight: true }
         ]
       },
       {
@@ -139,7 +138,9 @@ window.CONTRACT = {
         num: "9",
         title: "Hidden Damage",
         blocks: [
-          { text: "The on-site inspection at return is a preliminary inspection. For damage that could not be detected on site because of snow, mud, rain, insufficient lighting, the vehicle’s structure, or other reasonable causes, the Company reserves the right to conduct a further inspection and to claim compensation. In principle, the Company will complete the re-inspection within 48 hours after the vehicle is returned. If pickup and return footage, vehicle inspection records, or other reasonable evidence confirms that the damage occurred during the renter’s rental period, the renter shall bear the corresponding liability." }
+          { text: "Please inspect the vehicle carefully at pick-up and take images of the vehicle to keep. The shop will also record the vehicle’s condition at handover; such images and inspection records may be used as a basis for determining damage and compensation." },
+          { text: "The on-site inspection at return is only a preliminary inspection. For damage that could not be detected on site because of snow, mud, rain, insufficient lighting, the vehicle’s structure, or similar causes, the shop reserves the right to re-inspect and to claim compensation within 48 hours after return." },
+          { text: "Completion of the return formalities does not mean that the shop waives its right to claim for damage or unpaid charges arising during the rental period. If relevant evidence confirms that the damage occurred during the rental period and that the renter is liable, the renter shall bear the corresponding liability." }
         ]
       },
       {
@@ -281,9 +282,8 @@ window.CONTRACT = {
         title: "保険の適用および未届出の損傷について",
         highlight: true,
         blocks: [
-          { text: "いかなる事故（動物との衝突・自損事故を含む）も、警察への届出記録がない場合は保険が一切適用されず、損害は借受人が全額負担するものとします。", highlight: true },
-          { text: "ご返却時に未届出の損傷が見つかった場合、修理費20,000円～＋営業損失費20,000円～を申し受けます。", highlight: true },
-          { text: "そのため、貸渡時に証拠として車両の動画を撮影してください。", highlight: true }
+          { text: "いかなる事故（軽微な衝突、動物との衝突及び自損事故を含む）が発生した場合も、直ちに警察へ届け出、当店に連絡しなければなりません。所定の事故報告義務を正当な理由なく履行しなかった場合、当店のCDWおよびNOCの免責補償制度は適用されません。", highlight: true },
+          { text: "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用およびNOC営業損失費を負担しなければなりません。このうち、簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。", highlight: true }
         ]
       },
       {
@@ -298,7 +298,9 @@ window.CONTRACT = {
         num: "9",
         title: "隠れた損傷について",
         blocks: [
-          { text: "ご返却時の現場点検は予備的な点検です。積雪、泥汚れ、雨水、光線不足、車両構造またはその他の合理的な理由によりその場で発見できなかった損傷について、当社は追加の点検および賠償請求の権利を留保します。当社は原則として、車両ご返却後48時間以内に再点検を完了します。貸出時および返却時の映像、車両点検記録またはその他の合理的な証拠により、損傷が借受人の貸渡期間中に生じたと確認された場合、借受人は相応の賠償責任を負うものとします。" }
+          { text: "ご貸渡時に車両をよく点検し、車両の映像を撮影して保管してください。当店も車両引渡し時の状態を記録します。関連する映像および点検記録は、損傷の認定および賠償の根拠とすることができます。" },
+          { text: "ご返却時の現場点検は予備的な点検にすぎません。積雪、泥汚れ、雨水、光線不足、車両構造などの理由によりその場で発見できなかった損傷について、当店はご返却後48時間以内に再点検し、賠償を請求する権利を留保します。" },
+          { text: "ご返却手続の完了は、貸渡期間中に生じた損傷および未精算費用に対する当店の請求権を放棄したことを意味しません。関連する証拠により、損傷が貸渡期間中に生じ、借受人が責任を負うべきものと確認された場合、借受人は相応の賠償責任を負うものとします。" }
         ]
       },
       {
@@ -402,15 +404,16 @@ window.CONTRACT = {
         { text: "本店概不负责，请务必自行妥善保管贵重物品及随身财物。" }
       ]},
       { num: "7", title: "保险使用&未报案伤痕", highlight: true, blocks: [
-        { text: "任何事故（含撞击动物/自撞）若无警察笔录，保险一律无效，损失由承租人全额承担。", highlight: true },
-        { text: "若还车时发现未报警伤痕，将收取20000日元起的维修费用+20000日元起的营业损失费用。", highlight: true },
-        { text: "所以请取车时拍摄视频作为证据。", highlight: true }
+        { text: "发生任何事故（包括轻微碰撞、动物碰撞及单方事故），均须立即报警并联系本店。未按规定履行事故报告义务且无正当理由的，本店CDW及NOC免责补偿制度不予适用。", highlight: true },
+        { text: "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用及NOC营业损失费。其中，仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。", highlight: true }
       ]},
       { num: "8", title: "车内清洁", highlight: true, blocks: [
         { text: "全车禁烟，违者赔偿 20,000日元。异常脏乱加收 5,000日元 清洁费。", highlight: true }
       ]},
       { num: "9", title: "隐蔽损伤", blocks: [
-        { text: "车辆归还时的现场检查属于初步检查。因积雪、泥泞、雨水、光线不足、车辆结构或其他合理原因，现场未能发现的损伤，本公司保留进一步检查及索赔的权利。本公司原则上在车辆归还后48小时内完成复检。如通过取车及还车影像、车辆检查记录或其他合理证据确认损伤发生于承租人的租赁期间，承租人须承担相应赔偿责任。" }
+        { text: "取车时请仔细检查车辆，并拍摄车辆影像留存。本店亦将记录车辆交接时的状态，相关影像及检查记录可作为损伤认定及赔偿依据。" },
+        { text: "还车时的现场检查仅为初步检查。因积雪、泥泞、雨水、光线不足、车辆结构等原因未能现场发现的损伤，本店保留还车后48小时内复检及追偿的权利。" },
+        { text: "完成还车手续不代表本店放弃对租赁期间产生的损伤及未结算费用的追偿权。经相关证据确认属于租赁期间产生且应由承租人承担责任的损伤，承租人须承担相应赔偿责任。" }
       ]},
       { num: "10", title: "重大过失", blocks: [
         { text: "因酒驾、毒驾、无证驾驶、严重超速等违法行为或重大过失引发事故的，本店补偿制度（CDW/NOC）不适用，承租人须支付 500,000 日元重大违规附加赔偿金（不冲抵或替代后续各项赔偿）。此外，车辆维修费（或车辆报废时的市场价格及拖车、报废费用）、NOC 营业损失费，以及第三方车辆与财物损毁、人员伤残或死亡的全部赔偿与责任，均由承租人承担。" }
@@ -504,15 +507,16 @@ window.CONTRACT = {
         { text: "당 매장은 일절 책임지지 않습니다. 귀중품 및 소지품은 반드시 본인이 직접 보관해 주십시오." }
       ]},
       { num: "7", title: "보험 적용 및 미신고 손상", highlight: true, blocks: [
-        { text: "모든 사고(동물과의 충돌·단독 사고 포함)는 경찰 신고 기록이 없으면 보험이 일절 적용되지 않으며, 손해는 전액 임차인이 부담합니다.", highlight: true },
-        { text: "반납 시 신고되지 않은 손상이 발견된 경우, ¥20,000부터의 수리비와 ¥20,000부터의 영업손실비를 청구합니다.", highlight: true },
-        { text: "따라서 차량 인수 시 증거로 동영상을 촬영해 주십시오.", highlight: true }
+        { text: "어떠한 사고(경미한 충돌, 동물과의 충돌 및 단독 사고 포함)가 발생하더라도 즉시 경찰에 신고하고 당 매장에 연락해야 합니다. 정당한 사유 없이 소정의 사고 보고 의무를 이행하지 않은 경우, 당 매장의 CDW 및 NOC 면책 보상제도는 적용되지 않습니다.", highlight: true },
+        { text: "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용 및 NOC 영업손실비를 부담해야 합니다. 이 중 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다.", highlight: true }
       ]},
       { num: "8", title: "차량 내부 청결", highlight: true, blocks: [
         { text: "차량 내 전면 금연이며, 위반 시 ¥20,000을 배상해야 합니다. 비정상적으로 더럽거나 어지러운 경우 청소비 ¥5,000을 추가로 징수합니다.", highlight: true }
       ]},
       { num: "9", title: "숨겨진 손상", blocks: [
-        { text: "차량 반납 시의 현장 검사는 예비 검사에 해당합니다. 적설, 진흙, 빗물, 조명 부족, 차량 구조 또는 그 밖의 합리적인 이유로 현장에서 발견하지 못한 손상에 대하여, 당사는 추가 검사 및 배상 청구의 권리를 보유합니다. 당사는 원칙적으로 차량 반납 후 48시간 이내에 재점검을 완료합니다. 차량 인수 및 반납 영상, 차량 검사 기록 또는 그 밖의 합리적인 증거로 손상이 임차인의 대여 기간 중에 발생한 것으로 확인되는 경우, 임차인은 그에 상응하는 배상 책임을 져야 합니다." }
+        { text: "차량 인수 시 차량을 주의 깊게 확인하고, 차량 영상을 촬영해 보관해 주십시오. 당 매장 또한 차량 인도 시의 상태를 기록하며, 관련 영상 및 검사 기록은 손상 인정 및 배상의 근거가 될 수 있습니다." },
+        { text: "반납 시의 현장 검사는 예비 검사에 불과합니다. 적설, 진흙, 빗물, 조명 부족, 차량 구조 등의 이유로 현장에서 발견하지 못한 손상에 대하여, 당 매장은 반납 후 48시간 이내에 재점검하고 배상을 청구할 권리를 보유합니다." },
+        { text: "반납 절차를 마쳤다고 해서, 대여 기간 중에 발생한 손상 및 미정산 비용에 대한 당 매장의 청구권을 포기한 것은 아닙니다. 관련 증거로 해당 손상이 대여 기간 중에 발생하였고 임차인이 책임을 져야 하는 것으로 확인되는 경우, 임차인은 그에 상응하는 배상 책임을 져야 합니다." }
       ]},
       { num: "10", title: "중대한 과실", blocks: [
         { text: "음주운전, 약물운전, 무면허운전, 심각한 과속 등 위법행위 또는 중대한 과실로 사고가 발생한 경우, 당 매장의 보상제도(CDW/NOC)는 적용되지 않으며, 임차인은 ¥500,000의 중대한 위반 부가 배상금(이후의 각종 배상과 상계하거나 이를 대체할 수 없음)을 지불해야 합니다. 또한 차량 수리비(차량이 폐차되는 경우 시장가격 및 견인비·폐차비), NOC 영업손실비, 그리고 제3자의 차량·재물 손괴 및 인명 상해·사망에 대한 모든 배상과 책임은 임차인이 부담합니다." }
@@ -606,15 +610,16 @@ window.CONTRACT = {
         { text: "ทางร้านไม่รับผิดชอบใด ๆ ทั้งสิ้น กรุณาเก็บรักษาของมีค่าและทรัพย์สินส่วนตัวด้วยตนเอง" }
       ]},
       { num: "7", title: "การใช้ประกันภัยและความเสียหายที่ไม่ได้แจ้งความ", highlight: true, blocks: [
-        { text: "อุบัติเหตุใด ๆ (รวมถึงการชนสัตว์หรืออุบัติเหตุรถคันเดียว) หากไม่มีบันทึกการแจ้งความต่อตำรวจ ประกันภัยจะไม่คุ้มครองทั้งสิ้น และผู้เช่าต้องรับผิดชอบความเสียหายทั้งหมดเต็มจำนวน", highlight: true },
-        { text: "หากพบความเสียหายที่ไม่ได้แจ้งความเมื่อคืนรถ จะเรียกเก็บค่าซ่อมตั้งแต่ ¥20,000 และค่าขาดรายได้ตั้งแต่ ¥20,000", highlight: true },
-        { text: "ดังนั้น กรุณาถ่ายวิดีโอสภาพรถขณะรับรถไว้เป็นหลักฐาน", highlight: true }
+        { text: "อุบัติเหตุใด ๆ (รวมถึงการชนกันเล็กน้อย การชนสัตว์ และอุบัติเหตุรถคันเดียว) ต้องแจ้งตำรวจทันทีและติดต่อทางร้าน หากไม่ปฏิบัติตามหน้าที่ในการรายงานอุบัติเหตุตามที่กำหนดโดยไม่มีเหตุอันสมควร ระบบการชดเชย CDW และ NOC ของทางร้านจะไม่ถูกนำมาใช้", highlight: true },
+        { text: "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้องและค่าขาดรายได้ NOC โดยรอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2", highlight: true }
       ]},
       { num: "8", title: "ความสะอาดภายในรถ", highlight: true, blocks: [
         { text: "ห้ามสูบบุหรี่ภายในรถโดยเด็ดขาด ผู้ฝ่าฝืนต้องชดใช้ ¥20,000 หากรถสกปรกหรือรกผิดปกติ จะเรียกเก็บค่าทำความสะอาดเพิ่มอีก ¥5,000", highlight: true }
       ]},
       { num: "9", title: "ความเสียหายที่ตรวจไม่พบ", blocks: [
-        { text: "การตรวจสอบ ณ จุดคืนรถถือเป็นการตรวจสอบเบื้องต้น สำหรับความเสียหายที่ไม่สามารถตรวจพบได้ ณ จุดนั้นเนื่องจากหิมะ โคลน น้ำฝน แสงไม่เพียงพอ โครงสร้างของตัวรถ หรือเหตุผลอันสมเหตุสมผลอื่น บริษัทฯ ขอสงวนสิทธิ์ในการตรวจสอบเพิ่มเติมและเรียกร้องค่าเสียหาย โดยหลักแล้ว บริษัทฯ จะทำการตรวจซ้ำให้เสร็จภายใน 48 ชั่วโมงหลังคืนรถ หากภาพตอนรับรถและคืนรถ บันทึกการตรวจรถ หรือหลักฐานอันสมเหตุสมผลอื่น ยืนยันว่าความเสียหายเกิดขึ้นในระหว่างระยะเวลาเช่าของผู้เช่า ผู้เช่าต้องรับผิดชอบค่าเสียหายตามที่เกิดขึ้น" }
+        { text: "เมื่อรับรถ กรุณาตรวจสอบรถอย่างละเอียด และถ่ายภาพหรือวิดีโอของรถเก็บไว้ ทางร้านจะบันทึกสภาพรถ ณ เวลาส่งมอบด้วย ภาพและบันทึกการตรวจที่เกี่ยวข้องสามารถใช้เป็นหลักฐานในการพิจารณาความเสียหายและการชดเชยได้" },
+        { text: "การตรวจสอบ ณ จุดคืนรถเป็นการตรวจสอบเบื้องต้นเท่านั้น สำหรับความเสียหายที่ไม่สามารถตรวจพบได้ ณ จุดนั้นเนื่องจากหิมะ โคลน น้ำฝน แสงไม่เพียงพอ โครงสร้างของตัวรถ เป็นต้น ทางร้านขอสงวนสิทธิ์ในการตรวจซ้ำและเรียกร้องค่าเสียหายภายใน 48 ชั่วโมงหลังคืนรถ" },
+        { text: "การทำพิธีการคืนรถเสร็จสิ้นแล้ว ไม่ได้หมายความว่าทางร้านสละสิทธิ์ในการเรียกร้องความเสียหายและค่าใช้จ่ายที่ยังไม่ได้ชำระซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า หากหลักฐานที่เกี่ยวข้องยืนยันว่าความเสียหายเกิดขึ้นในระหว่างระยะเวลาเช่า และผู้เช่าต้องรับผิดชอบ ผู้เช่าต้องรับผิดชอบค่าเสียหายตามที่เกิดขึ้น" }
       ]},
       { num: "10", title: "ความประมาทเลินเล่ออย่างร้ายแรง", blocks: [
         { text: "หากเกิดอุบัติเหตุจากการเมาแล้วขับ การขับขี่ภายใต้ฤทธิ์ยาเสพติด การขับขี่โดยไม่มีใบอนุญาต การขับรถเร็วเกินกำหนดอย่างร้ายแรง หรือการกระทำผิดกฎหมายอื่น ๆ หรือความประมาทเลินเล่ออย่างร้ายแรง ระบบการชดเชยของทางร้าน (CDW/NOC) จะไม่ถูกนำมาใช้ และผู้เช่าต้องชำระค่าชดเชยเพิ่มเติมกรณีฝ่าฝืนร้ายแรง ¥500,000 (ไม่สามารถนำไปหักกลบหรือใช้แทนค่าชดเชยอื่นใดในภายหลังได้) นอกจากนี้ ผู้เช่าต้องรับผิดชอบค่าชดเชยและความรับผิดทั้งหมด ได้แก่ ค่าซ่อมรถ (หรือกรณีรถต้องถูกทิ้งซาก คือมูลค่าตามราคาตลาด รวมค่ายกลากและค่าทำลายซาก) ค่า NOC (ค่าขาดรายได้) ความเสียหายต่อรถและทรัพย์สินของบุคคลภายนอก ตลอดจนการบาดเจ็บหรือเสียชีวิตของบุคคล" }
