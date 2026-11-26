@@ -480,7 +480,7 @@
     const ja = UI.ja;
     if (state.vehicleClass === "compact" || state.vehicleClass === "other") {
       const label = state.vehicleClass === "compact" ? ja.compact : ja.other;
-      box.innerHTML = `<span class="chip ok" data-testid="staff-class-set">${ja.class}：${label}</span>`;
+      box.innerHTML = `<span class="chip ok" lang="ja" data-testid="staff-class-set">${ja.class}：${label}</span>`;
     } else {
       // Hide the class line when unset so guests don't see 「車両クラス：未設定」.
       box.innerHTML = "";

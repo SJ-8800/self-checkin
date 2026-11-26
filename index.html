@@ -21,7 +21,7 @@
     <!-- Language -->
     <section class="screen" id="screen-language">
       <div class="staff-corner">
-        <button type="button" id="btn-staff" data-testid="btn-staff">スタッフ設定</button>
+        <button type="button" id="btn-staff" data-testid="btn-staff" lang="ja">スタッフ設定</button>
       </div>
       <div class="lang-hero">
         <div class="brand">
@@ -51,7 +51,7 @@
             <div class="sub">ดำเนินการต่อเป็นภาษาไทย</div>
           </button>
         </div>
-        <div class="staff-status" id="staff-status"></div>
+        <div class="staff-status" id="staff-status" lang="ja"></div>
       </div>
     </section>
 
@@ -149,10 +149,10 @@
           <div class="sig-preview"><img id="sum-sig" alt=""></div>
           <div class="return-device" data-testid="return-device">
             <p class="return-device-main" id="return-device-main"></p>
-            <p class="return-device-ja" id="return-device-ja">端末をスタッフにお返しください</p>
+            <p class="return-device-ja" id="return-device-ja" lang="ja">端末をスタッフにお返しください</p>
           </div>
         </div>
-        <div class="staff-panel" data-testid="staff-panel">
+        <div class="staff-panel" data-testid="staff-panel" lang="ja">
           <h3 class="staff-panel-title">スタッフ用</h3>
           <p class="staff-pdf-status hidden" id="pdf-status" data-testid="pdf-status"></p>
           <button type="button" class="btn btn-primary" id="btn-download" data-testid="btn-download" disabled>PDFを保存</button>
@@ -165,9 +165,10 @@
 
   <!-- Staff settings -->
   <div class="modal hidden" id="staff-modal" data-testid="staff-modal">
-    <div class="modal-card">
+    <div class="modal-card" lang="ja">
       <h2>スタッフ設定</h2>
-      <p class="note" data-testid="staff-note">車両クラスはお客様ごとに設定します。リセット（手動／一定時間操作なし）すると消えます。次のお客様の前に選び直してください。<br>车型按每位客人设置，重置后会清空。请在下一位客人办理前重新选择。油种不在这里预设，客人画面会列出全部三种。</p>
+      <p class="note" data-testid="staff-note">車両クラスはお客様ごとに設定します。リセット（手動／一定時間操作なし）すると消えます。次のお客様の前に選び直してください。</p>
+      <p class="note staff-note-zh" lang="zh-Hans">车型按每位客人设置，重置后会清空。请在下一位客人办理前重新选择。油种不在这里预设，客人画面会列出全部三种。</p>
       <h3>車両クラス</h3>
       <div class="choice-row">
         <button type="button" class="choice" data-class="compact" data-testid="class-compact">Compact<br>小型車</button>
@@ -181,7 +182,7 @@
 
   <!-- Reset confirm -->
   <div class="modal hidden" id="reset-modal">
-    <div class="modal-card confirm-box">
+    <div class="modal-card confirm-box" lang="ja">
       <p id="reset-confirm-text">このお客様の内容を消去して最初に戻りますか？車両クラスもクリアされます。</p>
       <div class="modal-actions">
         <button type="button" class="btn btn-secondary" id="btn-reset-no">キャンセル</button>
@@ -192,7 +193,7 @@
 
   <!-- Print 2 copies confirm -->
   <div class="modal hidden" id="print-modal" data-testid="print-modal">
-    <div class="modal-card confirm-box">
+    <div class="modal-card confirm-box" lang="ja">
       <p id="print-confirm-text"></p>
       <div class="modal-actions">
         <button type="button" class="btn btn-secondary" id="btn-print-cancel">キャンセル</button>
