@@ -9,12 +9,15 @@
 
   const SIG_COMMON_P1 = { x: 125, lineTop: 821.5, width: 210, height: 36 };
   const DATE_COMMON_P1 = { x: 418, baselineTop: 816, size: 11 };
+  // round21 official contracts: EN/JA/KO/TH page-1 signature line moved down.
+  const SIG_SHIFTED_P1 = { x: 125, lineTop: 836.5, width: 210, height: 36 };
+  const DATE_SHIFTED_P1 = { x: 418, baselineTop: 831, size: 11 };
 
   const LAYOUT = {
     en: {
       page1: {
-        sig: SIG_COMMON_P1,
-        date: DATE_COMMON_P1,
+        sig: SIG_SHIFTED_P1,
+        date: DATE_SHIFTED_P1,
         rules: [
           { x1: 22.6, yTop: 81.1, x2: 33.6, yBottom: 92.2 },
           { x1: 22.6, yTop: 169.0, x2: 33.6, yBottom: 180.0 },
@@ -23,10 +26,10 @@
           { x1: 22.6, yTop: 325.4, x2: 33.6, yBottom: 337.0 },
           { x1: 22.6, yTop: 386.4, x2: 33.6, yBottom: 397.4 },
           { x1: 22.6, yTop: 421.0, x2: 33.6, yBottom: 432.0 },
-          { x1: 22.6, yTop: 508.3, x2: 33.6, yBottom: 519.8 },
-          { x1: 22.6, yTop: 556.3, x2: 33.6, yBottom: 567.8 },
-          { x1: 22.6, yTop: 604.3, x2: 33.6, yBottom: 615.8 },
-          { x1: 22.6, yTop: 705.6, x2: 33.6, yBottom: 717.1 }
+          { x1: 22.6, yTop: 515.7, x2: 33.6, yBottom: 526.8 },
+          { x1: 22.6, yTop: 551.7, x2: 33.6, yBottom: 562.8 },
+          { x1: 22.6, yTop: 657.5, x2: 33.6, yBottom: 668.5 },
+          { x1: 22.6, yTop: 746.0, x2: 33.6, yBottom: 757.0 }
         ]
       },
       page2: {
@@ -50,8 +53,8 @@
     },
     ja: {
       page1: {
-        sig: SIG_COMMON_P1,
-        date: DATE_COMMON_P1,
+        sig: SIG_SHIFTED_P1,
+        date: DATE_SHIFTED_P1,
         rules: [
           { x1: 22.6, yTop: 81.6, x2: 33.6, yBottom: 93.1 },
           { x1: 22.6, yTop: 165.6, x2: 33.6, yBottom: 177.1 },
@@ -60,10 +63,10 @@
           { x1: 22.6, yTop: 312.0, x2: 33.6, yBottom: 323.0 },
           { x1: 22.6, yTop: 381.1, x2: 33.6, yBottom: 392.2 },
           { x1: 22.6, yTop: 420.0, x2: 33.6, yBottom: 431.0 },
-          { x1: 22.6, yTop: 503.0, x2: 33.6, yBottom: 514.6 },
-          { x1: 22.6, yTop: 557.3, x2: 33.6, yBottom: 568.3 },
-          { x1: 22.6, yTop: 611.0, x2: 33.6, yBottom: 622.6 },
-          { x1: 22.6, yTop: 709.4, x2: 33.6, yBottom: 721.0 }
+          { x1: 22.6, yTop: 519.5, x2: 33.6, yBottom: 530.5 },
+          { x1: 22.6, yTop: 557.0, x2: 33.6, yBottom: 568.0 },
+          { x1: 22.6, yTop: 667.2, x2: 33.6, yBottom: 678.3 },
+          { x1: 22.6, yTop: 737.7, x2: 33.6, yBottom: 748.8 }
         ]
       },
       page2: {
@@ -94,10 +97,10 @@
           { x1: 22.6, yTop: 325.4, x2: 33.6, yBottom: 337.0 },
           { x1: 22.6, yTop: 386.4, x2: 33.6, yBottom: 397.4 },
           { x1: 22.6, yTop: 421.0, x2: 33.6, yBottom: 432.0 },
-          { x1: 22.6, yTop: 508.3, x2: 33.6, yBottom: 519.8 },
-          { x1: 22.6, yTop: 556.3, x2: 33.6, yBottom: 567.8 },
-          { x1: 22.6, yTop: 604.3, x2: 33.6, yBottom: 615.8 },
-          { x1: 22.6, yTop: 705.6, x2: 33.6, yBottom: 717.1 }
+          { x1: 22.6, yTop: 511.9, x2: 33.6, yBottom: 523.0 },
+          { x1: 22.6, yTop: 546.5, x2: 33.6, yBottom: 557.5 },
+          { x1: 22.6, yTop: 652.2, x2: 33.6, yBottom: 663.3 },
+          { x1: 22.6, yTop: 726.5, x2: 33.6, yBottom: 737.5 }
         ]
       },
       page2: {
@@ -119,8 +122,8 @@
     },
     ko: {
       page1: {
-        sig: SIG_COMMON_P1,
-        date: DATE_COMMON_P1,
+        sig: SIG_SHIFTED_P1,
+        date: DATE_SHIFTED_P1,
         rules: [
           { x1: 22.6, yTop: 81.6, x2: 33.6, yBottom: 93.1 },
           { x1: 22.6, yTop: 170.4, x2: 33.6, yBottom: 181.4 },
@@ -129,10 +132,10 @@
           { x1: 22.6, yTop: 324.0, x2: 33.6, yBottom: 335.0 },
           { x1: 22.6, yTop: 380.2, x2: 33.6, yBottom: 391.7 },
           { x1: 22.6, yTop: 421.0, x2: 33.6, yBottom: 432.0 },
-          { x1: 22.6, yTop: 509.3, x2: 33.6, yBottom: 520.3 },
-          { x1: 22.6, yTop: 565.4, x2: 33.6, yBottom: 577.0 },
-          { x1: 22.6, yTop: 622.6, x2: 33.6, yBottom: 633.6 },
-          { x1: 22.6, yTop: 710.4, x2: 33.6, yBottom: 721.4 }
+          { x1: 22.6, yTop: 530.0, x2: 33.6, yBottom: 541.0 },
+          { x1: 22.6, yTop: 570.5, x2: 33.6, yBottom: 581.5 },
+          { x1: 22.6, yTop: 677.7, x2: 33.6, yBottom: 688.8 },
+          { x1: 22.6, yTop: 743.0, x2: 33.6, yBottom: 754.0 }
         ]
       },
       page2: {
@@ -153,8 +156,8 @@
     },
     th: {
       page1: {
-        sig: SIG_COMMON_P1,
-        date: DATE_COMMON_P1,
+        sig: SIG_SHIFTED_P1,
+        date: DATE_SHIFTED_P1,
         rules: [
           { x1: 22.6, yTop: 76.3, x2: 33.6, yBottom: 87.8 },
           { x1: 22.6, yTop: 147.8, x2: 33.6, yBottom: 158.9 },
@@ -163,10 +166,10 @@
           { x1: 22.6, yTop: 298.6, x2: 33.6, yBottom: 309.6 },
           { x1: 22.6, yTop: 353.8, x2: 33.6, yBottom: 365.3 },
           { x1: 22.6, yTop: 393.6, x2: 33.6, yBottom: 405.1 },
-          { x1: 22.6, yTop: 481.0, x2: 33.6, yBottom: 492.0 },
-          { x1: 22.6, yTop: 536.2, x2: 33.6, yBottom: 547.7 },
-          { x1: 22.6, yTop: 591.8, x2: 33.6, yBottom: 602.9 },
-          { x1: 22.6, yTop: 710.4, x2: 33.6, yBottom: 721.4 }
+          { x1: 22.6, yTop: 494.7, x2: 33.6, yBottom: 505.8 },
+          { x1: 22.6, yTop: 533.0, x2: 33.6, yBottom: 544.0 },
+          { x1: 22.6, yTop: 658.2, x2: 33.6, yBottom: 669.3 },
+          { x1: 22.6, yTop: 742.2, x2: 33.6, yBottom: 753.3 }
         ]
       },
       page2: {
