@@ -61,7 +61,7 @@ window.CONTRACT = {
     exclusions: [
       { lead: "Driving by others:", text: "An accident caused by anyone other than the contract signer driving." },
       { lead: "Key damage:", text: "Loss or damage of the key requires compensation of ¥60,000." },
-      { lead: "Damage to specific parts:", text: "Damage to glass, tires (including blowouts and leaks), wheels, the exterior roof panel, and the underbody is excluded from compensation. Whether or not you are enrolled in a compensation plan, and whether or not you have already borne the ¥150,000 vehicle-damage deductible, all related repair and replacement costs shall be paid in full separately by the customer." },
+      { lead: "Damage to specific parts:", text: "Damage to glass, tires (including blowouts and leaks), wheels, lights, the exterior roof panel, and the underbody is excluded from compensation. Whether or not you are enrolled in a compensation plan, and whether or not you have already borne the ¥150,000 vehicle-damage deductible, all related repair and replacement costs for the specific parts listed above shall be paid in full separately by the customer." },
       { lead: "Serious violations:", text: "Including drunk driving, unlicensed driving, speeding and using a mobile phone while driving." },
       { lead: "Off-road driving:", text: "Damage caused by driving on beaches, riverbeds, forest roads or other non-official roads." }
     ],
@@ -76,7 +76,7 @@ window.CONTRACT = {
         title: "Fuel",
         blocks: [
           { lead: "Full-tank return:", text: "Before returning the vehicle, please fill the tank at a gas station within 2 km of the shop and show the receipt." },
-          { lead: "Wrong fuel:", text: "If the wrong type of fuel is used, a penalty of ¥500,000 will be charged (including engine repair and depreciation)." },
+          { lead: "Wrong fuel:", text: "If the wrong type of fuel is used, compensation of ¥500,000 will be charged (including engine repair and depreciation); if the actual costs of repair, cleaning and depreciation exceed or fall short of that amount, settlement shall be based on the amount actually incurred." },
           { lead: "Not returned full:", text: "A charge of ¥1,000–13,000 will be collected depending on the remaining fuel level." }
         ]
       },
@@ -99,14 +99,14 @@ window.CONTRACT = {
         num: "4",
         title: "Parking Violations",
         blocks: [
-          { text: "Please pay any fine before returning the vehicle; otherwise, a penalty of ¥25,000 will be charged. If the vehicle is towed because of a violation, you shall bear all resulting costs in full." }
+          { text: "Please pay any fine before returning the vehicle; otherwise, a parking-violation handling and late-payment risk compensation fee of ¥25,000 will be charged. If the vehicle is towed because of a violation, the renter shall bear all resulting costs in full." }
         ]
       },
       {
         num: "5",
         title: "Optional Equipment",
         blocks: [
-          { lead: "Child seat:", text: "Please install and check it yourself; its use is mandatory. If it is not installed, the shop will refuse the rental." },
+          { lead: "Child seat:", text: "Under Japanese law, children under 6 years of age must use a child seat when travelling in a vehicle. Please install and check it yourself. If it is not installed, the shop will refuse the rental." },
           { lead: "Car navigation:", text: "No complaints regarding its functions or route guidance will be accepted." }
         ]
       },
@@ -146,7 +146,7 @@ window.CONTRACT = {
         num: "10",
         title: "Gross Negligence",
         blocks: [
-          { text: "If an accident is caused by drunk driving, drug-impaired driving, unlicensed driving, excessive speeding or any other illegal act or gross negligence, the insurance and the shop's compensation system (CDW/NOC) become void, and the renter shall pay a penalty of ¥500,000 (which may not be offset against or substituted for any subsequent compensation). In addition, the renter shall bear all compensation and liability for vehicle repair costs (or, if the vehicle is written off, its market value plus towing and scrapping costs), NOC loss-of-business fees, and damage to or destruction of third-party vehicles and property, as well as personal injury or death." }
+          { text: "If an accident is caused by drunk driving, drug-impaired driving, unlicensed driving, excessive speeding or any other illegal act or gross negligence, the shop's compensation system (CDW/NOC) shall not apply, and the renter shall pay a serious-violation additional compensation of ¥500,000 (which may not be offset against or substituted for any subsequent compensation). In addition, the renter shall bear all compensation and liability for vehicle repair costs (or, if the vehicle is written off, its market value plus towing and scrapping costs), NOC loss-of-business fees, and damage to or destruction of third-party vehicles and property, as well as personal injury or death." }
         ]
       },
       {
@@ -154,7 +154,7 @@ window.CONTRACT = {
         title: "Termination of the Rental Agreement",
         highlight: true,
         blocks: [
-          { text: "If, during the rental period, the vehicle can no longer be used due to a breakdown, traffic accident, theft or other cause not attributable to the shop, the rental agreement shall terminate automatically.", highlight: true }
+          { text: "If, during the rental period, the vehicle can no longer be used due to a breakdown, traffic accident, theft or other cause not attributable to the shop, the rental agreement shall terminate automatically. Upon termination of the agreement, rent already paid shall not be refunded.", highlight: true }
         ]
       }
     ]
@@ -220,7 +220,7 @@ window.CONTRACT = {
     exclusions: [
       { lead: "契約者以外の運転：", text: "契約者以外の方が運転して発生した事故。" },
       { lead: "キーの破損：", text: "紛失または破損の場合は60,000円を賠償いただきます。" },
-      { lead: "特定部位の損傷：", text: "ガラス、タイヤ（パンク・空気漏れを含む）、ホイール、ルーフ外板及び車両底部の損傷は、補償の対象外です。補償制度に加入しているか否か、また車両補償の自己負担額150,000円をすでに負担しているか否かにかかわらず、関連する修理・交換費用はお客様が別途全額負担するものとします。" },
+      { lead: "特定部位の損傷：", text: "ガラス、タイヤ（パンク・空気漏れを含む）、ホイール、灯火、ルーフ外板及び車両底部の損傷は、補償の対象外です。補償制度に加入しているか否か、また車両補償の自己負担額150,000円をすでに負担しているか否かにかかわらず、上記特定部位に関する修理・交換費用はお客様が別途全額負担するものとします。" },
       { lead: "重大な違反：", text: "飲酒運転、無免許運転、速度超過、運転中の携帯電話使用等の違法行為を含みます。" },
       { lead: "道路以外の走行：", text: "海岸、河川敷、林道など正規の道路以外を走行したことによる損傷。" }
     ],
@@ -235,7 +235,7 @@ window.CONTRACT = {
         title: "燃料について",
         blocks: [
           { lead: "満タン返却：", text: "ご返却時は、店舗周辺2km以内のガソリンスタンドで満タンに給油し、領収書をご提示ください。" },
-          { lead: "油種の誤給油：", text: "誤った燃料を給油された場合、違約金50万円（エンジン修理費および減価償却費を含む）をお支払いいただきます。" },
+          { lead: "油種の誤給油：", text: "誤った燃料を給油された場合、50万円（エンジン修理費および減価償却費を含む）をご賠償いただきます。実際の修理・洗浄および減価償却による損失がこれを上回る、または下回る場合は、実際に生じた金額で精算します。" },
           { lead: "満タン未返却：", text: "残量に応じて1,000～13,000円を申し受けます。" }
         ]
       },
@@ -258,14 +258,14 @@ window.CONTRACT = {
         num: "4",
         title: "駐車違反の処理について",
         blocks: [
-          { text: "ご返却前に反則金を納付してください。納付されない場合は、違約金25,000円を申し受けます。違反により車両がレッカー移動された場合、発生した費用は全額お客様のご負担となります。" }
+          { text: "ご返却前に反則金を納付してください。納付されない場合は、駐車違反手続代行及び延滞リスク補償費25,000円を申し受けます。違反により車両がレッカー移動された場合、発生した費用は全額借受人のご負担となります。" }
         ]
       },
       {
         num: "5",
         title: "オプション装備について",
         blocks: [
-          { lead: "チャイルドシート：", text: "お客様ご自身で取り付け・確認を行ってください。使用は義務です。未装着の場合、当店は貸渡しをお断りいたします。" },
+          { lead: "チャイルドシート：", text: "日本の法律により、6歳未満の児童が乗車する場合はチャイルドシートを使用しなければなりません。お客様ご自身で取り付け・確認を行ってください。未装着の場合、当店は貸渡しをお断りいたします。" },
           { lead: "カーナビ：", text: "機能やルート案内に関するご苦情は一切お受けいたしません。" }
         ]
       },
@@ -305,7 +305,7 @@ window.CONTRACT = {
         num: "10",
         title: "重大な過失について",
         blocks: [
-          { text: "飲酒運転、薬物運転、無免許運転、著しい速度超過等の違法行為または重大な過失により事故が発生した場合、保険および当店の補償制度（CDW/NOC）は無効となり、借受人は違約金500,000円（その後の各種賠償と相殺または代替することはできません）を支払うものとします。また、車両修理費（車両が全損・廃車となる場合は時価額ならびにレッカー費用・廃車費用）、NOC（休業補償）、第三者の車両・財物の損壊および人身の死傷に関する一切の賠償と責任は、借受人が負担するものとします。" }
+          { text: "飲酒運転、薬物運転、無免許運転、著しい速度超過等の違法行為または重大な過失により事故が発生した場合、当店の補償制度（CDW/NOC）は適用されず、借受人は重大違反付加賠償金500,000円（その後の各種賠償と相殺または代替することはできません）を支払うものとします。また、車両修理費（車両が全損・廃車となる場合は時価額ならびにレッカー費用・廃車費用）、NOC（休業補償）、第三者の車両・財物の損壊および人身の死傷に関する一切の賠償と責任は、借受人が負担するものとします。" }
         ]
       },
       {
@@ -313,7 +313,7 @@ window.CONTRACT = {
         title: "貸渡契約の終了について",
         highlight: true,
         blocks: [
-          { text: "貸渡期間中、車両の故障、交通事故、盗難その他当店の責めに帰さない事由により車両の使用を継続できなくなった場合、貸渡契約は自動的に終了するものとします。", highlight: true }
+          { text: "貸渡期間中、車両の故障、交通事故、盗難その他当店の責めに帰さない事由により車両の使用を継続できなくなった場合、貸渡契約は自動的に終了するものとします。契約終了の際、既にお支払いいただいた貸渡料金は返還いたしません。", highlight: true }
         ]
       }
     ]
@@ -369,7 +369,7 @@ window.CONTRACT = {
     exclusions: [
       { lead: "他人驾驶：", text: "签约者以外的人驾驶导致事故。" },
       { lead: "钥匙损坏：", text: "丢失或损坏需赔偿 60000日元。" },
-      { lead: "特定部位损伤：", text: "玻璃、轮胎（含爆胎、漏气）、轮毂、车顶外板及底盘的损伤，均不在补偿范围内。无论是否加入补偿方案，也无论是否已承担150,000日元车辆损坏自付额，相关维修及更换费用均由客户另行全额承担。" },
+      { lead: "特定部位损伤：", text: "玻璃、轮胎（含爆胎、漏气）、轮毂、车灯、车顶外板及底盘的损伤，均不在补偿范围内。无论是否加入补偿方案，也无论是否已承担150,000日元车辆损坏自付额，上述特定部位相关维修及更换费用均由客户另行全额承担。" },
       { lead: "严重违章：", text: "包括酒驾、无证驾驶、超速、开车使用手机等违法行为。" },
       { lead: "非路面行驶：", text: "在海滩、河床、林道等非正规道路行驶导致的损坏。" }
     ],
@@ -381,7 +381,7 @@ window.CONTRACT = {
     rules: [
       { num: "1", title: "关于燃油", blocks: [
         { lead: "满油归还：", text: "还车时请在店铺周边2km内加油站加满并出示收据。" },
-        { lead: "油种错误：", text: "若加错油，需支付50万日元违约金（含发动机维修及折旧）。" },
+        { lead: "油种错误：", text: "若加错油，需赔偿 50 万日元（含发动机维修及折旧）；如实际维修、清洗及折旧损失超出或不足时，按实际发生金额结算。" },
         { lead: "未满归还：", text: "根据残油量，将收取1000-13000日元" }
       ]},
       { num: "2", title: "关于租赁超时", blocks: [
@@ -392,10 +392,10 @@ window.CONTRACT = {
         { text: "接送车辆运营时间截止18:30。非营业时间还车将收取10,000日元额外费用。" }
       ]},
       { num: "4", title: "违章停车处理", blocks: [
-        { text: "还车前请缴纳罚款，否则收取 25,000 日元违约金。若因违章导致车辆被移动，产生的费用由您全额承担。" }
+        { text: "还车前请缴纳罚款，否则收取 25,000 日元违章代办及滞纳风险补偿费。若因违章导致车辆被移动，产生的费用由承租人全额承担。" }
       ]},
       { num: "5", title: "关于选装配件", blocks: [
-        { lead: "儿童座椅：", text: "请自行安装确认，强制使用。未安装本店将拒绝租车。" },
+        { lead: "儿童座椅：", text: "根据日本法律，未满6岁的儿童乘车时必须使用儿童座椅。请自行安装确认，未安装本店将拒绝租车。" },
         { lead: "车载导航：", text: "不接受任何关于功能或路线引导的投诉。" }
       ]},
       { num: "6", title: "关于遗留物品", blocks: [
@@ -413,10 +413,10 @@ window.CONTRACT = {
         { text: "还车时若因积雪、泥泞导致现场未能发现的损伤，本公司保留在洗车后48小时内追究索赔的权利。" }
       ]},
       { num: "10", title: "重大过失", blocks: [
-        { text: "因酒驾、毒驾、无证驾驶、严重超速等违法行为或重大过失引发事故的，保险及本店补偿制度（CDW/NOC）失效，承租人须支付 500,000 日元违约金（不冲抵或替代后续各项赔偿）。此外，车辆维修费（或车辆报废时的市场价格及拖车、报废费用）、NOC 营业损失费，以及第三方车辆与财物损毁、人员伤残或死亡的全部赔偿与责任，均由承租人承担。" }
+        { text: "因酒驾、毒驾、无证驾驶、严重超速等违法行为或重大过失引发事故的，本店补偿制度（CDW/NOC）不适用，承租人须支付 500,000 日元重大违规附加赔偿金（不冲抵或替代后续各项赔偿）。此外，车辆维修费（或车辆报废时的市场价格及拖车、报废费用）、NOC 营业损失费，以及第三方车辆与财物损毁、人员伤残或死亡的全部赔偿与责任，均由承租人承担。" }
       ]},
       { num: "11", title: "租赁协议的终止", highlight: true, blocks: [
-        { text: "若在租赁期间，因车辆故障、交通事故、失窃或其他不可归责于本店的原因导致车辆无法继续使用，租赁合同将自动终止。", highlight: true }
+        { text: "若在租赁期间，因车辆故障、交通事故、失窃或其他不可归责于本店的原因导致车辆无法继续使用，租赁合同将自动终止。合同终止时，已支付的租金不予退还。", highlight: true }
       ]}
     ]
   },
@@ -471,7 +471,7 @@ window.CONTRACT = {
     exclusions: [
       { lead: "타인 운전:", text: "계약자 이외의 사람이 운전하여 발생한 사고." },
       { lead: "열쇠(키) 파손:", text: "분실 또는 파손 시 ¥60,000을 배상해야 합니다." },
-      { lead: "특정 부위 손상:", text: "유리, 타이어(펑크·공기 누출 포함), 휠, 루프 외판 및 차량 하부의 손상은 보상 대상이 아닙니다. 보상제도 가입 여부와 이미 차량 손상 자기부담금 150,000엔을 부담했는지 여부와 관계없이, 관련 수리 및 교체 비용은 고객이 별도로 전액 부담합니다." },
+      { lead: "특정 부위 손상:", text: "유리, 타이어(펑크·공기 누출 포함), 휠, 등화, 루프 외판 및 차량 하부의 손상은 보상 대상이 아닙니다. 보상제도 가입 여부와 이미 차량 손상 자기부담금 150,000엔을 부담했는지 여부와 관계없이, 위 특정 부위와 관련된 수리 및 교체 비용은 고객이 별도로 전액 부담합니다." },
       { lead: "중대한 위반:", text: "음주운전, 무면허운전, 과속, 운전 중 휴대전화 사용 등의 위법행위를 포함합니다." },
       { lead: "비포장도로 주행:", text: "해변, 하천 바닥, 임도 등 정규 도로가 아닌 곳을 주행하여 발생한 손상." }
     ],
@@ -483,7 +483,7 @@ window.CONTRACT = {
     rules: [
       { num: "1", title: "연료", blocks: [
         { lead: "가득 주유 후 반납:", text: "차량 반납 시 매장 반경 2km 이내의 주유소에서 연료를 가득 채운 후 영수증을 제시해 주십시오." },
-        { lead: "연료 오주유:", text: "잘못된 종류의 연료를 주유한 경우 ¥500,000의 위약금(엔진 수리비 및 감가상각비 포함)을 지불해야 합니다." },
+        { lead: "연료 오주유:", text: "잘못된 종류의 연료를 주유한 경우 ¥500,000(엔진 수리비 및 감가상각비 포함)을 배상해야 합니다. 실제 수리·세척 및 감가상각 손실이 이를 초과하거나 부족한 경우에는 실제로 발생한 금액으로 정산합니다." },
         { lead: "가득 주유하지 않은 반납:", text: "남은 연료량에 따라 ¥1,000~13,000을 징수합니다." }
       ]},
       { num: "2", title: "대여 시간 초과", blocks: [
@@ -494,10 +494,10 @@ window.CONTRACT = {
         { text: "차량 송영(픽업·샌딩) 서비스는 18:30에 종료됩니다. 영업시간 외 반납 시 ¥10,000의 추가 요금이 부과됩니다." }
       ]},
       { num: "4", title: "주정차 위반 처리", blocks: [
-        { text: "차량 반납 전에 과태료를 납부해 주십시오. 납부하지 않은 경우 ¥25,000의 위약금을 징수합니다. 위반으로 인해 차량이 견인된 경우 발생하는 비용은 전액 임차인이 부담합니다." }
+        { text: "차량 반납 전에 과태료를 납부해 주십시오. 납부하지 않은 경우 ¥25,000의 주정차 위반 대행 및 체납 위험 보상비를 징수합니다. 위반으로 인해 차량이 견인된 경우 발생하는 비용은 전액 임차인이 부담합니다." }
       ]},
       { num: "5", title: "옵션 장비", blocks: [
-        { lead: "어린이 카시트:", text: "직접 장착 및 확인해 주십시오. 사용은 의무입니다. 장착하지 않을 경우 당 매장은 대여를 거절합니다." },
+        { lead: "어린이 카시트:", text: "일본 법률에 따라, 만 6세 미만의 어린이가 차량에 탑승할 때에는 어린이 카시트를 사용해야 합니다. 직접 장착 및 확인해 주십시오. 장착하지 않을 경우 당 매장은 대여를 거절합니다." },
         { lead: "차량 내비게이션:", text: "기능 또는 경로 안내에 관한 어떠한 불만도 접수하지 않습니다." }
       ]},
       { num: "6", title: "분실물", blocks: [
@@ -515,10 +515,10 @@ window.CONTRACT = {
         { text: "반납 시 눈·진흙 등으로 인해 현장에서 발견하지 못한 손상에 대하여, 당사는 세차 후 48시간 이내에 배상을 청구할 권리를 보유합니다." }
       ]},
       { num: "10", title: "중대한 과실", blocks: [
-        { text: "음주운전, 약물운전, 무면허운전, 심각한 과속 등 위법행위 또는 중대한 과실로 사고가 발생한 경우, 보험 및 당 매장의 보상제도(CDW/NOC)는 효력을 상실하며, 임차인은 ¥500,000의 위약금(이후의 각종 배상과 상계하거나 이를 대체할 수 없음)을 지불해야 합니다. 또한 차량 수리비(차량이 폐차되는 경우 시장가격 및 견인비·폐차비), NOC 영업손실비, 그리고 제3자의 차량·재물 손괴 및 인명 상해·사망에 대한 모든 배상과 책임은 임차인이 부담합니다." }
+        { text: "음주운전, 약물운전, 무면허운전, 심각한 과속 등 위법행위 또는 중대한 과실로 사고가 발생한 경우, 당 매장의 보상제도(CDW/NOC)는 적용되지 않으며, 임차인은 ¥500,000의 중대한 위반 부가 배상금(이후의 각종 배상과 상계하거나 이를 대체할 수 없음)을 지불해야 합니다. 또한 차량 수리비(차량이 폐차되는 경우 시장가격 및 견인비·폐차비), NOC 영업손실비, 그리고 제3자의 차량·재물 손괴 및 인명 상해·사망에 대한 모든 배상과 책임은 임차인이 부담합니다." }
       ]},
       { num: "11", title: "임대차 계약의 종료", highlight: true, blocks: [
-        { text: "대여 기간 중 차량 고장, 교통사고, 도난 또는 기타 당 매장의 책임이 아닌 사유로 차량을 계속 사용할 수 없게 된 경우, 임대차 계약은 자동으로 종료됩니다.", highlight: true }
+        { text: "대여 기간 중 차량 고장, 교통사고, 도난 또는 기타 당 매장의 책임이 아닌 사유로 차량을 계속 사용할 수 없게 된 경우, 임대차 계약은 자동으로 종료됩니다. 계약 종료 시, 이미 지급한 대여료는 반환되지 않습니다.", highlight: true }
       ]}
     ]
   },
@@ -573,7 +573,7 @@ window.CONTRACT = {
     exclusions: [
       { lead: "ผู้อื่นขับขี่:", text: "อุบัติเหตุที่เกิดจากบุคคลอื่นที่ไม่ใช่ผู้ลงนามในสัญญาเป็นผู้ขับขี่" },
       { lead: "กุญแจเสียหาย:", text: "กรณีสูญหายหรือเสียหายต้องชดใช้ ¥60,000" },
-      { lead: "ความเสียหายของชิ้นส่วนเฉพาะ:", text: "ความเสียหายของกระจก ยาง (รวมยางระเบิดและยางรั่ว) ล้อ แผ่นหลังคาด้านนอก และช่วงล่างของรถ ไม่อยู่ในความคุ้มครอง ไม่ว่าจะสมัครแผนการชดเชยหรือไม่ และไม่ว่าได้ชำระค่าเสียหายส่วนแรกสำหรับตัวรถเช่า 150,000 เยน แล้วหรือไม่ ค่าซ่อมและค่าเปลี่ยนที่เกี่ยวข้อง ลูกค้าต้องรับผิดชอบเพิ่มเติมเต็มจำนวน" },
+      { lead: "ความเสียหายของชิ้นส่วนเฉพาะ:", text: "ความเสียหายของกระจก ยาง (รวมยางระเบิดและยางรั่ว) ล้อ ไฟรถ แผ่นหลังคาด้านนอก และช่วงล่างของรถ ไม่อยู่ในความคุ้มครอง ไม่ว่าจะสมัครแผนการชดเชยหรือไม่ และไม่ว่าได้ชำระค่าเสียหายส่วนแรกสำหรับตัวรถเช่า 150,000 เยน แล้วหรือไม่ ค่าซ่อมและค่าเปลี่ยนที่เกี่ยวข้องกับชิ้นส่วนเฉพาะดังกล่าว ลูกค้าต้องรับผิดชอบเพิ่มเติมเต็มจำนวน" },
       { lead: "การฝ่าฝืนกฎหมายร้ายแรง:", text: "รวมถึงการเมาแล้วขับ การขับขี่โดยไม่มีใบอนุญาต การขับรถเร็วเกินกำหนด และการใช้โทรศัพท์มือถือขณะขับรถ" },
       { lead: "การขับขี่นอกถนน:", text: "ความเสียหายที่เกิดจากการขับขี่บนชายหาด ท้องแม่น้ำ ถนนในป่า หรือเส้นทางที่ไม่ใช่ถนนปกติ" }
     ],
@@ -585,7 +585,7 @@ window.CONTRACT = {
     rules: [
       { num: "1", title: "น้ำมันเชื้อเพลิง", blocks: [
         { lead: "คืนรถพร้อมน้ำมันเต็มถัง:", text: "เมื่อคืนรถ กรุณาเติมน้ำมันให้เต็มถังที่สถานีบริการน้ำมันในรัศมี 2 กม. จากร้าน และแสดงใบเสร็จรับเงิน" },
-        { lead: "เติมน้ำมันผิดประเภท:", text: "หากเติมน้ำมันผิดประเภท ต้องชำระค่าปรับ ¥500,000 (รวมค่าซ่อมเครื่องยนต์และค่าเสื่อมราคา)" },
+        { lead: "เติมน้ำมันผิดประเภท:", text: "หากเติมน้ำมันผิดประเภท ต้องชดใช้ค่าเสียหาย ¥500,000 (รวมค่าซ่อมเครื่องยนต์และค่าเสื่อมราคา) หากค่าซ่อม การทำความสะอาด และค่าเสื่อมราคาที่เกิดขึ้นจริงสูงหรือต่ำกว่าจำนวนดังกล่าว ให้คิดตามจำนวนที่เกิดขึ้นจริง" },
         { lead: "คืนรถโดยน้ำมันไม่เต็มถัง:", text: "จะเรียกเก็บเงิน ¥1,000–13,000 ตามปริมาณน้ำมันที่เหลืออยู่" }
       ]},
       { num: "2", title: "การคืนรถเกินเวลา", blocks: [
@@ -596,10 +596,10 @@ window.CONTRACT = {
         { text: "บริการรถรับ-ส่งให้บริการถึงเวลา 18:30 น. การคืนรถนอกเวลาทำการจะมีค่าธรรมเนียมเพิ่มเติม ¥10,000" }
       ]},
       { num: "4", title: "การฝ่าฝืนกฎการจอดรถ", blocks: [
-        { text: "กรุณาชำระค่าปรับก่อนคืนรถ มิฉะนั้นจะเรียกเก็บค่าปรับ ¥25,000 หากรถถูกยกย้ายเนื่องจากการฝ่าฝืน ผู้เช่าต้องรับผิดชอบค่าใช้จ่ายที่เกิดขึ้นทั้งหมดเต็มจำนวน" }
+        { text: "กรุณาชำระค่าปรับก่อนคืนรถ มิฉะนั้นจะเรียกเก็บค่าธรรมเนียมชดเชยความเสี่ยงด้านการดำเนินการแทนและค่าปรับค้างชำระ ¥25,000 หากรถถูกยกย้ายเนื่องจากการฝ่าฝืน ผู้เช่าต้องรับผิดชอบค่าใช้จ่ายที่เกิดขึ้นทั้งหมดเต็มจำนวน" }
       ]},
       { num: "5", title: "อุปกรณ์เสริม", blocks: [
-        { lead: "คาร์ซีทเด็ก:", text: "กรุณาติดตั้งและตรวจสอบด้วยตนเอง การใช้งานเป็นข้อบังคับ หากไม่ติดตั้ง ทางร้านจะปฏิเสธการให้เช่า" },
+        { lead: "คาร์ซีทเด็ก:", text: "ตามกฎหมายญี่ปุ่น เด็กอายุไม่ถึง 6 ปีที่โดยสารในรถต้องใช้คาร์ซีทเด็ก กรุณาติดตั้งและตรวจสอบด้วยตนเอง หากไม่ติดตั้ง ทางร้านจะปฏิเสธการให้เช่า" },
         { lead: "ระบบนำทางในรถ:", text: "ทางร้านไม่รับข้อร้องเรียนใด ๆ เกี่ยวกับฟังก์ชันหรือการนำทางเส้นทาง" }
       ]},
       { num: "6", title: "ทรัพย์สินที่ลืมไว้ในรถ", blocks: [
@@ -617,10 +617,10 @@ window.CONTRACT = {
         { text: "สำหรับความเสียหายที่ไม่สามารถตรวจพบได้ ณ เวลาคืนรถเนื่องจากหิมะหรือโคลน บริษัทฯ ขอสงวนสิทธิ์ในการเรียกร้องค่าเสียหายภายใน 48 ชั่วโมงหลังการล้างรถ" }
       ]},
       { num: "10", title: "ความประมาทเลินเล่ออย่างร้ายแรง", blocks: [
-        { text: "หากเกิดอุบัติเหตุจากการเมาแล้วขับ การขับขี่ภายใต้ฤทธิ์ยาเสพติด การขับขี่โดยไม่มีใบอนุญาต การขับรถเร็วเกินกำหนดอย่างร้ายแรง หรือการกระทำผิดกฎหมายอื่น ๆ หรือความประมาทเลินเล่ออย่างร้ายแรง ประกันภัยและระบบการชดเชยของทางร้าน (CDW/NOC) จะสิ้นผล และผู้เช่าต้องชำระค่าปรับ ¥500,000 (ไม่สามารถนำไปหักกลบหรือใช้แทนค่าชดเชยอื่นใดในภายหลังได้) นอกจากนี้ ผู้เช่าต้องรับผิดชอบค่าชดเชยและความรับผิดทั้งหมด ได้แก่ ค่าซ่อมรถ (หรือกรณีรถต้องถูกทิ้งซาก คือมูลค่าตามราคาตลาด รวมค่ายกลากและค่าทำลายซาก) ค่า NOC (ค่าขาดรายได้) ความเสียหายต่อรถและทรัพย์สินของบุคคลภายนอก ตลอดจนการบาดเจ็บหรือเสียชีวิตของบุคคล" }
+        { text: "หากเกิดอุบัติเหตุจากการเมาแล้วขับ การขับขี่ภายใต้ฤทธิ์ยาเสพติด การขับขี่โดยไม่มีใบอนุญาต การขับรถเร็วเกินกำหนดอย่างร้ายแรง หรือการกระทำผิดกฎหมายอื่น ๆ หรือความประมาทเลินเล่ออย่างร้ายแรง ระบบการชดเชยของทางร้าน (CDW/NOC) จะไม่ถูกนำมาใช้ และผู้เช่าต้องชำระค่าชดเชยเพิ่มเติมกรณีฝ่าฝืนร้ายแรง ¥500,000 (ไม่สามารถนำไปหักกลบหรือใช้แทนค่าชดเชยอื่นใดในภายหลังได้) นอกจากนี้ ผู้เช่าต้องรับผิดชอบค่าชดเชยและความรับผิดทั้งหมด ได้แก่ ค่าซ่อมรถ (หรือกรณีรถต้องถูกทิ้งซาก คือมูลค่าตามราคาตลาด รวมค่ายกลากและค่าทำลายซาก) ค่า NOC (ค่าขาดรายได้) ความเสียหายต่อรถและทรัพย์สินของบุคคลภายนอก ตลอดจนการบาดเจ็บหรือเสียชีวิตของบุคคล" }
       ]},
       { num: "11", title: "การสิ้นสุดสัญญาเช่า", highlight: true, blocks: [
-        { text: "หากในระหว่างระยะเวลาเช่า รถไม่สามารถใช้งานต่อได้เนื่องจากรถเสีย อุบัติเหตุจราจร การโจรกรรม หรือสาเหตุอื่นที่ไม่ใช่ความรับผิดชอบของทางร้าน สัญญาเช่านี้จะสิ้นสุดลงโดยอัตโนมัติ", highlight: true }
+        { text: "หากในระหว่างระยะเวลาเช่า รถไม่สามารถใช้งานต่อได้เนื่องจากรถเสีย อุบัติเหตุจราจร การโจรกรรม หรือสาเหตุอื่นที่ไม่ใช่ความรับผิดชอบของทางร้าน สัญญาเช่านี้จะสิ้นสุดลงโดยอัตโนมัติ เมื่อสัญญาสิ้นสุดลง ค่าเช่าที่ชำระแล้วจะไม่ได้รับคืน", highlight: true }
       ]}
     ]
   }
