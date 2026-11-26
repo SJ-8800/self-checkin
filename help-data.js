@@ -696,27 +696,27 @@ window.HELP = {
         "zh": [
           "无论事故大小（即使是轻微刮擦），必须立即拨打 110 向警察报案，并联系本店。",
           "没有警察开具的事故证明，保险公司一律不予理赔。严禁私下与对方和解。",
-          "还车时如发现未经报案的损伤，须当场联系警察补办手续。事后手续可能最长约 5 小时。"
+          "若还车时才发现未报警的损伤，即使当场报警，警察通常也无法开具事故证明，手续可能长达约 5 小时。因此发生事故时，请务必在事故现场立即报警。"
         ],
         "en": [
           "No matter how small the accident (even a minor scratch), you must immediately call 110 to report it to the police and contact the shop.",
           "Without an accident certificate issued by the police, the insurance company will not process any claim. Private settlements with the other party are strictly prohibited.",
-          "If unreported damage is found when you return the car, you must contact the police on the spot. This after-the-fact procedure may take up to 5 hours."
+          "If unreported damage is only discovered when you return the car, the police usually cannot issue an accident certificate even if you report it then and there, and the process may take up to about 5 hours. Therefore, if an accident occurs, you must report it to the police immediately at the scene."
         ],
         "ja": [
           "事故の大小にかかわらず（軽い擦り傷でも）、直ちに110番して警察に届け出、当店にも連絡してください。",
           "警察が発行する事故証明がない場合、保険会社は保険金の支払いに応じません。相手方との示談は禁止されています。",
-          "返却時に届出のない損傷が見つかった場合は、その場で警察に連絡し、事後の手続きを行う必要があります。手続きは最長で約5時間かかることがあります。"
+          "返却時になって届出のない損傷が見つかった場合、その場で警察に連絡しても、警察は通常、事故証明を発行できません。手続きには約5時間かかることがあります。そのため、事故が起きたときは、必ず事故現場で直ちに警察へ届け出てください。"
         ],
         "ko": [
           "사고의 크기와 관계없이(가벼운 긁힘이라도) 즉시 110에 전화해 경찰에 신고하고, 당 매장에도 연락해야 합니다.",
           "경찰이 발급한 사고 증명이 없으면 보험회사는 보험 처리를 하지 않습니다. 상대방과의 사적 합의는 금지됩니다.",
-          "반납 시 신고하지 않은 손상이 발견되면 그 자리에서 경찰에 연락해 사후 절차를 진행해야 합니다. 이 절차는 최대 약 5시간이 걸릴 수 있습니다."
+          "반납할 때 비로소 신고하지 않은 손상이 발견되면, 그 자리에서 경찰에 신고하더라도 경찰은 보통 사고 증명을 발급하지 못하며, 절차는 약 5시간이 걸릴 수 있습니다. 따라서 사고가 나면 반드시 사고 현장에서 즉시 경찰에 신고해 주십시오."
         ],
         "th": [
           "ไม่ว่าอุบัติเหตุจะเล็กหรือใหญ่ (แม้เป็นเพียงรอยขีดข่วนเล็กน้อย) ต้องโทร 110 แจ้งตำรวจทันที และติดต่อทางร้านด้วย",
           "หากไม่มีหลักฐานการเกิดอุบัติเหตุที่ออกโดยตำรวจ บริษัทประกันจะไม่ดำเนินการเคลม ห้ามตกลงยอมความกับคู่กรณีเอง",
-          "หากพบความเสียหายที่ไม่ได้แจ้งความเมื่อคืนรถ ต้องติดต่อตำรวจที่นั่นทันที ขั้นตอนย้อนหลังอาจใช้เวลานานถึง 5 ชั่วโมง"
+          "หากพบความเสียหายที่ยังไม่ได้แจ้งความเมื่อคืนรถ แม้จะแจ้งตำรวจทันที ณ ที่นั้น ตำรวจมักออกหลักฐานการเกิดอุบัติเหตุให้ไม่ได้ และขั้นตอนอาจใช้เวลานานถึงประมาณ 5 ชั่วโมง ดังนั้นหากเกิดอุบัติเหตุ กรุณาแจ้งตำรวจทันทีที่เกิดเหตุ"
         ]
       }
     },
