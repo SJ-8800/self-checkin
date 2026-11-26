@@ -1380,9 +1380,18 @@
     $("#btn-reset-no").addEventListener("click", closeResetConfirm);
 
     window.addEventListener("resize", () => {
+      syncVisualViewport();
       if (state.screen === "signature") resizeCanvas();
       if (state.screen === "compensation") updateTableSwipeHint();
     });
+    if (window.visualViewport) {
+      const onVv = () => {
+        syncVisualViewport();
+        if (state.screen === "signature") resizeCanvas();
+      };
+      window.visualViewport.addEventListener("resize", onVv);
+      window.visualViewport.addEventListener("scroll", onVv);
+    }
 
     const idleStay = $("#btn-idle-continue");
     if (idleStay) idleStay.addEventListener("click", () => {
@@ -1440,9 +1449,26 @@
     });
   }
 
+  function syncVisualViewport() {
+    const root = document.documentElement;
+    const vv = window.visualViewport;
+    if (!vv) {
+      root.style.setProperty("--vv-height", window.innerHeight + "px");
+      root.style.setProperty("--vv-top", "0px");
+      root.style.setProperty("--vv-bottom", "0px");
+      return;
+    }
+    const top = Math.max(0, vv.offsetTop);
+    const bottom = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    root.style.setProperty("--vv-height", Math.round(vv.height) + "px");
+    root.style.setProperty("--vv-top", Math.round(top) + "px");
+    root.style.setProperty("--vv-bottom", Math.round(bottom) + "px");
+  }
+
   function init() {
     clearPersistedStaff();
     state.vehicleClass = null;
+    syncVisualViewport();
     applyChrome();
     bind();
     showScreen("language");

@@ -60,17 +60,16 @@
         <h1 id="rules-title">Rental Car Agreement</h1>
         <div class="step-pills" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
       </header>
-      <div class="pane fade-bottom" id="rules-pane" data-testid="rules-pane">
+      <div class="pane" id="rules-pane" data-testid="rules-pane">
         <p class="intro" data-i18n="rulesIntro">Please read and tick all 11 terms below.</p>
         <div class="badge-row" id="rules-badges"></div>
         <div class="fuel-guide" id="fuel-guide" data-testid="fuel-guide"></div>
         <div id="rules-list"></div>
+        <div class="pane-actions">
+          <div class="rules-progress" id="rules-progress" data-testid="rules-progress">0 / 11</div>
+          <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-rules-next" data-testid="btn-rules-next" data-i18n="continue" aria-disabled="true">Continue</button>
+        </div>
       </div>
-      <footer class="footer">
-        <div class="rules-progress" id="rules-progress" data-testid="rules-progress">0 / 11</div>
-        <div class="grow"></div>
-        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-rules-next" data-testid="btn-rules-next" data-i18n="continue" aria-disabled="true">Continue</button>
-      </footer>
     </section>
 
     <!-- Compensation -->
@@ -80,7 +79,7 @@
         <h1 id="comp-title">Rental Car Compensation Policy</h1>
         <div class="step-pills" aria-hidden="true"><span class="done"></span><span class="on"></span><span></span><span></span></div>
       </header>
-      <div class="pane fade-bottom" id="comp-pane" data-testid="comp-pane">
+      <div class="pane" id="comp-pane" data-testid="comp-pane">
         <p class="intro" data-i18n="compIntro">Please read the compensation policy and choose an option.</p>
         <div class="included-banner" id="included-banner"></div>
         <div class="third-party-box" id="third-party-box" data-testid="third-party-box"></div>
@@ -92,12 +91,11 @@
         <div class="two-col" id="comp-extra"></div>
         <div class="explain-card" id="comp-faq" data-testid="comp-faq"></div>
         <p class="ack-line" id="comp-ack"></p>
+        <div class="pane-actions">
+          <span class="scroll-hint" id="comp-scroll-hint" data-i18n="scrollHint">Please scroll to the end</span>
+          <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-comp-next" data-testid="btn-comp-next" data-i18n="continue" aria-disabled="true">Continue</button>
+        </div>
       </div>
-      <footer class="footer">
-        <span class="scroll-hint" id="comp-scroll-hint" data-i18n="scrollHint">Please scroll to the end</span>
-        <div class="grow"></div>
-        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-comp-next" data-testid="btn-comp-next" data-i18n="continue" aria-disabled="true">Continue</button>
-      </footer>
     </section>
 
     <!-- Signature -->
@@ -125,14 +123,11 @@
             <div class="pad-placeholder" data-i18n="signPlaceholder">Sign here</div>
           </div>
           <div class="sign-tools">
-            <button type="button" class="btn btn-ghost" id="btn-clear-sig" data-i18n="clearSign">Clear signature</button>
+            <button type="button" class="btn btn-primary is-disabled" id="btn-sign-next" data-testid="btn-sign-next" data-i18n="confirmSign" aria-disabled="true">Confirm signature</button>
+            <button type="button" class="btn btn-ghost" id="btn-clear-sig" data-testid="btn-clear-sig" data-i18n="clearSign">Clear signature</button>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="grow"></div>
-        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-sign-next" data-testid="btn-sign-next" data-i18n="confirmSign" aria-disabled="true">Confirm signature</button>
-      </footer>
     </section>
 
     <!-- Summary -->

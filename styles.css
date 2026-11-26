@@ -16,6 +16,9 @@
   --radius: 16px;
   --header-h: 72px;
   --footer-h: 92px;
+  --vv-height: 100dvh;
+  --vv-top: 0px;
+  --vv-bottom: 0px;
   --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "PingFang SC",
     "Hiragino Sans GB", "Noto Sans CJK SC", "Noto Sans CJK JP", "Noto Sans CJK KR",
     "Apple SD Gothic Neo", "Noto Sans KR", "Prompt", "Noto Sans Thai",
@@ -76,10 +79,14 @@ button, input, label { font-family: inherit; }
 .hidden { display: none !important; }
 
 #app {
-  height: 100%;
+  position: fixed;
+  top: var(--vv-top, 0px);
+  left: 0;
+  right: 0;
   width: 100%;
-  position: relative;
+  height: var(--vv-height, 100dvh);
   z-index: 0;
+  overflow: hidden;
 }
 
 .screen {
@@ -202,7 +209,7 @@ html[lang="ko"] .topbar h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px));
+  padding: 24px 24px calc(24px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
   gap: 28px;
   position: relative;
 }
@@ -301,8 +308,20 @@ html[lang="ko"] .topbar h1 {
   flex: 1;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 20px 24px 28px;
+  padding: 20px 24px calc(28px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
   overscroll-behavior: contain;
+}
+.pane-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 24px;
+  padding-top: 8px;
+}
+.pane-actions .btn {
+  flex: 1 1 200px;
+  min-width: min(220px, 100%);
 }
 .pane.fade-bottom {
   mask-image: linear-gradient(#000 0, #000 calc(100% - 28px), transparent);
@@ -644,7 +663,8 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   min-height: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 20px 24px;
+  padding: 20px 24px calc(16px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+  align-items: stretch;
   align-content: start;
 }
 .sign-info {
@@ -665,18 +685,19 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  height: 100%;
 }
 .sign-pad-wrap p.hint {
   margin: 0 0 8px;
   color: var(--muted);
 }
 .pad-frame {
-  flex: 1;
+  flex: 1 1 auto;
   background: var(--paper);
   border: 2px dashed #c9c1b4;
   border-radius: 16px;
   position: relative;
-  min-height: 220px;
+  min-height: 120px;
   overflow: hidden;
 }
 .pad-frame.dirty { border-style: solid; border-color: var(--navy); }
@@ -698,14 +719,31 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   pointer-events: none;
 }
 .pad-placeholder.hide { display: none; }
-.sign-tools { margin-top: 10px; display: flex; justify-content: flex-end; }
+.sign-tools {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  flex: 0 0 auto;
+  width: 100%;
+}
+.sign-tools .btn {
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  height: auto;
+  padding: 10px 12px;
+  white-space: normal;
+  line-height: 1.25;
+  text-align: center;
+}
 
 /* ---------- Summary ---------- */
 .summary-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 18px;
-  padding: 20px 24px calc(20px + env(safe-area-inset-bottom, 0px));
+  padding: 20px 24px calc(20px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
   flex: 1;
   min-height: 0;
   overflow: auto;
@@ -812,6 +850,10 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
 @media (max-width: 900px) {
   .lang-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(640px, 94vw); }
   .sign-layout, .summary-grid, .two-col, .plan-grid { grid-template-columns: 1fr; }
+  .sign-layout {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .sign-info { align-self: start; width: 100%; }
   .check-row { max-width: 100%; }
   .topbar { padding: max(8px, env(safe-area-inset-top, 0px)) 12px 8px; gap: 8px; }
   .topbar h1 { font-size: 17px; }
@@ -831,21 +873,35 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   .plan-card { min-height: 140px; }
 }
 
-/* Short phones (Safari toolbar visible, e.g. 390×844 → ~664px usable) */
+/* Short phones (Safari toolbar visible, e.g. 390×844 → ~664px usable, or 375×560) */
 @media (max-width: 500px), (max-height: 720px) {
-  .sign-layout { gap: 10px; padding: 12px 14px; }
-  .sign-info { padding: 12px 14px; }
+  .sign-layout {
+    gap: 8px;
+    padding: 10px 14px calc(10px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+    overflow: hidden; /* button row must be visible without scrolling */
+  }
+  .sign-info {
+    padding: 10px 12px;
+    overflow: visible;
+  }
   .sign-info h2 { display: none; } /* title already in the top bar */
-  .sign-info ol { margin: 0 0 8px; font-size: 14px; }
-  .sign-info .intro { margin-bottom: 8px; font-size: 14px; }
-  .sign-pad-wrap p.hint { margin: 0 0 6px; font-size: 14px; }
-  .pad-frame { flex: 0 0 auto; min-height: 140px; height: min(32vh, 200px); }
-  .sign-tools { margin-top: 8px; }
-  .sign-tools .btn { min-height: 48px; }
-  .lang-hero { gap: 16px; padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px)); justify-content: flex-start; }
+  .sign-info ol { margin: 0 0 6px; font-size: 13px; }
+  .sign-info li { margin-bottom: 4px; }
+  .sign-info .intro { margin-bottom: 6px; font-size: 13px; }
+  .sign-info .meta { font-size: 13px; }
+  .sign-pad-wrap p.hint { margin: 0 0 6px; font-size: 13px; }
+  .pad-frame { flex: 1 1 auto; min-height: 96px; }
+  .sign-tools { margin-top: 8px; gap: 8px; }
+  .sign-tools .btn { min-height: 48px; font-size: 16px; }
+  .lang-hero { gap: 16px; padding: 16px 16px calc(16px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px)); justify-content: flex-start; }
   .brand .mark { width: 56px; height: 56px; margin-bottom: 8px; font-size: 24px; }
   .brand h1 { font-size: 24px; }
   .lang-card { min-height: 96px; padding: 16px 8px; }
+}
+@media (max-height: 600px) {
+  :root { --header-h: 52px; }
+  .sign-info { padding: 8px 10px; }
+  .sign-tools .btn { min-height: 44px; font-size: 15px; padding: 8px 10px; }
 }
 
 /* Print (fallback if someone prints the page itself) */
@@ -1167,7 +1223,7 @@ table.comp th .help-q:active {
 .flow-toast {
   position: fixed;
   left: 50%;
-  bottom: calc(var(--footer-h) + 14px);
+  bottom: calc(14px + var(--vv-bottom, 0px) + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%);
   z-index: 950;
   max-width: min(580px, 92vw);
