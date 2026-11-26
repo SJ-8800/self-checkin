@@ -11,7 +11,9 @@
   <title>Car Rental Self Check-in</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/icon.png">
-  <link rel="icon" href="assets/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="shortcut icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,7 +25,7 @@
       </div>
       <div class="lang-hero">
         <div class="brand">
-          <div class="mark" aria-hidden="true">RC</div>
+          <img class="mark" src="assets/logo.png" width="72" height="72" alt="CAR CAR LAND">
           <h1>レンタカー セルフチェックイン</h1>
           <p>言語を選んでください  /  Please choose your language</p>
         </div>
@@ -136,24 +138,26 @@
         <h1 data-i18n="summaryTitle">Check-in complete</h1>
         <div class="step-pills" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="done"></span><span class="on"></span></div>
       </header>
-      <div class="summary-grid">
-        <div class="card">
+      <div class="summary-page">
+        <div class="card guest-summary">
           <h2 data-i18n="summaryTitle">Check-in complete</h2>
-          <p class="intro" data-i18n="summaryIntro"></p>
           <dl class="kv">
             <dt data-i18n="language">Language</dt><dd id="sum-lang"></dd>
-            <dt id="sum-class-dt" data-i18n="class">Vehicle class</dt><dd id="sum-class"></dd>
             <dt data-i18n="plan">Plan</dt><dd id="sum-plan"></dd>
             <dt data-i18n="date">Date</dt><dd id="sum-date"></dd>
           </dl>
-          <div class="sig-preview"><img id="sum-sig" alt="Signature"></div>
+          <div class="sig-preview"><img id="sum-sig" alt=""></div>
+          <div class="return-device" data-testid="return-device">
+            <p class="return-device-main" id="return-device-main"></p>
+            <p class="return-device-ja" id="return-device-ja">端末をスタッフにお返しください</p>
+          </div>
         </div>
-        <div class="card actions-stack">
-          <div class="status-ok" id="pdf-status"></div>
-          <p class="print-hint" id="print-hint" data-testid="print-hint"></p>
-          <button type="button" class="btn btn-primary" id="btn-download" data-testid="btn-download" data-i18n="download" disabled>Download PDF</button>
-          <button type="button" class="btn btn-green" id="btn-print" data-testid="btn-print" data-i18n="print" disabled>Print 2 copies</button>
-          <button type="button" class="btn btn-secondary" id="btn-reset" data-testid="btn-reset" data-i18n="reset">Reset for next guest</button>
+        <div class="staff-panel" data-testid="staff-panel">
+          <h3 class="staff-panel-title">スタッフ用</h3>
+          <p class="staff-pdf-status hidden" id="pdf-status" data-testid="pdf-status"></p>
+          <button type="button" class="btn btn-primary" id="btn-download" data-testid="btn-download" disabled>PDFを保存</button>
+          <button type="button" class="btn btn-green" id="btn-print" data-testid="btn-print" disabled>印刷する</button>
+          <button type="button" class="btn btn-secondary" id="btn-reset" data-testid="btn-reset">リセット</button>
         </div>
       </div>
     </section>
@@ -178,10 +182,10 @@
   <!-- Reset confirm -->
   <div class="modal hidden" id="reset-modal">
     <div class="modal-card confirm-box">
-      <p data-i18n="resetQ"></p>
+      <p id="reset-confirm-text">このお客様の内容を消去して最初に戻りますか？車両クラスもクリアされます。</p>
       <div class="modal-actions">
-        <button type="button" class="btn btn-secondary" id="btn-reset-no" data-i18n="cancel">Cancel</button>
-        <button type="button" class="btn btn-danger" id="btn-reset-yes" data-testid="reset-yes" data-i18n="reset">Reset for next guest</button>
+        <button type="button" class="btn btn-secondary" id="btn-reset-no">キャンセル</button>
+        <button type="button" class="btn btn-danger" id="btn-reset-yes" data-testid="reset-yes">リセット</button>
       </div>
     </div>
   </div>
@@ -191,8 +195,8 @@
     <div class="modal-card confirm-box">
       <p id="print-confirm-text"></p>
       <div class="modal-actions">
-        <button type="button" class="btn btn-secondary" id="btn-print-cancel" data-i18n="cancel">Cancel</button>
-        <button type="button" class="btn btn-green" id="btn-print-go" data-testid="print-go">Open print</button>
+        <button type="button" class="btn btn-secondary" id="btn-print-cancel">キャンセル</button>
+        <button type="button" class="btn btn-green" id="btn-print-go" data-testid="print-go">印刷画面を開く</button>
       </div>
     </div>
   </div>

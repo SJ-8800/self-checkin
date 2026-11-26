@@ -55,6 +55,7 @@
       summaryTitle: "Check-in complete",
       summaryIntro: "Your signed 4-page contract (Shop copy + Customer copy) is ready. Tapping Print once prints both copies.",
       pdfReady: "PDF is ready",
+      returnDevice: "Please return the device to the staff",
       download: "Save PDF (Staff)",
       print: "Print contract (2 copies)",
       reset: "Reset for next guest",
@@ -114,6 +115,7 @@
       summaryTitle: "チェックイン完了",
       summaryIntro: "署名済みの契約書（店舗控え＋お客様控えの計4ページ）をご用意しました。1回の印刷で2部とも出力されます。",
       pdfReady: "PDFの準備ができました",
+      returnDevice: "端末をスタッフにお返しください",
       download: "PDFを保存（スタッフ用）",
       print: "契約書を印刷（2部）",
       reset: "次のお客様用にリセット",
@@ -173,6 +175,7 @@
       summaryTitle: "办理完成",
       summaryIntro: "已生成含店铺联与客户联的 4 页签字合同。点一次打印即可直接印出两份。",
       pdfReady: "PDF 已准备好",
+      returnDevice: "请将设备交还给店员",
       download: "保存 PDF（店员用）",
       print: "打印合同（两份）",
       reset: "为下一位客人重置",
@@ -232,6 +235,7 @@
       summaryTitle: "체크인 완료",
       summaryIntro: "서명된 계약서(매장 보관용 + 고객용 총 4페이지)가 준비되었습니다. 한 번 인쇄로 2부가 모두 출력됩니다.",
       pdfReady: "PDF가 준비되었습니다",
+      returnDevice: "기기를 직원에게 반납해 주세요",
       download: "PDF 저장 (직원용)",
       print: "계약서 인쇄 (2부)",
       reset: "다음 고객을 위해 초기화",
@@ -291,6 +295,7 @@
       summaryTitle: "เช็คอินเสร็จสิ้น",
       summaryIntro: "สัญญาพร้อมลายมือชื่อ (ฉบับร้าน + ฉบับลูกค้า รวม 4 หน้า) พร้อมแล้ว กดพิมพ์ครั้งเดียวจะได้ทั้ง 2 ชุด",
       pdfReady: "PDF พร้อมแล้ว",
+      returnDevice: "กรุณาคืนอุปกรณ์ให้พนักงาน",
       download: "บันทึก PDF (สำหรับพนักงาน)",
       print: "พิมพ์สัญญา (2 ชุด)",
       reset: "รีเซ็ตสำหรับลูกค้าคนถัดไป",
@@ -443,8 +448,8 @@
     $all("[data-i18n]").forEach((el) => {
       el.textContent = t(el.getAttribute("data-i18n"));
     });
-    const hint = $("#print-hint");
-    if (hint) hint.textContent = hu("printHint");
+    applyReturnDevice();
+    applyStaffLabels();
     const closeBtn = $("#help-close-btn");
     if (closeBtn) closeBtn.textContent = hu("close") || t("close");
     const disc = $("#help-disclaimer");
@@ -1002,23 +1007,58 @@
       + '</style></head><body>' + pages + '</body></html>';
   }
 
+  const STAFF_UI = {
+    panelTitle: "スタッフ用",
+    savePdf: "PDFを保存",
+    print: "印刷する",
+    reset: "リセット",
+    cancel: "キャンセル",
+    resetQ: "このお客様の内容を消去して最初に戻りますか？車両クラスもクリアされます。",
+    printGo: "印刷画面を開く",
+    preparing: "契約書を作成しています…"
+  };
+
+  function staffJa(key) {
+    if (key === "printConfirm" || key === "printHint" || key === "printContinue") {
+      const H = window.HELP && window.HELP.ui && window.HELP.ui[key];
+      return (H && (H.ja || H.en)) || "";
+    }
+    return STAFF_UI[key] || "";
+  }
+
+  function applyReturnDevice() {
+    const main = $("#return-device-main");
+    if (main) main.textContent = t("returnDevice");
+    const ja = $("#return-device-ja");
+    if (ja) ja.classList.toggle("hidden", state.lang === "ja");
+  }
+
+  function applyStaffLabels() {
+    const title = document.querySelector(".staff-panel-title");
+    if (title) title.textContent = STAFF_UI.panelTitle;
+    const dl = $("#btn-download");
+    if (dl) dl.textContent = STAFF_UI.savePdf;
+    const pr = $("#btn-print");
+    if (pr) pr.textContent = STAFF_UI.print;
+    const rs = $("#btn-reset");
+    if (rs) rs.textContent = STAFF_UI.reset;
+    const resetText = $("#reset-confirm-text");
+    if (resetText) resetText.textContent = STAFF_UI.resetQ;
+    const resetNo = $("#btn-reset-no");
+    if (resetNo) resetNo.textContent = STAFF_UI.cancel;
+    const resetYes = $("#btn-reset-yes");
+    if (resetYes) resetYes.textContent = STAFF_UI.reset;
+    const printCancel = $("#btn-print-cancel");
+    if (printCancel) printCancel.textContent = STAFF_UI.cancel;
+    const printGo = $("#btn-print-go");
+    if (printGo) printGo.textContent = STAFF_UI.printGo;
+  }
+
   async function prepareSummary() {
     const c = C();
     $("#sum-lang").textContent = LANG_NAMES[state.lang] || state.lang;
-    const clsDt = $("#sum-class-dt");
-    const clsDd = $("#sum-class");
-    if (state.vehicleClass) {
-      if (clsDt) clsDt.classList.remove("hidden");
-      if (clsDd) {
-        clsDd.classList.remove("hidden");
-        clsDd.textContent = classLabel(state.vehicleClass);
-      }
-    } else {
-      if (clsDt) clsDt.classList.add("hidden");
-      if (clsDd) clsDd.classList.add("hidden");
-    }
-    const hint = $("#print-hint");
-    if (hint) hint.textContent = hu("printHint");
+    applyReturnDevice();
+    applyStaffLabels();
     const showSumPrice = state.vehicleClass || state.plan === "basic";
     $("#sum-plan").textContent = showSumPrice
       ? c.planFullNames[state.plan] + "  (" + planPriceLine(state.plan) + ")"
@@ -1029,16 +1069,25 @@
     state.signatureDataUrl = dataUrl;
     img.src = dataUrl || "";
     const status = $("#pdf-status");
-    status.textContent = t("preparing");
+    if (status) {
+      status.textContent = STAFF_UI.preparing;
+      status.classList.remove("hidden");
+    }
     $("#btn-download").disabled = true;
     $("#btn-print").disabled = true;
     try {
       await generatePdf();
-      status.textContent = t("pdfReady");
+      if (status) {
+        status.textContent = "";
+        status.classList.add("hidden");
+      }
       $("#btn-download").disabled = false;
       $("#btn-print").disabled = false;
     } catch (err) {
-      status.textContent = String(err.message || err);
+      if (status) {
+        status.textContent = String(err.message || err);
+        status.classList.remove("hidden");
+      }
       console.error(err);
     }
   }
@@ -1056,9 +1105,9 @@
   function openPrintConfirm() {
     if (!state.pdfUrl) return;
     const text = $("#print-confirm-text");
-    if (text) text.textContent = hu("printConfirm");
+    if (text) text.textContent = staffJa("printConfirm");
     const go = $("#btn-print-go");
-    if (go) go.textContent = hu("printContinue");
+    if (go) go.textContent = STAFF_UI.printGo;
     const modal = $("#print-modal");
     if (modal) modal.classList.remove("hidden");
   }
@@ -1077,6 +1126,23 @@
         img.onerror = resolve;
       });
     }));
+  }
+
+  function pageCountFromPrintHtml(html) {
+    const matches = String(html || "").match(/class="print-page/g);
+    return (matches && matches.length) || 4;
+  }
+
+  function sizePrintFrame(frame, pageCount) {
+    const n = Math.max(1, Number(pageCount) || 4);
+    frame.style.width = "210mm";
+    frame.style.height = (n * 297) + "mm";
+  }
+
+  function loadPrintFrame(frame, html, onReady) {
+    sizePrintFrame(frame, pageCountFromPrintHtml(html));
+    frame.onload = onReady;
+    frame.srcdoc = html;
   }
 
   function printPdf() {
@@ -1099,13 +1165,11 @@
       if (!html) {
         buildPrintHtml(state.pdfBlob).then((built) => {
           state.printHtml = built;
-          frame.onload = runPrint;
-          frame.srcdoc = built;
+          loadPrintFrame(frame, built, runPrint);
         }).catch((err) => console.error(err));
         return;
       }
-      frame.onload = runPrint;
-      frame.srcdoc = html;
+      loadPrintFrame(frame, html, runPrint);
     };
     go();
   }
@@ -1495,6 +1559,20 @@
       if (!blob) blob = await generatePdf();
       if (!state.printHtml) state.printHtml = await buildPrintHtml(blob);
       return state.printHtml;
+    },
+    loadPrintPreview: async () => {
+      const html = await window.__checkin.getPrintHtml();
+      const frame = document.getElementById("print-frame");
+      if (!frame || !html) return null;
+      return new Promise((resolve) => {
+        sizePrintFrame(frame, pageCountFromPrintHtml(html));
+        frame.onload = () => resolve({
+          pageCount: pageCountFromPrintHtml(html),
+          styleHeight: frame.style.height,
+          styleWidth: frame.style.width
+        });
+        frame.srcdoc = html;
+      });
     },
     getPdfBase64: async () => {
       let blob = state.pdfBlob;
