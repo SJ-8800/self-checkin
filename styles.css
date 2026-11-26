@@ -506,6 +506,21 @@ html[lang="ko"] .topbar h1 {
   border: 1px solid var(--line);
   margin-bottom: 14px;
 }
+.plan-pick-hint {
+  margin: 0;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: #7a160f;
+  background: #fbe3de;
+  border-bottom: 2px solid #e29a90;
+}
+.plan-pick-hint.has-plan {
+  display: none;
+}
 table.comp {
   width: 100%;
   border-collapse: collapse;
@@ -579,14 +594,45 @@ table.comp .plan-select {
   width: 100%;
   min-height: 44px;
   margin: 0;
-  padding: 6px 4px 4px;
-  border: 0;
-  background: transparent;
+  padding: 8px 6px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
   color: inherit;
   font: inherit;
   text-align: center;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+table.comp th.plan-choice.selected .plan-select {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+table.comp .plan-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.92);
+  background: transparent;
+  box-sizing: border-box;
+}
+table.comp th.plan-choice.selected .plan-mark {
+  border-color: transparent;
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+table.comp th.hd-noc.selected .plan-mark { color: var(--green); }
+table.comp th.plan-choice.selected .plan-mark::after {
+  content: "✓";
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
 }
 table.comp .plan-title {
   display: block;
@@ -595,53 +641,66 @@ table.comp .plan-title {
   white-space: normal;
 }
 table.comp .plan-price {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
   font-weight: 700;
   font-size: 13px;
   line-height: 1.35;
   margin-top: 2px;
-  white-space: pre-line;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: keep-all;
   color: #ffe08a;
 }
-table.comp th.hd-basic .plan-price { color: #e8eef5; }
-table.comp .plan-tick {
-  display: none;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #fff;
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 26px;
-  text-align: center;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+table.comp .plan-price,
+table.comp .plan-price * {
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
-table.comp th.plan-choice.selected .plan-tick { display: block; }
-table.comp th.hd-noc.selected .plan-tick { color: var(--green); }
+table.comp .plan-price .price-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  max-width: 100%;
+}
+table.comp .plan-price .price-main {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+table.comp .plan-price .price-label,
+table.comp .plan-price .price-amount,
+table.comp .plan-price .price-unit {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+table.comp th.hd-basic .plan-price { color: #e8eef5; }
 table.comp th.plan-choice.selected,
 table.comp td.plan-choice.selected {
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95);
-  background: #314e68;
+  background: #1a3348;
 }
 table.comp td.plan-choice.selected {
-  background: #e8f0f7;
+  background: #b7cbe0;
   box-shadow: inset 0 0 0 3px var(--navy);
 }
 table.comp td.plan-choice.selected.risk-high,
 table.comp td.plan-choice.selected.risk-mid {
-  background: #fdecea;
+  background: #f0b7ad;
 }
 table.comp th.hd-noc.selected {
-  background: #147550;
+  background: #0c5a3c;
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95);
 }
 table.comp td.plan-choice.selected.risk-zero,
 table.comp td[data-plan="cdw_noc"].selected {
-  background: #d9f5e5;
+  background: #9ed9b6;
   box-shadow: inset 0 0 0 3px var(--green);
 }
 table.comp td.plan-choice:active,
@@ -658,7 +717,9 @@ table.comp th.plan-choice:active {
   table.comp .plan-select { min-height: 72px; gap: 8px; padding: 8px 6px; }
   table.comp .plan-title { font-size: 16px; }
   table.comp .plan-price { font-size: 14.5px; }
-  table.comp .plan-tick { width: 28px; height: 28px; line-height: 28px; font-size: 15px; }
+  table.comp .plan-mark { width: 30px; height: 30px; }
+  table.comp th.plan-choice.selected .plan-mark::after { font-size: 17px; }
+  .plan-pick-hint { font-size: 20px; padding: 14px 18px; }
   table.comp td.risk-high,
   table.comp td.risk-mid { font-size: 16px; }
   table.comp td.risk-zero { font-size: 17px; }
@@ -690,7 +751,9 @@ table.comp th.plan-choice:active {
   table.comp .plan-select { min-height: 44px; gap: 4px; padding: 4px 2px; }
   table.comp .plan-title { font-size: 11px; }
   table.comp .plan-price { font-size: 10.5px; }
-  table.comp .plan-tick { top: 4px; right: 4px; width: 18px; height: 18px; line-height: 18px; font-size: 11px; }
+  table.comp .plan-mark { width: 22px; height: 22px; border-width: 2px; }
+  table.comp th.plan-choice.selected .plan-mark::after { font-size: 13px; }
+  .plan-pick-hint { font-size: 14px; padding: 10px 12px; }
   table.comp td.risk-high,
   table.comp td.risk-mid { font-size: 12px; }
   table.comp td.risk-zero { font-size: 12.5px; }
@@ -1456,6 +1519,10 @@ table.comp th .help-q:active {
 .attention {
   animation: pulseAttention 0.9s ease 2;
   border-color: var(--red) !important;
+}
+#comp-table.attention {
+  outline: 3px solid var(--red);
+  outline-offset: 1px;
 }
 
 @media (max-width: 700px) {

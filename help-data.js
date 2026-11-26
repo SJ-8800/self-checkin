@@ -159,11 +159,11 @@ window.HELP = {
       "th": "กรุณาติ๊กยืนยันประกาศเรื่องประกันที่ซื้อจากเว็บไซต์จอง/แพลตฟอร์มก่อน"
     },
     "needPlan": {
-      "zh": "请先选择一种补偿方案（不加购 / CDW / CDW+NOC）",
-      "en": "Please choose a coverage option first (No add-on / CDW / CDW+NOC)",
-      "ja": "先に補償プランを1つお選びください（追加なし / CDW / CDW+NOC）",
-      "ko": "먼저 보상 플랜을 하나 선택해 주세요 (추가 안 함 / CDW / CDW+NOC)",
-      "th": "กรุณาเลือกแผนคุ้มครอง 1 รายการก่อน (ไม่ซื้อเพิ่ม / CDW / CDW+NOC)"
+      "zh": "请先选择方案",
+      "en": "Please choose a plan first",
+      "ja": "先にプランを選んでください",
+      "ko": "먼저 플랜을 선택해 주세요",
+      "th": "กรุณาเลือกแผนก่อน"
     },
     "needScroll": {
       "zh": "请先向下滑动至页面底部阅读完整说明",
@@ -581,28 +581,23 @@ window.HELP = {
       "body": {
         "zh": [
           "车辆损坏到无法修理、只能报废。",
-          "若因承租人应承担责任的事故导致全损，须按车辆实际市场价值赔偿，参考金额 600,000 日元起，并另行承担适用的 NOC 和道路救援费用。已经获得补偿的费用不会重复收取。",
-          "即使加入了 CDW+NOC，全损及特定部位损伤仍除外。"
+          "若因承租人应承担责任的事故导致全损，须按车辆实际市场价值赔偿，参考金额 600,000 日元起，并另行承担适用的 NOC 和道路救援费用。已经获得补偿的费用不会重复收取。"
         ],
         "en": [
           "The car is damaged beyond repair and must be written off.",
-          "If this happens in an accident for which you are liable, you must compensate based on the car’s actual market value, with a reference amount starting from ¥600,000, and you also pay any applicable NOC and roadside assistance fees. Amounts already covered will not be charged twice.",
-          "Even with CDW+NOC, total loss and damage to specific parts are still excluded."
+          "If this happens in an accident for which you are liable, you must compensate based on the car’s actual market value, with a reference amount starting from ¥600,000, and you also pay any applicable NOC and roadside assistance fees. Amounts already covered will not be charged twice."
         ],
         "ja": [
           "車が修理できないほど壊れ、廃車になることです。",
-          "借受人の責任となる事故で全損になった場合、車両の実際の時価額に基づいて賠償します。参考金額は600,000円からです。あわせて、該当するNOCとロードサービス費用も負担します。すでに補償された費用は重複して請求されません。",
-          "CDW+NOCに加入していても、全損及び特定部位の損傷は除外されます。"
+          "借受人の責任となる事故で全損になった場合、車両の実際の時価額に基づいて賠償します。参考金額は600,000円からです。あわせて、該当するNOCとロードサービス費用も負担します。すでに補償された費用は重複して請求されません。"
         ],
         "ko": [
           "차량이 수리할 수 없을 만큼 손상되어 폐차되는 경우입니다.",
-          "임차인에게 책임이 있는 사고로 전손이 되면, 차량의 실제 시장가치에 따라 배상해야 합니다. 참고 금액은 600,000엔부터입니다. 해당하는 NOC와 긴급출동 비용도 별도로 부담합니다. 이미 보상된 비용은 중복해서 청구하지 않습니다.",
-          "CDW+NOC에 가입했더라도 전손 및 특정 부위 손상은 제외됩니다."
+          "임차인에게 책임이 있는 사고로 전손이 되면, 차량의 실제 시장가치에 따라 배상해야 합니다. 참고 금액은 600,000엔부터입니다. 해당하는 NOC와 긴급출동 비용도 별도로 부담합니다. 이미 보상된 비용은 중복해서 청구하지 않습니다."
         ],
         "th": [
           "รถเสียหายจนซ่อมไม่ได้และต้องทิ้งซาก",
-          "หากเกิดจากอุบัติเหตุที่ผู้เช่าต้องรับผิดชอบ ผู้เช่าต้องชดใช้ตามมูลค่าตลาดจริงของรถ โดยมีจำนวนอ้างอิงเริ่มต้นที่ 600,000 เยน และต้องรับผิดชอบค่า NOC และค่าบริการช่วยเหลือฉุกเฉินที่เกี่ยวข้องด้วย ค่าใช้จ่ายที่ได้รับการชดเชยแล้วจะไม่เรียกเก็บซ้ำ",
-          "แม้จะซื้อ CDW+NOC แล้ว กรณีรถเสียหายทั้งคันและความเสียหายของชิ้นส่วนเฉพาะยังคงถูกยกเว้น"
+          "หากเกิดจากอุบัติเหตุที่ผู้เช่าต้องรับผิดชอบ ผู้เช่าต้องชดใช้ตามมูลค่าตลาดจริงของรถ โดยมีจำนวนอ้างอิงเริ่มต้นที่ 600,000 เยน และต้องรับผิดชอบค่า NOC และค่าบริการช่วยเหลือฉุกเฉินที่เกี่ยวข้องด้วย ค่าใช้จ่ายที่ได้รับการชดเชยแล้วจะไม่เรียกเก็บซ้ำ"
         ]
       }
     },

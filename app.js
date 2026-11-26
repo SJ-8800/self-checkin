@@ -35,6 +35,7 @@
       addCdw: "Add CDW",
       addCdwNoc: "Add CDW+NOC",
       choosePlan: "Choose an option",
+      pickPlan: "Please tap a compensation plan",
       planFree: "Included / free",
       maxLiability: "Maximum accident liability",
       riskHigh: "Highest risk",
@@ -95,6 +96,7 @@
       addCdw: "CDWを追加する",
       addCdwNoc: "CDW+NOCを追加する",
       choosePlan: "オプションを選択",
+      pickPlan: "補償プランを選んでください",
       planFree: "含まれています・無料",
       maxLiability: "事故時の最大負担総額",
       riskHigh: "リスク極めて高い",
@@ -155,6 +157,7 @@
       addCdw: "加购 CDW",
       addCdwNoc: "加购 CDW+NOC",
       choosePlan: "请选择",
+      pickPlan: "请点选一种补偿方案",
       planFree: "已包含 / 免费",
       maxLiability: "事故最大负担总额",
       riskHigh: "风险极高",
@@ -215,6 +218,7 @@
       addCdw: "CDW 추가 가입",
       addCdwNoc: "CDW+NOC 추가 가입",
       choosePlan: "옵션 선택",
+      pickPlan: "보상 플랜을 선택해 주세요",
       planFree: "포함 / 무료",
       maxLiability: "사고 시 최대 부담 총액",
       riskHigh: "위험 매우 높음",
@@ -275,6 +279,7 @@
       addCdw: "ซื้อเพิ่ม CDW",
       addCdwNoc: "ซื้อเพิ่ม CDW+NOC",
       choosePlan: "เลือกตัวเลือก",
+      pickPlan: "กรุณาเลือกแผนการชดเชย",
       planFree: "รวมอยู่แล้ว / ฟรี",
       maxLiability: "ยอดรับผิดชอบสูงสุดกรณีเกิดอุบัติเหตุ",
       riskHigh: "ความเสี่ยงสูงมาก",
@@ -673,6 +678,33 @@
     return escapeHtml(s).replace(/\n/g, "<br>");
   }
 
+  // Split "小型车：3,300日元/24h" / "Compact: ¥3,300/24h" so the amount+currency
+  // and the /24h unit never break mid-word. Fallback: escaped raw text.
+  function splitPriceParts(raw) {
+    const s = String(raw || "").trim();
+    if (!s) return null;
+    const m = s.match(/^(?:(.+?)([:：]\s*))?([¥])?(\d{1,3}(?:,\d{3})*)(日元|円|엔)?(\s*\/\s*24(?:h| ชม\.))?$/);
+    if (!m) return null;
+    const label = ((m[1] || "") + (m[2] || ""));
+    const amount = ((m[3] || "") + (m[4] || "") + (m[5] || ""));
+    const unit = m[6] || "";
+    if (!amount) return null;
+    return { label, amount, unit };
+  }
+
+  function pricePartsHtml(raw) {
+    const parts = splitPriceParts(raw);
+    if (!parts) return escapeHtml(raw);
+    const label = parts.label ? `<span class="price-label">${escapeHtml(parts.label)}</span>` : "";
+    const amount = `<span class="price-amount">${escapeHtml(parts.amount)}</span>`;
+    const unit = parts.unit ? `<span class="price-unit">${escapeHtml(parts.unit)}</span>` : "";
+    return `<span class="price-item"><span class="price-main">${label}${amount}</span>${unit}</span>`;
+  }
+
+  function formatPlanPriceHtml(plan) {
+    return String(planPriceLine(plan) || "").split("\n").filter(Boolean).map(pricePartsHtml).join("");
+  }
+
   function renderThirdPartyNotice() {
     const host = $("#third-party-box");
     if (!host) return;
@@ -699,22 +731,23 @@
     const hdClass = { basic: "hd-basic", cdw: "hd-cdw", cdw_noc: "hd-noc" };
     const headerCells = planIds.map((p, i) => {
       const selected = state.plan === p;
-      const price = planPriceLine(p);
       const varies = !state.vehicleClass && p !== "basic" ? " varies" : "";
       const help = p === "basic" ? "" : helpBtn(p, "plan-help");
       const checked = selected ? "true" : "false";
       const tab = (selected || (!state.plan && p === "basic")) ? "0" : "-1";
       return `<th class="plan-choice ${hdClass[p]}${selected ? " selected" : ""}" data-plan="${p}">
-        <span class="plan-tick" aria-hidden="true">✓</span>
         <button type="button" class="plan-select" role="radio" aria-checked="${checked}" tabindex="${tab}" data-plan="${p}" data-testid="plan-${p}">
+          <span class="plan-mark" aria-hidden="true"></span>
           <span class="plan-title">${escapeHtml(c.tableHeaders[i + 1])}</span>
-          <span class="plan-price${varies}">${escapeWithBreaks(price)}</span>
+          <span class="plan-price${varies}">${formatPlanPriceHtml(p)}</span>
         </button>
         ${help}
       </th>`;
     }).join("");
 
-    const html = `<table class="comp">
+    const hintOn = state.plan ? " has-plan" : "";
+    const html = `<p class="plan-pick-hint${hintOn}" id="plan-pick-hint" data-testid="plan-pick-hint">${escapeHtml(t("pickPlan"))}</p>
+    <table class="comp">
       <caption>${escapeHtml(c.tableCaption)}</caption>
       <colgroup>
         <col class="col-item">
@@ -808,6 +841,8 @@
   function applyPlanColumnState() {
     const wrap = $("#comp-table");
     if (!wrap) return;
+    const hint = $("#plan-pick-hint");
+    if (hint) hint.classList.toggle("has-plan", !!state.plan);
     wrap.querySelectorAll("[data-plan]").forEach((el) => {
       el.classList.toggle("selected", !!state.plan && el.dataset.plan === state.plan);
     });
@@ -1428,6 +1463,7 @@
         if (table) {
           table.scrollIntoView({ behavior: "smooth", block: "center" });
           pulseEl(table);
+          table.querySelectorAll(".plan-select").forEach((btn) => pulseEl(btn));
         }
         return;
       }
