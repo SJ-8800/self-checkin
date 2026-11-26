@@ -691,35 +691,41 @@
     setBalancedTitle($("#comp-title"), c.compensationTitle);
     const banner = $("#included-banner");
     if (banner) {
-      banner.innerHTML = `<span class="mark">✓</span><span>${escapeHtml(t("includedBanner"))}</span>${helpBtn("basic")}`;
+      banner.innerHTML = `<span class="mark">✓</span><span>${escapeHtml(t("includedBanner"))}</span>`;
     }
     renderThirdPartyNotice();
-    const plans = ["basic", "cdw", "cdw_noc"];
-    const titles = { basic: t("noAddon"), cdw: t("addCdw"), cdw_noc: t("addCdwNoc") };
-    const risks = { basic: t("riskHigh") + " · 400,000+", cdw: t("riskMid") + " · 150,000+", cdw_noc: t("riskZero") };
-    const grid = $("#plan-grid");
-    grid.innerHTML = plans.map((p) => {
-      const selected = state.plan === p ? " selected" : "";
-      const price = p === "basic" ? t("planFree") : planPriceLine(p);
-      const sub = `<div class="price-sub">${escapeHtml(c.planFullNames[p])}${state.vehicleClass && p !== "basic" ? " · " + classLabel(state.vehicleClass) : ""}</div>`;
-      return `<button type="button" class="plan-card${selected}" data-plan="${p}" data-testid="plan-${p}">
-        <span class="tick">✓</span>
-        <h3>${escapeHtml(titles[p])}${helpBtn(p)}</h3>
-        <div class="price${(!state.vehicleClass && p !== "basic") ? " varies" : ""}">${escapeWithBreaks(price)}</div>
-        ${sub}
-        <div class="risk">${escapeHtml(risks[p])}</div>
-      </button>`;
+
+    const planIds = ["basic", "cdw", "cdw_noc"];
+    const hdClass = { basic: "hd-basic", cdw: "hd-cdw", cdw_noc: "hd-noc" };
+    const headerCells = planIds.map((p, i) => {
+      const selected = state.plan === p;
+      const price = planPriceLine(p);
+      const varies = !state.vehicleClass && p !== "basic" ? " varies" : "";
+      const help = p === "basic" ? "" : helpBtn(p, "plan-help");
+      const checked = selected ? "true" : "false";
+      const tab = (selected || (!state.plan && p === "basic")) ? "0" : "-1";
+      return `<th class="plan-choice ${hdClass[p]}${selected ? " selected" : ""}" data-plan="${p}">
+        <span class="plan-tick" aria-hidden="true">✓</span>
+        <button type="button" class="plan-select" role="radio" aria-checked="${checked}" tabindex="${tab}" data-plan="${p}" data-testid="plan-${p}">
+          <span class="plan-title">${escapeHtml(c.tableHeaders[i + 1])}</span>
+          <span class="plan-price${varies}">${escapeWithBreaks(price)}</span>
+        </button>
+        ${help}
+      </th>`;
     }).join("");
 
-    const notes = c.planHeaderNotes;
     const html = `<table class="comp">
       <caption>${escapeHtml(c.tableCaption)}</caption>
+      <colgroup>
+        <col class="col-item">
+        <col class="col-plan col-basic">
+        <col class="col-plan col-cdw">
+        <col class="col-plan col-noc">
+      </colgroup>
       <thead>
-        <tr>
-          <th>${escapeHtml(c.tableHeaders[0])}</th>
-          <th class="hd-basic">${escapeHtml(c.tableHeaders[1])}${helpBtn("basic")}<span class="subhead">${escapeHtml(notes.basic)}</span></th>
-          <th class="hd-cdw">${escapeHtml(c.tableHeaders[2])}${helpBtn("cdw")}<span class="subhead yellow">${escapeHtml(notes.cdwCompact)}<br>${escapeHtml(notes.cdwOther)}</span></th>
-          <th class="hd-noc">${escapeHtml(c.tableHeaders[3])}${helpBtn("cdw_noc")}<span class="subhead yellow">${escapeHtml(notes.nocCompact)}<br>${escapeHtml(notes.nocOther)}</span></th>
+        <tr role="radiogroup" aria-label="${escapeHtml(t("choosePlan"))}">
+          <th scope="col">${escapeHtml(c.tableHeaders[0])}</th>
+          ${headerCells}
         </tr>
       </thead>
       <tbody>
@@ -729,11 +735,12 @@
           const dCls = row.emphasize ? " risk-mid" : "";
           const nCls = row.emphasize ? " risk-zero" : "";
           const rowHelp = ROW_HELP[ri] ? helpBtn(ROW_HELP[ri]) : "";
+          const sel = (p) => state.plan === p ? " selected" : "";
           return `<tr${cls}>
             <td class="item">${escapeHtml(row.item)}${rowHelp}</td>
-            <td class="${bCls}">${escapeHtml(row.basic)}</td>
-            <td class="${dCls}">${escapeHtml(row.cdw)}</td>
-            <td class="${nCls}">${escapeHtml(row.noc)}</td>
+            <td class="plan-choice${bCls}${sel("basic")}" data-plan="basic">${escapeHtml(row.basic)}</td>
+            <td class="plan-choice${dCls}${sel("cdw")}" data-plan="cdw">${escapeHtml(row.cdw)}</td>
+            <td class="plan-choice${nCls}${sel("cdw_noc")}" data-plan="cdw_noc">${escapeHtml(row.noc)}</td>
           </tr>`;
         }).join("")}
       </tbody>
@@ -796,6 +803,32 @@
 
   function updateCompContinue() {
     setBtnInactive($("#btn-comp-next"), !(state.plan && state.compScrolled && state.thirdPartyAck));
+  }
+
+  function applyPlanColumnState() {
+    const wrap = $("#comp-table");
+    if (!wrap) return;
+    wrap.querySelectorAll("[data-plan]").forEach((el) => {
+      el.classList.toggle("selected", !!state.plan && el.dataset.plan === state.plan);
+    });
+    const radios = Array.from(wrap.querySelectorAll(".plan-select"));
+    const current = radios.find((r) => r.dataset.plan === state.plan) || radios[0];
+    radios.forEach((r) => {
+      const on = !!state.plan && r.dataset.plan === state.plan;
+      r.setAttribute("aria-checked", on ? "true" : "false");
+      r.tabIndex = r === current ? 0 : -1;
+    });
+  }
+
+  function selectPlan(plan, opts) {
+    if (!plan || (plan !== "basic" && plan !== "cdw" && plan !== "cdw_noc")) return;
+    state.plan = plan;
+    applyPlanColumnState();
+    updateCompContinue();
+    if (opts && opts.focus) {
+      const btn = document.querySelector('.plan-select[data-plan="' + plan + '"]');
+      if (btn) btn.focus();
+    }
   }
 
   /* ---------- Scroll lock ---------- */
@@ -1354,14 +1387,31 @@
       });
     }
 
-    $("#plan-grid").addEventListener("click", (e) => {
-      if (e.target.closest(".help-q")) return;
-      const card = e.target.closest(".plan-card");
-      if (!card) return;
-      state.plan = card.dataset.plan;
-      $all(".plan-card").forEach((c) => c.classList.toggle("selected", c === card));
-      updateCompContinue();
-    });
+    const compTable = $("#comp-table");
+    if (compTable) {
+      compTable.addEventListener("click", (e) => {
+        if (e.target.closest(".help-q")) return;
+        const cell = e.target.closest("[data-plan]");
+        if (!cell) return;
+        selectPlan(cell.dataset.plan);
+      });
+      compTable.addEventListener("keydown", (e) => {
+        const radio = e.target.closest(".plan-select");
+        if (!radio) return;
+        const order = ["basic", "cdw", "cdw_noc"];
+        const idx = order.indexOf(radio.dataset.plan);
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+          selectPlan(order[(idx + 1) % order.length], { focus: true });
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          e.preventDefault();
+          selectPlan(order[(idx + order.length - 1) % order.length], { focus: true });
+        } else if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          selectPlan(radio.dataset.plan);
+        }
+      });
+    }
     $("#btn-comp-next").addEventListener("click", () => {
       if (!state.thirdPartyAck) {
         showFlowToast(hu("needThirdParty"));
@@ -1374,10 +1424,10 @@
       }
       if (!state.plan) {
         showFlowToast(hu("needPlan"));
-        const grid = $("#plan-grid");
-        if (grid) {
-          grid.scrollIntoView({ behavior: "smooth", block: "center" });
-          pulseEl(grid);
+        const table = $("#comp-table");
+        if (table) {
+          table.scrollIntoView({ behavior: "smooth", block: "center" });
+          pulseEl(table);
         }
         return;
       }
