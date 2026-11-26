@@ -701,27 +701,37 @@ window.HELP = {
         "zh": [
           "无论事故大小（即使是轻微刮擦），必须立即拨打 110 向警察报案，并联系本店。",
           "没有警察开具的事故证明，保险公司一律不予理赔。严禁私下与对方和解。",
-          "若还车时才发现未报警的损伤，即使当场报警，警察通常也无法开具事故证明，手续可能长达约 5 小时。因此发生事故时，请务必在事故现场立即报警。"
+          "若还车时才发现未报警的损伤，即使当场报警，警察通常也无法开具事故证明，手续可能长达约 5 小时。因此发生事故时，请务必在事故现场立即报警。",
+          "事故证明（交通事故证明书）无法当场取得，事后需向警察申请，一般至少需要 2～3 周才能拿到。",
+          "取得后，本店工作人员会以 PDF 形式发送给承租人。"
         ],
         "en": [
           "No matter how small the accident (even a minor scratch), you must immediately call 110 to report it to the police and contact the shop.",
           "Without an accident certificate issued by the police, the insurance company will not process any claim. Private settlements with the other party are strictly prohibited.",
-          "If unreported damage is only discovered when you return the car, the police usually cannot issue an accident certificate even if you report it then and there, and the process may take up to about 5 hours. Therefore, if an accident occurs, you must report it to the police immediately at the scene."
+          "If unreported damage is only discovered when you return the car, the police usually cannot issue an accident certificate even if you report it then and there, and the process may take up to about 5 hours. Therefore, if an accident occurs, you must report it to the police immediately at the scene.",
+          "The accident certificate (Traffic Accident Certificate) cannot be obtained on the spot. You must apply to the police afterwards, and it generally takes at least 2–3 weeks to receive.",
+          "Once it has been obtained, our staff will send it to you as a PDF."
         ],
         "ja": [
           "事故の大小にかかわらず（軽い擦り傷でも）、直ちに110番して警察に届け出、当店にも連絡してください。",
           "警察が発行する事故証明がない場合、保険会社は保険金の支払いに応じません。相手方との示談は禁止されています。",
-          "返却時になって届出のない損傷が見つかった場合、その場で警察に連絡しても、警察は通常、事故証明を発行できません。手続きには約5時間かかることがあります。そのため、事故が起きたときは、必ず事故現場で直ちに警察へ届け出てください。"
+          "返却時になって届出のない損傷が見つかった場合、その場で警察に連絡しても、警察は通常、事故証明を発行できません。手続きには約5時間かかることがあります。そのため、事故が起きたときは、必ず事故現場で直ちに警察へ届け出てください。",
+          "事故証明（交通事故証明書）は、その場では取得できません。後日警察に申請する必要があり、入手まで一般的に少なくとも2～3週間かかります。",
+          "取得後、当店のスタッフがPDF形式でお送りします。"
         ],
         "ko": [
           "사고의 크기와 관계없이(가벼운 긁힘이라도) 즉시 110에 전화해 경찰에 신고하고, 당 매장에도 연락해야 합니다.",
           "경찰이 발급한 사고 증명이 없으면 보험회사는 보험 처리를 하지 않습니다. 상대방과의 사적 합의는 금지됩니다.",
-          "반납할 때 비로소 신고하지 않은 손상이 발견되면, 그 자리에서 경찰에 신고하더라도 경찰은 보통 사고 증명을 발급하지 못하며, 절차는 약 5시간이 걸릴 수 있습니다. 따라서 사고가 나면 반드시 사고 현장에서 즉시 경찰에 신고해 주십시오."
+          "반납할 때 비로소 신고하지 않은 손상이 발견되면, 그 자리에서 경찰에 신고하더라도 경찰은 보통 사고 증명을 발급하지 못하며, 절차는 약 5시간이 걸릴 수 있습니다. 따라서 사고가 나면 반드시 사고 현장에서 즉시 경찰에 신고해 주십시오.",
+          "사고 증명(교통사고 증명서)은 현장에서 바로 받을 수 없습니다. 나중에 경찰에 신청해야 하며, 받는 데 일반적으로 최소 2～3주가 걸립니다.",
+          "발급된 후, 당 매장 직원이 PDF 파일로 보내 드립니다."
         ],
         "th": [
           "ไม่ว่าอุบัติเหตุจะเล็กหรือใหญ่ (แม้เป็นเพียงรอยขีดข่วนเล็กน้อย) ต้องโทร 110 แจ้งตำรวจทันที และติดต่อทางร้านด้วย",
           "หากไม่มีหลักฐานการเกิดอุบัติเหตุที่ออกโดยตำรวจ บริษัทประกันจะไม่ดำเนินการเคลม ห้ามตกลงยอมความกับคู่กรณีเอง",
-          "หากพบความเสียหายที่ยังไม่ได้แจ้งความเมื่อคืนรถ แม้จะแจ้งตำรวจทันที ณ ที่นั้น ตำรวจมักออกหลักฐานการเกิดอุบัติเหตุให้ไม่ได้ และขั้นตอนอาจใช้เวลานานถึงประมาณ 5 ชั่วโมง ดังนั้นหากเกิดอุบัติเหตุ กรุณาแจ้งตำรวจทันทีที่เกิดเหตุ"
+          "หากพบความเสียหายที่ยังไม่ได้แจ้งความเมื่อคืนรถ แม้จะแจ้งตำรวจทันที ณ ที่นั้น ตำรวจมักออกหลักฐานการเกิดอุบัติเหตุให้ไม่ได้ และขั้นตอนอาจใช้เวลานานถึงประมาณ 5 ชั่วโมง ดังนั้นหากเกิดอุบัติเหตุ กรุณาแจ้งตำรวจทันทีที่เกิดเหตุ",
+          "หลักฐานการเกิดอุบัติเหตุ (ใบรับรองอุบัติเหตุจราจร) ไม่สามารถขอรับได้ทันที ณ ที่เกิดเหตุ ต้องยื่นคำร้องต่อตำรวจในภายหลัง และโดยทั่วไปต้องใช้เวลาอย่างน้อย 2–3 สัปดาห์จึงจะได้รับ",
+          "หลังจากได้รับแล้ว พนักงานของร้านจะส่งให้ในรูปแบบ PDF"
         ]
       }
     },
