@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Check-in">
+  <meta name="theme-color" content="#efebe3">
+  <title>Car Rental Self Check-in</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="icon" href="assets/icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Language -->
+    <section class="screen" id="screen-language">
+      <div class="staff-corner">
+        <button type="button" id="btn-staff" data-testid="btn-staff">スタッフ設定</button>
+      </div>
+      <div class="lang-hero">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">RC</div>
+          <h1>レンタカー セルフチェックイン</h1>
+          <p>言語を選んでください  /  Please choose your language</p>
+        </div>
+        <div class="lang-grid" id="lang-grid">
+          <button type="button" class="lang-card" data-lang="ja" data-testid="lang-ja">
+            <div class="big">日本語</div>
+            <div class="sub">日本語で続ける</div>
+          </button>
+          <button type="button" class="lang-card" data-lang="en" data-testid="lang-en">
+            <div class="big">English</div>
+            <div class="sub">Continue in English</div>
+          </button>
+          <button type="button" class="lang-card" data-lang="zh" data-testid="lang-zh">
+            <div class="big">中文</div>
+            <div class="sub">用中文继续</div>
+          </button>
+          <button type="button" class="lang-card" data-lang="ko" data-testid="lang-ko">
+            <div class="big">한국어</div>
+            <div class="sub">한국어로 계속</div>
+          </button>
+          <button type="button" class="lang-card" data-lang="th" data-testid="lang-th">
+            <div class="big">ไทย</div>
+            <div class="sub">ดำเนินการต่อเป็นภาษาไทย</div>
+          </button>
+        </div>
+        <div class="staff-status" id="staff-status"></div>
+      </div>
+    </section>
+
+    <!-- Rules -->
+    <section class="screen hidden" id="screen-rules">
+      <header class="topbar">
+        <button type="button" class="text-btn" id="btn-rules-back" data-i18n="back">Back</button>
+        <h1 id="rules-title">Rental Car Agreement</h1>
+        <div class="step-pills" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+      </header>
+      <div class="pane fade-bottom" id="rules-pane" data-testid="rules-pane">
+        <p class="intro" data-i18n="rulesIntro">Please read and tick all 11 terms below.</p>
+        <div class="badge-row" id="rules-badges"></div>
+        <div class="fuel-guide" id="fuel-guide" data-testid="fuel-guide"></div>
+        <div id="rules-list"></div>
+      </div>
+      <footer class="footer">
+        <div class="rules-progress" id="rules-progress" data-testid="rules-progress">0 / 11</div>
+        <div class="grow"></div>
+        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-rules-next" data-testid="btn-rules-next" data-i18n="continue" aria-disabled="true">Continue</button>
+      </footer>
+    </section>
+
+    <!-- Compensation -->
+    <section class="screen hidden" id="screen-compensation">
+      <header class="topbar">
+        <button type="button" class="text-btn" id="btn-comp-back" data-i18n="back">Back</button>
+        <h1 id="comp-title">Rental Car Compensation Policy</h1>
+        <div class="step-pills" aria-hidden="true"><span class="done"></span><span class="on"></span><span></span><span></span></div>
+      </header>
+      <div class="pane fade-bottom" id="comp-pane" data-testid="comp-pane">
+        <p class="intro" data-i18n="compIntro">Please read the compensation policy and choose an option.</p>
+        <div class="included-banner" id="included-banner"></div>
+        <div class="third-party-box" id="third-party-box" data-testid="third-party-box"></div>
+        <div class="plan-grid" id="plan-grid"></div>
+        <p class="table-swipe-hint hidden" id="table-swipe-hint" data-testid="table-swipe-hint"></p>
+        <div class="table-wrap" id="comp-table"></div>
+        <div class="footnotes" id="comp-notes"></div>
+        <div class="notice" id="comp-notice"></div>
+        <div class="two-col" id="comp-extra"></div>
+        <div class="explain-card" id="comp-faq" data-testid="comp-faq"></div>
+        <p class="ack-line" id="comp-ack"></p>
+      </div>
+      <footer class="footer">
+        <span class="scroll-hint" id="comp-scroll-hint" data-i18n="scrollHint">Please scroll to the end</span>
+        <div class="grow"></div>
+        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-comp-next" data-testid="btn-comp-next" data-i18n="continue" aria-disabled="true">Continue</button>
+      </footer>
+    </section>
+
+    <!-- Signature -->
+    <section class="screen hidden" id="screen-signature">
+      <header class="topbar">
+        <button type="button" class="text-btn" id="btn-sign-back" data-i18n="back">Back</button>
+        <h1 data-i18n="signTitle">Signature</h1>
+        <div class="step-pills" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="on"></span><span></span></div>
+      </header>
+      <div class="sign-layout">
+        <aside class="sign-info">
+          <h2 data-i18n="signTitle">Signature</h2>
+          <p class="intro" data-i18n="signIntro" style="margin-bottom:8px"></p>
+          <ol>
+            <li data-i18n="signItem1"></li>
+            <li id="sign-item2"></li>
+          </ol>
+          <div class="meta"><span data-i18n="plan">Plan</span>: <b id="sign-plan"></b></div>
+          <div class="meta" style="margin-top:6px"><span data-i18n="date">Date</span>: <b id="sign-date"></b></div>
+        </aside>
+        <div class="sign-pad-wrap">
+          <p class="hint" data-i18n="signHint"></p>
+          <div class="pad-frame" id="pad-frame">
+            <canvas id="sig-canvas" data-testid="sig-canvas"></canvas>
+            <div class="pad-placeholder" data-i18n="signPlaceholder">Sign here</div>
+          </div>
+          <div class="sign-tools">
+            <button type="button" class="btn btn-ghost" id="btn-clear-sig" data-i18n="clearSign">Clear signature</button>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="grow"></div>
+        <button type="button" class="btn btn-primary btn-wide is-disabled" id="btn-sign-next" data-testid="btn-sign-next" data-i18n="confirmSign" aria-disabled="true">Confirm signature</button>
+      </footer>
+    </section>
+
+    <!-- Summary -->
+    <section class="screen hidden" id="screen-summary">
+      <header class="topbar">
+        <h1 data-i18n="summaryTitle">Check-in complete</h1>
+        <div class="step-pills" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="done"></span><span class="on"></span></div>
+      </header>
+      <div class="summary-grid">
+        <div class="card">
+          <h2 data-i18n="summaryTitle">Check-in complete</h2>
+          <p class="intro" data-i18n="summaryIntro"></p>
+          <dl class="kv">
+            <dt data-i18n="language">Language</dt><dd id="sum-lang"></dd>
+            <dt id="sum-class-dt" data-i18n="class">Vehicle class</dt><dd id="sum-class"></dd>
+            <dt data-i18n="plan">Plan</dt><dd id="sum-plan"></dd>
+            <dt data-i18n="date">Date</dt><dd id="sum-date"></dd>
+          </dl>
+          <div class="sig-preview"><img id="sum-sig" alt="Signature"></div>
+        </div>
+        <div class="card actions-stack">
+          <div class="status-ok" id="pdf-status"></div>
+          <p class="print-hint" id="print-hint" data-testid="print-hint"></p>
+          <button type="button" class="btn btn-primary" id="btn-download" data-testid="btn-download" data-i18n="download" disabled>Download PDF</button>
+          <button type="button" class="btn btn-green" id="btn-print" data-testid="btn-print" data-i18n="print" disabled>Print 2 copies</button>
+          <button type="button" class="btn btn-secondary" id="btn-reset" data-testid="btn-reset" data-i18n="reset">Reset for next guest</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Staff settings -->
+  <div class="modal hidden" id="staff-modal" data-testid="staff-modal">
+    <div class="modal-card">
+      <h2>スタッフ設定</h2>
+      <p class="note" data-testid="staff-note">車両クラスはお客様ごとに設定します。リセット（手動／一定時間操作なし）すると消えます。次のお客様の前に選び直してください。<br>车型按每位客人设置，重置后会清空。请在下一位客人办理前重新选择。油种不在这里预设，客人画面会列出全部三种。</p>
+      <h3>車両クラス</h3>
+      <div class="choice-row">
+        <button type="button" class="choice" data-class="compact" data-testid="class-compact">Compact<br>小型車</button>
+        <button type="button" class="choice" data-class="other" data-testid="class-other">Other classes<br>その他車種</button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="btn-staff-close" data-testid="staff-save">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset confirm -->
+  <div class="modal hidden" id="reset-modal">
+    <div class="modal-card confirm-box">
+      <p data-i18n="resetQ"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-reset-no" data-i18n="cancel">Cancel</button>
+        <button type="button" class="btn btn-danger" id="btn-reset-yes" data-testid="reset-yes" data-i18n="reset">Reset for next guest</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print 2 copies confirm -->
+  <div class="modal hidden" id="print-modal" data-testid="print-modal">
+    <div class="modal-card confirm-box">
+      <p id="print-confirm-text"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-print-cancel" data-i18n="cancel">Cancel</button>
+        <button type="button" class="btn btn-green" id="btn-print-go" data-testid="print-go">Open print</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Term explanation (UI help only; not part of the contract / PDF) -->
+  <div class="modal hidden" id="help-modal" data-testid="help-modal">
+    <div class="modal-card help-card" role="dialog" aria-modal="true" aria-labelledby="help-title">
+      <button type="button" class="help-close-x" id="help-close-x" data-testid="help-close" aria-label="Close">×</button>
+      <p class="help-disclaimer" id="help-disclaimer"></p>
+      <h2 id="help-title"></h2>
+      <div class="help-body" id="help-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="help-close-btn" data-i18n-help-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-toast hidden" id="flow-toast" data-testid="flow-toast" role="status" aria-live="polite"></div>
+
+  <!-- Idle auto-reset countdown modal -->
+  <div class="modal hidden" id="idle-modal" data-testid="idle-modal">
+    <div class="modal-card confirm-box" role="dialog" aria-modal="true" aria-labelledby="idle-title">
+      <h2 id="idle-title"></h2>
+      <p id="idle-body" style="margin-top:8px"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-idle-reset" data-testid="idle-reset"></button>
+        <button type="button" class="btn btn-primary" id="btn-idle-continue" data-testid="idle-continue"></button>
+      </div>
+    </div>
+  </div>
+
+  <iframe id="print-frame" title="Print"></iframe>
+
+  <script src="vendor/pdf-lib.min.js"></script>
+  <script src="vendor/fontkit.umd.min.js"></script>
+  <script src="vendor/pdf.min.js"></script>
+  <script>if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdf.worker.min.js";</script>
+  <script src="contract-data.js"></script>
+  <script src="help-data.js"></script>
+  <script src="pdf-fill.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

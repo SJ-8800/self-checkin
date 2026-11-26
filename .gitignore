@@ -1,0 +1,6 @@
+# Local review artifacts — not published
+samples/
+screenshots-review/
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+{
+  "name": "Car Rental Self Check-in",
+  "short_name": "Check-in",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#efebe3",
+  "theme_color": "#1b3a55",
+  "icons": [
+    { "src": "assets/icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
