@@ -525,10 +525,14 @@ html[lang="ko"] .topbar h1 {
   margin: 6px 0 2px;
 }
 .plan-card .price.varies {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--navy);
+}
+#sign-plan,
+#sum-plan {
+  white-space: pre-line;
 }
 .plan-card .price-sub { font-size: 12px; color: var(--muted); }
 .plan-card .risk {

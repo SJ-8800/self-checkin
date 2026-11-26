@@ -650,10 +650,27 @@
     const c = C();
     if (plan === "basic") return t("planFree");
     const prices = c.planPrices[plan];
-    if (!prices) return "";
-    if (state.vehicleClass === "compact") return prices.compact;
-    if (state.vehicleClass === "other") return prices.other;
-    return hu("classBasedPrice");
+    const notes = c.planHeaderNotes || {};
+    if (state.vehicleClass === "compact") return (prices && prices.compact) || "";
+    if (state.vehicleClass === "other") return (prices && prices.other) || "";
+    // No class set: list both prices, reusing the localized table-header notes.
+    if (plan === "cdw") return [notes.cdwCompact, notes.cdwOther].filter(Boolean).join("\n");
+    if (plan === "cdw_noc") return [notes.nocCompact, notes.nocOther].filter(Boolean).join("\n");
+    if (prices && prices.compact && prices.other) return prices.compact + "\n" + prices.other;
+    return "";
+  }
+
+  function planNameAndPrice(plan) {
+    const c = C();
+    const name = c.planFullNames[plan] || "";
+    const price = planPriceLine(plan);
+    if (!price) return name;
+    if (price.indexOf("\n") >= 0) return name + "\n" + price;
+    return name + "  (" + price + ")";
+  }
+
+  function escapeWithBreaks(s) {
+    return escapeHtml(s).replace(/\n/g, "<br>");
   }
 
   function renderThirdPartyNotice() {
@@ -688,7 +705,7 @@
       return `<button type="button" class="plan-card${selected}" data-plan="${p}" data-testid="plan-${p}">
         <span class="tick">✓</span>
         <h3>${escapeHtml(titles[p])}${helpBtn(p)}</h3>
-        <div class="price${(!state.vehicleClass && p !== "basic") ? " varies" : ""}">${escapeHtml(price)}</div>
+        <div class="price${(!state.vehicleClass && p !== "basic") ? " varies" : ""}">${escapeWithBreaks(price)}</div>
         ${sub}
         <div class="risk">${escapeHtml(risks[p])}</div>
       </button>`;
@@ -928,10 +945,7 @@
     const d = tokyoNow();
     state.signedAt = d;
     $("#sign-date").textContent = formatDateLong(d);
-    const showSignPrice = state.vehicleClass || state.plan === "basic";
-    $("#sign-plan").textContent = showSignPrice
-      ? c.planFullNames[state.plan] + "  (" + planPriceLine(state.plan) + ")"
-      : c.planFullNames[state.plan];
+    $("#sign-plan").textContent = planNameAndPrice(state.plan);
     setBtnInactive($("#btn-sign-next"), !state.hasStroke);
   }
 
@@ -1059,10 +1073,7 @@
     $("#sum-lang").textContent = LANG_NAMES[state.lang] || state.lang;
     applyReturnDevice();
     applyStaffLabels();
-    const showSumPrice = state.vehicleClass || state.plan === "basic";
-    $("#sum-plan").textContent = showSumPrice
-      ? c.planFullNames[state.plan] + "  (" + planPriceLine(state.plan) + ")"
-      : c.planFullNames[state.plan];
+    $("#sum-plan").textContent = planNameAndPrice(state.plan);
     $("#sum-date").textContent = formatDateLong(state.signedAt || tokyoNow());
     const img = $("#sum-sig");
     const dataUrl = state.signatureDataUrl || exportSignature();
