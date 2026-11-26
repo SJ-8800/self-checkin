@@ -319,6 +319,7 @@
     signedAt: null,
     pdfBlob: null,
     pdfUrl: null,
+    printHtml: null,
     screen: "language"
   };
 
@@ -425,8 +426,11 @@
       updateTableSwipeHint();
     }
     if (id === "signature") {
-      resizeCanvas();
       refreshSignInfo();
+      requestAnimationFrame(() => {
+        resizeCanvas();
+        requestAnimationFrame(resizeCanvas);
+      });
     }
     if (id === "summary") prepareSummary();
     resetIdleTimer();
@@ -836,6 +840,9 @@
 
   function startDraw(ev) {
     ev.preventDefault();
+    if (ev.pointerId != null && ev.target && ev.target.setPointerCapture) {
+      try { ev.target.setPointerCapture(ev.pointerId); } catch (err) { /* ignore */ }
+    }
     sigDrawing = true;
     sigLast = posOnCanvas(ev);
     const ctx = sigCanvas().getContext("2d");
@@ -948,7 +955,51 @@
     });
     state.pdfBlob = blob;
     state.pdfUrl = URL.createObjectURL(blob);
+    try {
+      state.printHtml = await buildPrintHtml(blob);
+    } catch (err) {
+      console.error(err);
+      state.printHtml = null;
+    }
     return blob;
+  }
+
+  const PRINT_DPI = 200;
+
+  async function buildPrintHtml(blob) {
+    const lib = window.pdfjsLib;
+    if (!lib) throw new Error("pdf.js failed to load");
+    const bytes = new Uint8Array(await blob.arrayBuffer());
+    const srcDoc = await lib.getDocument({ data: bytes }).promise;
+    const targetW = Math.round((210 / 25.4) * PRINT_DPI);
+    const images = [];
+    for (let i = 1; i <= srcDoc.numPages; i++) {
+      const page = await srcDoc.getPage(i);
+      const base = page.getViewport({ scale: 1 });
+      const viewport = page.getViewport({ scale: targetW / base.width });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      const ctx = canvas.getContext("2d", { alpha: false });
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      images.push(canvas.toDataURL("image/jpeg", 0.92));
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+    if (srcDoc.destroy) await srcDoc.destroy();
+    const pages = images.map((src, i) => {
+      const last = i === images.length - 1 ? " last" : "";
+      return '<div class="print-page' + last + '"><img src="' + src + '" width="210" height="297" alt=""></div>';
+    }).join("");
+    return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Print</title><style>'
+      + '@page { size: A4; margin: 0; }'
+      + 'html, body { margin: 0; padding: 0; background: #fff; }'
+      + '.print-page { width: 210mm; height: 297mm; margin: 0; padding: 0; overflow: hidden; page-break-after: always; break-after: page; }'
+      + '.print-page.last { page-break-after: auto; break-after: auto; }'
+      + '.print-page img { width: 210mm; height: 297mm; display: block; border: 0; }'
+      + '</style></head><body>' + pages + '</body></html>';
   }
 
   async function prepareSummary() {
@@ -1015,21 +1066,48 @@
     const modal = $("#print-modal");
     if (modal) modal.classList.add("hidden");
   }
+  function waitForFrameImages(frame) {
+    const doc = frame.contentDocument;
+    if (!doc) return Promise.resolve();
+    const imgs = Array.from(doc.images || []);
+    return Promise.all(imgs.map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    }));
+  }
+
   function printPdf() {
-    if (!state.pdfUrl) return;
+    if (!state.printHtml && !state.pdfBlob) return;
     closePrintConfirm();
     const frame = $("#print-frame");
-    frame.src = state.pdfUrl;
-    frame.onload = () => {
-      try {
-        frame.contentWindow.focus();
-        frame.contentWindow.print();
-      } catch (e) {
-        // Guided Access / iframe print fallback: open blob in same view is not possible;
-        // last resort is window.print after navigating, but we stay on-page.
-        window.open(state.pdfUrl);
-      }
+    const html = state.printHtml;
+    const runPrint = () => {
+      waitForFrameImages(frame).then(() => {
+        try {
+          frame.contentWindow.focus();
+          frame.contentWindow.print();
+        } catch (err) {
+          // Do not fall back to window.open: Guided Access blocks it.
+          console.error(err);
+        }
+      });
     };
+    const go = () => {
+      if (!html) {
+        buildPrintHtml(state.pdfBlob).then((built) => {
+          state.printHtml = built;
+          frame.onload = runPrint;
+          frame.srcdoc = built;
+        }).catch((err) => console.error(err));
+        return;
+      }
+      frame.onload = runPrint;
+      frame.srcdoc = html;
+    };
+    go();
   }
 
   let idleTimer = null;
@@ -1111,6 +1189,7 @@
     state.signedAt = null;
     state.pdfBlob = null;
     state.pdfUrl = null;
+    state.printHtml = null;
     state.langSelected = false;
     state.vehicleClass = null;
     clearPersistedStaff();
@@ -1268,6 +1347,16 @@
     canvas.addEventListener("pointerup", endDraw);
     canvas.addEventListener("pointercancel", endDraw);
     canvas.addEventListener("pointerleave", endDraw);
+    // Touch events as a fallback when PointerEvent is missing (older WebKit).
+    const touchOpts = { passive: false };
+    const skipIfPointer = (handler) => (ev) => {
+      if ("PointerEvent" in window) return;
+      handler(ev);
+    };
+    canvas.addEventListener("touchstart", skipIfPointer(startDraw), touchOpts);
+    canvas.addEventListener("touchmove", skipIfPointer(moveDraw), touchOpts);
+    canvas.addEventListener("touchend", skipIfPointer(endDraw), touchOpts);
+    canvas.addEventListener("touchcancel", skipIfPointer(endDraw), touchOpts);
     $("#btn-clear-sig").addEventListener("click", clearSignature);
     $("#btn-sign-next").addEventListener("click", () => {
       if (!state.hasStroke) {
@@ -1373,6 +1462,13 @@
       const el = document.querySelector(`[data-rule-idx="${idx}"]`);
       if (el) el.classList.add("checked");
       updateRulesProgress();
+    },
+    getPrintHtml: async () => {
+      if (state.printHtml) return state.printHtml;
+      let blob = state.pdfBlob;
+      if (!blob) blob = await generatePdf();
+      if (!state.printHtml) state.printHtml = await buildPrintHtml(blob);
+      return state.printHtml;
     },
     getPdfBase64: async () => {
       let blob = state.pdfBlob;

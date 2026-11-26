@@ -55,7 +55,8 @@ html[lang="th"] {
 
 html, body {
   margin: 0;
-  height: 100%;
+  height: 100vh; /* fallback for browsers without dvh */
+  height: 100dvh;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
@@ -64,7 +65,8 @@ html, body {
 }
 
 body {
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -98,7 +100,7 @@ button, input, label { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 20px;
+  padding: env(safe-area-inset-top) 20px 0;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
@@ -149,13 +151,16 @@ html[lang="ko"] .topbar h1 {
 
 .footer {
   flex: 0 0 auto;
+  flex-shrink: 0;
   min-height: var(--footer-h);
-  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
   background: var(--paper);
   border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   gap: 16px;
+  z-index: 2;
+  position: relative;
 }
 
 .footer .grow { flex: 1; }
@@ -190,11 +195,14 @@ html[lang="ko"] .topbar h1 {
 /* ---------- Language ---------- */
 .lang-hero {
   flex: 1;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px));
   gap: 28px;
   position: relative;
 }
@@ -250,7 +258,7 @@ html[lang="ko"] .topbar h1 {
 
 .staff-corner {
   position: absolute;
-  top: 16px;
+  top: calc(16px + env(safe-area-inset-top, 0px));
   right: 16px;
   z-index: 2;
 }
@@ -632,8 +640,12 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 20px;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 20px 24px;
+  align-content: start;
 }
 .sign-info {
   background: var(--paper);
@@ -652,6 +664,7 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   display: flex;
   flex-direction: column;
   min-width: 0;
+  min-height: 0;
 }
 .sign-pad-wrap p.hint {
   margin: 0 0 8px;
@@ -692,9 +705,11 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 18px;
-  padding: 20px 24px;
+  padding: 20px 24px calc(20px + env(safe-area-inset-bottom, 0px));
   flex: 1;
   min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .card {
   background: var(--paper);
@@ -777,11 +792,17 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 
 #print-frame {
-  position: absolute;
-  width: 0;
-  height: 0;
+  /* Off-screen but laid out. iOS Safari will not print all PDF pages from a
+     0×0 or visibility:hidden iframe, so this frame stays at A4 size. */
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 210mm;
+  height: 297mm;
   border: 0;
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Confirm overlay */
@@ -792,7 +813,7 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   .lang-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(640px, 94vw); }
   .sign-layout, .summary-grid, .two-col, .plan-grid { grid-template-columns: 1fr; }
   .check-row { max-width: 100%; }
-  .topbar { padding: 8px 12px; gap: 8px; }
+  .topbar { padding: max(8px, env(safe-area-inset-top, 0px)) 12px 8px; gap: 8px; }
   .topbar h1 { font-size: 17px; }
   .step-pills { gap: 4px; }
   .step-pills span { min-width: 18px; height: 6px; }
@@ -808,6 +829,23 @@ table.comp td.risk-zero { background: #e8f8ef; color: var(--green); font-size: 1
   :root { --header-h: 60px; --footer-h: 80px; }
   .lang-card { min-height: 140px; padding: 24px 16px; }
   .plan-card { min-height: 140px; }
+}
+
+/* Short phones (Safari toolbar visible, e.g. 390×844 → ~664px usable) */
+@media (max-width: 500px), (max-height: 720px) {
+  .sign-layout { gap: 10px; padding: 12px 14px; }
+  .sign-info { padding: 12px 14px; }
+  .sign-info h2 { display: none; } /* title already in the top bar */
+  .sign-info ol { margin: 0 0 8px; font-size: 14px; }
+  .sign-info .intro { margin-bottom: 8px; font-size: 14px; }
+  .sign-pad-wrap p.hint { margin: 0 0 6px; font-size: 14px; }
+  .pad-frame { flex: 0 0 auto; min-height: 140px; height: min(32vh, 200px); }
+  .sign-tools { margin-top: 8px; }
+  .sign-tools .btn { min-height: 48px; }
+  .lang-hero { gap: 16px; padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px)); justify-content: flex-start; }
+  .brand .mark { width: 56px; height: 56px; margin-bottom: 8px; font-size: 24px; }
+  .brand h1 { font-size: 24px; }
+  .lang-card { min-height: 96px; padding: 16px 8px; }
 }
 
 /* Print (fallback if someone prints the page itself) */
