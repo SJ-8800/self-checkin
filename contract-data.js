@@ -123,7 +123,7 @@ window.CONTRACT = {
         highlight: true,
         blocks: [
           { text: "In any accident (including a minor collision, a collision with an animal, and a single-vehicle accident), the renter must immediately report it to the police and contact the shop. If the required accident-reporting obligation is not fulfilled without a justifiable reason, the shop’s CDW and NOC compensation system shall not apply.", highlight: true },
-          { text: "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2.", highlight: true }
+          { text: "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs (from ¥20,000) and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2.", highlight: true }
         ]
       },
       {
@@ -283,7 +283,7 @@ window.CONTRACT = {
         highlight: true,
         blocks: [
           { text: "いかなる事故（軽微な衝突、動物との衝突及び自損事故を含む）が発生した場合も、直ちに警察へ届け出、当店に連絡しなければなりません。所定の事故報告義務を正当な理由なく履行しなかった場合、当店のCDWおよびNOCの免責補償制度は適用されません。", highlight: true },
-          { text: "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用およびNOC営業損失費を負担しなければなりません。このうち、簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。", highlight: true }
+          { text: "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用（20,000円から）およびNOC営業損失費を負担しなければなりません。このうち、簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。", highlight: true }
         ]
       },
       {
@@ -405,7 +405,7 @@ window.CONTRACT = {
       ]},
       { num: "7", title: "保险使用&未报案伤痕", highlight: true, blocks: [
         { text: "发生任何事故（包括轻微碰撞、动物碰撞及单方事故），均须立即报警并联系本店。未按规定履行事故报告义务且无正当理由的，本店CDW及NOC免责补偿制度不予适用。", highlight: true },
-        { text: "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用及NOC营业损失费。其中，仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。", highlight: true }
+        { text: "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用（20,000日元起）及NOC营业损失费。其中，仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。", highlight: true }
       ]},
       { num: "8", title: "车内清洁", highlight: true, blocks: [
         { text: "全车禁烟，违者赔偿 20,000日元。异常脏乱加收 5,000日元 清洁费。", highlight: true }
@@ -508,7 +508,7 @@ window.CONTRACT = {
       ]},
       { num: "7", title: "보험 적용 및 미신고 손상", highlight: true, blocks: [
         { text: "어떠한 사고(경미한 충돌, 동물과의 충돌 및 단독 사고 포함)가 발생하더라도 즉시 경찰에 신고하고 당 매장에 연락해야 합니다. 정당한 사유 없이 소정의 사고 보고 의무를 이행하지 않은 경우, 당 매장의 CDW 및 NOC 면책 보상제도는 적용되지 않습니다.", highlight: true },
-        { text: "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용 및 NOC 영업손실비를 부담해야 합니다. 이 중 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다.", highlight: true }
+        { text: "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용(¥20,000부터) 및 NOC 영업손실비를 부담해야 합니다. 이 중 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다.", highlight: true }
       ]},
       { num: "8", title: "차량 내부 청결", highlight: true, blocks: [
         { text: "차량 내 전면 금연이며, 위반 시 ¥20,000을 배상해야 합니다. 비정상적으로 더럽거나 어지러운 경우 청소비 ¥5,000을 추가로 징수합니다.", highlight: true }
@@ -611,7 +611,7 @@ window.CONTRACT = {
       ]},
       { num: "7", title: "การใช้ประกันภัยและความเสียหายที่ไม่ได้แจ้งความ", highlight: true, blocks: [
         { text: "อุบัติเหตุใด ๆ (รวมถึงการชนกันเล็กน้อย การชนสัตว์ และอุบัติเหตุรถคันเดียว) ต้องแจ้งตำรวจทันทีและติดต่อทางร้าน หากไม่ปฏิบัติตามหน้าที่ในการรายงานอุบัติเหตุตามที่กำหนดโดยไม่มีเหตุอันสมควร ระบบการชดเชย CDW และ NOC ของทางร้านจะไม่ถูกนำมาใช้", highlight: true },
-        { text: "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้องและค่าขาดรายได้ NOC โดยรอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2", highlight: true }
+        { text: "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้อง (เริ่มต้นที่ ¥20,000) และค่าขาดรายได้ NOC โดยรอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2", highlight: true }
       ]},
       { num: "8", title: "ความสะอาดภายในรถ", highlight: true, blocks: [
         { text: "ห้ามสูบบุหรี่ภายในรถโดยเด็ดขาด ผู้ฝ่าฝืนต้องชดใช้ ¥20,000 หากรถสกปรกหรือรกผิดปกติ จะเรียกเก็บค่าทำความสะอาดเพิ่มอีก ¥5,000", highlight: true }

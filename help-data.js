@@ -705,7 +705,7 @@ window.HELP = {
           "事故证明（交通事故证明书）无法当场取得，事后需向警察申请，一般至少需要 2～3 周才能拿到。",
           "取得后，本店工作人员会以 PDF 形式发送给承租人。",
           "未按规定履行事故报告义务且无正当理由的，本店CDW及NOC免责补偿制度不予适用。",
-          "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用及NOC营业损失费。仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。"
+          "若还车时或复检过程中发现租赁期间产生的未报案损伤，承租人须承担相应维修费用（20,000日元起）及NOC营业损失费。仅需简单修补的轻微刮痕（由本店根据损伤程度及维修需求判定），NOC营业损失费为20,000日元起；其他损伤按第二页NOC收费标准收取100,000～150,000日元。"
         ],
         "en": [
           "No matter how small the accident (even a minor scratch), you must immediately call 110 to report it to the police and contact the shop.",
@@ -714,7 +714,7 @@ window.HELP = {
           "The accident certificate (Traffic Accident Certificate) cannot be obtained on the spot. You must apply to the police afterwards, and it generally takes at least 2–3 weeks to receive.",
           "Once it has been obtained, our staff will send it to you as a PDF.",
           "If the required accident-reporting obligation is not fulfilled without a justifiable reason, the shop’s CDW and NOC compensation system shall not apply.",
-          "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2."
+          "If unreported damage that occurred during the rental period is found at return or during re-inspection, the renter shall bear the corresponding repair costs (from ¥20,000) and the NOC loss-of-business fee. For minor scratches that require only simple repair (as determined by the shop based on the extent of the damage and the repair needed), the NOC loss-of-business fee starts from ¥20,000; for other damage, ¥100,000–¥150,000 will be charged in accordance with the NOC fee schedule on page 2."
         ],
         "ja": [
           "事故の大小にかかわらず（軽い擦り傷でも）、直ちに110番して警察に届け出、当店にも連絡してください。",
@@ -723,7 +723,7 @@ window.HELP = {
           "事故証明（交通事故証明書）は、その場では取得できません。後日警察に申請する必要があり、入手まで一般的に少なくとも2～3週間かかります。",
           "取得後、当店のスタッフがPDF形式でお送りします。",
           "所定の事故報告義務を正当な理由なく履行しなかった場合、当店のCDWおよびNOCの免責補償制度は適用されません。",
-          "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用およびNOC営業損失費を負担しなければなりません。簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。"
+          "ご返却時または再点検の過程で、貸渡期間中に生じた未届出の損傷が発見された場合、借受人は相応の修理費用（20,000円から）およびNOC営業損失費を負担しなければなりません。簡易な補修のみで足りる軽微な擦り傷（損傷の程度および修理の必要性に基づき当店が判断します）については、NOC営業損失費は20,000円からとします。その他の損傷については、2ページ目のNOC料金基準に従い100,000～150,000円を申し受けます。"
         ],
         "ko": [
           "사고의 크기와 관계없이(가벼운 긁힘이라도) 즉시 110에 전화해 경찰에 신고하고, 당 매장에도 연락해야 합니다.",
@@ -732,7 +732,7 @@ window.HELP = {
           "사고 증명(교통사고 증명서)은 현장에서 바로 받을 수 없습니다. 나중에 경찰에 신청해야 하며, 받는 데 일반적으로 최소 2～3주가 걸립니다.",
           "발급된 후, 당 매장 직원이 PDF 파일로 보내 드립니다.",
           "정당한 사유 없이 소정의 사고 보고 의무를 이행하지 않은 경우, 당 매장의 CDW 및 NOC 면책 보상제도는 적용되지 않습니다.",
-          "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용 및 NOC 영업손실비를 부담해야 합니다. 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다."
+          "반납 시 또는 재점검 과정에서 대여 기간 중에 발생한 미신고 손상이 발견된 경우, 임차인은 그에 상응하는 수리 비용(¥20,000부터) 및 NOC 영업손실비를 부담해야 합니다. 간단한 수리만으로 충분한 경미한 긁힘(손상 정도 및 수리 필요성에 따라 당 매장이 판단)의 경우, NOC 영업손실비는 ¥20,000부터입니다. 그 밖의 손상은 2페이지의 NOC 요금 기준에 따라 ¥100,000～150,000을 징수합니다."
         ],
         "th": [
           "ไม่ว่าอุบัติเหตุจะเล็กหรือใหญ่ (แม้เป็นเพียงรอยขีดข่วนเล็กน้อย) ต้องโทร 110 แจ้งตำรวจทันที และติดต่อทางร้านด้วย",
@@ -741,7 +741,7 @@ window.HELP = {
           "หลักฐานการเกิดอุบัติเหตุ (ใบรับรองอุบัติเหตุจราจร) ไม่สามารถขอรับได้ทันที ณ ที่เกิดเหตุ ต้องยื่นคำร้องต่อตำรวจในภายหลัง และโดยทั่วไปต้องใช้เวลาอย่างน้อย 2–3 สัปดาห์จึงจะได้รับ",
           "หลังจากได้รับแล้ว พนักงานของร้านจะส่งให้ในรูปแบบ PDF",
           "หากไม่ปฏิบัติตามหน้าที่ในการรายงานอุบัติเหตุตามที่กำหนดโดยไม่มีเหตุอันสมควร ระบบการชดเชย CDW และ NOC ของทางร้านจะไม่ถูกนำมาใช้",
-          "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้องและค่าขาดรายได้ NOC รอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2"
+          "หากพบความเสียหายที่ไม่ได้แจ้งความซึ่งเกิดขึ้นในระหว่างระยะเวลาเช่า เมื่อคืนรถหรือในขั้นตอนการตรวจซ้ำ ผู้เช่าต้องรับผิดชอบค่าซ่อมที่เกี่ยวข้อง (เริ่มต้นที่ ¥20,000) และค่าขาดรายได้ NOC รอยขีดข่วนเล็กน้อยที่ซ่อมแซมอย่างง่ายเท่านั้น (ทางร้านเป็นผู้พิจารณาตามระดับความเสียหายและความจำเป็นในการซ่อม) ค่าขาดรายได้ NOC เริ่มต้นที่ ¥20,000 ความเสียหายอื่นเรียกเก็บ ¥100,000–150,000 ตามอัตราค่าธรรมเนียม NOC ในหน้า 2"
         ]
       }
     },
