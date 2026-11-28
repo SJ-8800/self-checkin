@@ -7,6 +7,13 @@
   const IDLE_TIMEOUT_MS = 180000; // 3 minutes of inactivity before warning
   const IDLE_COUNTDOWN_SEC = 30;  // 30-second countdown before auto-reset
 
+  // What to do with an existing in-memory signature if a contract-affecting
+  // option is changed after the guest has signed. Easy to retune later.
+  //   "keep"    — keep the signature (placeholder default; policy not decided)
+  //   "clear"   — drop it and require a new signature
+  //   "confirm" — reserved: keep for now, later prompt to confirm or re-sign
+  const SIGNATURE_ON_CONTRACT_CHANGE = "keep";
+
   const UI = {
     en: {
       brandTitle: "Car Rental Self Check-in",
@@ -335,6 +342,8 @@
 
   let sigDrawing = false;
   let sigLast = null;
+  let sigResizeGen = 0;
+  let sigNeedsExport = false;
 
   function t(key) {
     return (UI[state.lang] || UI.en)[key] || key;
@@ -856,7 +865,9 @@
 
   function selectPlan(plan, opts) {
     if (!plan || (plan !== "basic" && plan !== "cdw" && plan !== "cdw_noc")) return;
+    const prev = state.plan;
     state.plan = plan;
+    onContractOptionChanged("plan", prev, plan);
     applyPlanColumnState();
     updateCompContinue();
     if (opts && opts.focus) {
@@ -894,6 +905,75 @@
   /* ---------- Signature canvas ---------- */
   function sigCanvas() { return $("#sig-canvas"); }
 
+  function hasSavedSignature() {
+    return !!(state.hasStroke || state.signatureDataUrl);
+  }
+
+  function applySignatureChrome() {
+    const has = hasSavedSignature();
+    state.hasStroke = has;
+    const ph = $(".pad-placeholder");
+    if (ph) ph.classList.toggle("hide", has);
+    const fr = $(".pad-frame");
+    if (fr) fr.classList.toggle("dirty", has);
+    setBtnInactive($("#btn-sign-next"), !has);
+  }
+
+  function snapshotSignature() {
+    if (!state.hasStroke) return state.signatureDataUrl;
+    // Re-export only after new strokes; otherwise keep the original bytes so
+    // a later canvas restore (contain-fit / rotate) cannot replace the signature.
+    if (state.signatureDataUrl && !sigNeedsExport) {
+      if (!state.signedAt) state.signedAt = tokyoNow();
+      return state.signatureDataUrl;
+    }
+    const url = exportSignature();
+    if (url) {
+      state.signatureDataUrl = url;
+      sigNeedsExport = false;
+    }
+    if (!state.signedAt) state.signedAt = tokyoNow();
+    return state.signatureDataUrl;
+  }
+
+  function commitSignature() {
+    if (state.signatureDataUrl && !sigNeedsExport) return state.signatureDataUrl;
+    return snapshotSignature();
+  }
+
+  function styleSigContext(ctx, dpr) {
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#1a1a1a";
+    ctx.lineWidth = 2.4 * dpr;
+  }
+
+  function paintSignatureDataUrl(ctx, canvas, dataUrl, gen) {
+    const img = new Image();
+    img.onload = () => {
+      if (gen !== sigResizeGen) return;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      if (!iw || !ih) return;
+      const scale = Math.min(canvas.width / iw, canvas.height / ih);
+      const dw = iw * scale, dh = ih * scale;
+      const dx = (canvas.width - dw) / 2;
+      const dy = (canvas.height - dh) / 2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    };
+    img.src = dataUrl;
+  }
+
+  // If a contract-affecting option changes after a signature exists, honour
+  // SIGNATURE_ON_CONTRACT_CHANGE. "confirm" is reserved and currently keeps.
+  function onContractOptionChanged(field, prev, next) {
+    if (prev === next) return;
+    if (!hasSavedSignature()) return;
+    if (SIGNATURE_ON_CONTRACT_CHANGE === "clear") {
+      clearSignature();
+    }
+  }
+
   function resizeCanvas() {
     const canvas = sigCanvas();
     if (!canvas) return;
@@ -902,20 +982,29 @@
     const w = frame.clientWidth;
     const h = frame.clientHeight;
     if (w < 10 || h < 10) return;
-    const prev = canvas.toDataURL("image/png");
-    const had = state.hasStroke;
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(h * dpr);
-    const ctx = canvas.getContext("2d");
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = "#1a1a1a";
-    ctx.lineWidth = 2.4 * dpr;
-    if (had && prev) {
-      const img = new Image();
-      img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      img.src = prev;
+    const nextW = Math.round(w * dpr);
+    const nextH = Math.round(h * dpr);
+    const sizeChanged = canvas.width !== nextW || canvas.height !== nextH;
+
+    // Keep a stable in-memory copy before the bitmap is cleared by a resize.
+    if (state.hasStroke && sigNeedsExport && canvas.width > 0 && canvas.height > 0) {
+      snapshotSignature();
+    } else if (state.hasStroke && !state.signatureDataUrl && canvas.width > 0 && canvas.height > 0) {
+      snapshotSignature();
     }
+
+    applySignatureChrome();
+    if (!sizeChanged && canvas.width > 0) {
+      styleSigContext(canvas.getContext("2d"), dpr);
+      return;
+    }
+
+    const gen = ++sigResizeGen;
+    canvas.width = nextW;
+    canvas.height = nextH;
+    const ctx = canvas.getContext("2d");
+    styleSigContext(ctx, dpr);
+    if (state.signatureDataUrl) paintSignatureDataUrl(ctx, canvas, state.signatureDataUrl, gen);
   }
 
   function posOnCanvas(ev) {
@@ -939,9 +1028,9 @@
     ctx.arc(sigLast.x, sigLast.y, ctx.lineWidth / 2, 0, Math.PI * 2);
     ctx.fill();
     state.hasStroke = true;
-    $(".pad-placeholder").classList.add("hide");
-    $(".pad-frame").classList.add("dirty");
-    setBtnInactive($("#btn-sign-next"), false);
+    sigNeedsExport = true;
+    if (!state.signedAt) state.signedAt = tokyoNow();
+    applySignatureChrome();
   }
   function moveDraw(ev) {
     if (!sigDrawing) return;
@@ -959,17 +1048,20 @@
     ev.preventDefault();
     sigDrawing = false;
     sigLast = null;
+    if (state.hasStroke) snapshotSignature();
   }
 
   function clearSignature() {
     const canvas = sigCanvas();
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     state.hasStroke = false;
     state.signatureDataUrl = null;
-    $(".pad-placeholder").classList.remove("hide");
-    $(".pad-frame").classList.remove("dirty");
-    setBtnInactive($("#btn-sign-next"), true);
+    state.signedAt = null;
+    sigNeedsExport = false;
+    applySignatureChrome();
   }
 
   function exportSignature() {
@@ -1009,11 +1101,9 @@
   function refreshSignInfo() {
     const c = C();
     $("#sign-item2").textContent = t("signItem2Prefix") + c.planFullNames[state.plan];
-    const d = tokyoNow();
-    state.signedAt = d;
-    $("#sign-date").textContent = formatDateLong(d);
+    $("#sign-date").textContent = formatDateLong(state.signedAt || tokyoNow());
     $("#sign-plan").textContent = planNameAndPrice(state.plan);
-    setBtnInactive($("#btn-sign-next"), !state.hasStroke);
+    applySignatureChrome();
   }
 
   /* ---------- PDF / summary ---------- */
@@ -1030,8 +1120,7 @@
       state.pdfUrl = null;
     }
     clearPrintRoot();
-    const dataUrl = state.signatureDataUrl || exportSignature();
-    state.signatureDataUrl = dataUrl;
+    const dataUrl = commitSignature();
     const blob = await fillContractPdf({
       lang: state.lang,
       plan: state.plan,
@@ -1168,8 +1257,7 @@
     $("#sum-plan").textContent = planNameAndPrice(state.plan);
     $("#sum-date").textContent = formatDateLong(state.signedAt || tokyoNow());
     const img = $("#sum-sig");
-    const dataUrl = state.signatureDataUrl || exportSignature();
-    state.signatureDataUrl = dataUrl;
+    const dataUrl = commitSignature();
     img.src = dataUrl || "";
     const status = $("#pdf-status");
     if (status) {
@@ -1417,6 +1505,7 @@
     state.signatureDataUrl = null;
     state.hasStroke = false;
     state.signedAt = null;
+    sigNeedsExport = false;
     state.pdfBlob = null;
     state.pdfUrl = null;
     state.langSelected = false;
@@ -1467,17 +1556,10 @@
     $("#lang-grid").addEventListener("click", (e) => {
       const btn = e.target.closest("[data-lang]");
       if (!btn) return;
+      const prevLang = state.lang;
       state.lang = btn.dataset.lang;
       state.langSelected = true;
-      state.rulesChecked = [false, false, false, false, false, false, false, false, false, false, false];
-      state.plan = null;
-      state.thirdPartyAck = false;
-      state.compScrolled = false;
-      state.hasStroke = false;
-      state.signatureDataUrl = null;
-      clearSignatureQuiet();
-      resetPaneScroll("rules-pane");
-      resetPaneScroll("comp-pane");
+      onContractOptionChanged("lang", prevLang, state.lang);
       applyChrome();
       showScreen("rules");
     });
@@ -1497,8 +1579,10 @@
       const card = e.target.closest("[data-rule-idx]");
       if (!card) return;
       const idx = Number(card.dataset.ruleIdx);
+      const prev = state.rulesChecked[idx];
       state.rulesChecked[idx] = !state.rulesChecked[idx];
       card.classList.toggle("checked", state.rulesChecked[idx]);
+      onContractOptionChanged("rule" + idx, prev, state.rulesChecked[idx]);
       updateRulesProgress();
     });
     $("#btn-rules-next").addEventListener("click", () => {
@@ -1526,8 +1610,10 @@
         if (e.target.closest(".help-q")) return;
         const btn = e.target.closest("#third-party-ack, .third-party-ack");
         if (!btn) return;
+        const prev = state.thirdPartyAck;
         state.thirdPartyAck = !state.thirdPartyAck;
         btn.classList.toggle("checked", state.thirdPartyAck);
+        onContractOptionChanged("thirdPartyAck", prev, state.thirdPartyAck);
         updateCompContinue();
       });
     }
@@ -1611,10 +1697,15 @@
         pulseEl($("#pad-frame"));
         return;
       }
-      state.signatureDataUrl = exportSignature();
+      commitSignature();
       showScreen("summary");
     });
-    $("#btn-sign-back").addEventListener("click", () => showScreen("compensation"));
+    $("#btn-sign-back").addEventListener("click", () => {
+      if (state.hasStroke) snapshotSignature();
+      showScreen("compensation");
+    });
+    const summaryBack = $("#btn-summary-back");
+    if (summaryBack) summaryBack.addEventListener("click", () => showScreen("signature"));
 
     $("#btn-download").addEventListener("click", downloadPdf);
     $("#btn-print").addEventListener("click", openPrintConfirm);
@@ -1724,7 +1815,15 @@
 
   // Test helpers for Playwright (draw a signature, read state)
   window.__checkin = {
-    getState: () => ({ ...state, pdfUrl: !!state.pdfUrl, printReady: !!state.printReady, pdfBlob: undefined, standalone: isStandaloneDisplay() }),
+    getState: () => ({
+      ...state,
+      pdfUrl: !!state.pdfUrl,
+      printReady: !!state.printReady,
+      pdfBlob: undefined,
+      standalone: isStandaloneDisplay(),
+      signatureOnContractChange: SIGNATURE_ON_CONTRACT_CHANGE,
+      signatureLen: state.signatureDataUrl ? state.signatureDataUrl.length : 0
+    }),
     tickAllRules: () => {
       state.rulesChecked = state.rulesChecked.map(() => true);
       document.querySelectorAll(".rule").forEach((el) => el.classList.add("checked"));
@@ -1806,10 +1905,10 @@
       }
       ctx.stroke();
       state.hasStroke = true;
-      $(".pad-placeholder").classList.add("hide");
-      $(".pad-frame").classList.add("dirty");
-      setBtnInactive($("#btn-sign-next"), false);
+      sigNeedsExport = false;
+      if (!state.signedAt) state.signedAt = tokyoNow();
       state.signatureDataUrl = exportSignature();
+      applySignatureChrome();
       return true;
     }
   };
