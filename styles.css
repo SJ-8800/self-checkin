@@ -959,6 +959,14 @@ table.comp th.plan-choice:active {
   color: var(--navy);
 }
 .staff-pdf-status.hidden { display: none; }
+.staff-print-hint {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5c564c;
+  line-height: 1.45;
+}
+.staff-print-hint.hidden { display: none; }
 .card {
   background: var(--paper);
   border-radius: 16px;

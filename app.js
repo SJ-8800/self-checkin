@@ -1115,6 +1115,10 @@
     cancel: "キャンセル",
     resetQ: "このお客様の内容を消去して最初に戻りますか？車両クラスもクリアされます。",
     printGo: "印刷画面を開く",
+    printGoStandalone: "共有して印刷する",
+    printConfirmStandalone: "このあと、iPadの共有メニューが開きます。「プリント」を選び、印刷設定で「両面」（長辺とじ）をオンにしてください。この4ページのファイルを1回印刷すると、表裏の契約書が2枚（店舗控え1枚・お客様控え1枚）出力されます。",
+    standaloneHint: "ホーム画面から開いているため、印刷は iPad の共有メニューから「プリント」を選びます。",
+    printShareFailed: "共有メニューを開けませんでした。「PDFを保存」で開いて、共有 → プリントを選んでください。",
     preparing: "契約書を作成しています…",
     printNotReady: "契約書の印刷準備中です。完了後にもう一度押してください。"
   };
@@ -1160,6 +1164,7 @@
     $("#sum-lang").textContent = LANG_NAMES[state.lang] || state.lang;
     applyReturnDevice();
     applyStaffLabels();
+    setPrintButtonState();
     $("#sum-plan").textContent = planNameAndPrice(state.plan);
     $("#sum-date").textContent = formatDateLong(state.signedAt || tokyoNow());
     const img = $("#sum-sig");
@@ -1180,7 +1185,7 @@
         status.classList.add("hidden");
       }
       $("#btn-download").disabled = false;
-      $("#btn-print").disabled = !state.printReady;
+      setPrintButtonState();
     } catch (err) {
       if (status) {
         status.textContent = String(err.message || err);
@@ -1200,13 +1205,106 @@
     a.remove();
   }
 
+  function isStandaloneDisplay() {
+    try {
+      if (window.navigator && window.navigator.standalone === true) return true;
+      if (window.matchMedia) {
+        if (window.matchMedia("(display-mode: standalone)").matches) return true;
+        if (window.matchMedia("(display-mode: fullscreen)").matches) return true;
+        if (window.matchMedia("(display-mode: minimal-ui)").matches) return true;
+      }
+    } catch (err) {}
+    return false;
+  }
+
+  function canPrintWithSystemDialog() {
+    return state.printReady && !isStandaloneDisplay();
+  }
+
+  function canSharePdf() {
+    return !!(state.pdfBlob || state.pdfUrl);
+  }
+
+  function setPrintButtonState() {
+    const pr = $("#btn-print");
+    if (!pr) return;
+    const enabled = canPrintWithSystemDialog() || (isStandaloneDisplay() && canSharePdf());
+    pr.disabled = !enabled;
+    const hint = $("#print-standalone-hint");
+    if (hint) {
+      if (isStandaloneDisplay()) {
+        hint.textContent = STAFF_UI.standaloneHint;
+        hint.classList.remove("hidden");
+      } else {
+        hint.textContent = "";
+        hint.classList.add("hidden");
+      }
+    }
+  }
+
+  function showStaffStatus(msg) {
+    const status = $("#pdf-status");
+    if (!status) return;
+    if (!msg) {
+      status.textContent = "";
+      status.classList.add("hidden");
+      return;
+    }
+    status.textContent = msg;
+    status.classList.remove("hidden");
+  }
+
+  // Must be started in the same synchronous click as the button
+  // (iOS ignores share() / print() after await / setTimeout / onload).
+  function sharePdfForPrint() {
+    const blob = state.pdfBlob;
+    if (!blob) return false;
+    const name = filenameForPdf();
+    try {
+      const file = new File([blob], name, { type: "application/pdf" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        const p = navigator.share({ files: [file], title: name });
+        if (p && typeof p.catch === "function") {
+          p.catch((err) => {
+            if (err && err.name === "AbortError") return;
+            console.error(err);
+            if (!openPdfExternally()) showStaffStatus(STAFF_UI.printShareFailed);
+          });
+        }
+        return true;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    return openPdfExternally();
+  }
+
+  function openPdfExternally() {
+    if (!state.pdfUrl) return false;
+    const a = document.createElement("a");
+    a.href = state.pdfUrl;
+    a.target = "_blank";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    return true;
+  }
+
   function openPrintConfirm() {
-    if (!state.printReady) return;
+    const standalone = isStandaloneDisplay();
+    const ready = standalone ? canSharePdf() : state.printReady;
+    if (!ready) {
+      showStaffStatus(STAFF_UI.printNotReady);
+      return;
+    }
     const text = $("#print-confirm-text");
-    if (text) text.textContent = staffJa("printConfirm");
+    if (text) {
+      text.textContent = standalone ? STAFF_UI.printConfirmStandalone : staffJa("printConfirm");
+    }
     const go = $("#btn-print-go");
     if (go) {
-      go.textContent = STAFF_UI.printGo;
+      go.textContent = standalone ? STAFF_UI.printGoStandalone : STAFF_UI.printGo;
       go.disabled = false;
     }
     const modal = $("#print-modal");
@@ -1217,8 +1315,21 @@
     if (modal) modal.classList.add("hidden");
   }
   function printPdf() {
-    // iOS Safari ignores print() after await / Promise / onload.
-    // Only call window.print() synchronously in this click handler.
+    // iOS Safari ignores print() / share() after await / Promise / onload.
+    // Start the system UI synchronously in this click handler.
+    const standalone = isStandaloneDisplay();
+    if (standalone) {
+      if (!canSharePdf()) {
+        const text = $("#print-confirm-text");
+        if (text) text.textContent = STAFF_UI.printNotReady;
+        const go = $("#btn-print-go");
+        if (go) go.textContent = STAFF_UI.printNotReady;
+        return;
+      }
+      closePrintConfirm();
+      if (!sharePdfForPrint()) showStaffStatus(STAFF_UI.printShareFailed);
+      return;
+    }
     if (!state.printReady) {
       const text = $("#print-confirm-text");
       if (text) text.textContent = STAFF_UI.printNotReady;
@@ -1613,7 +1724,7 @@
 
   // Test helpers for Playwright (draw a signature, read state)
   window.__checkin = {
-    getState: () => ({ ...state, pdfUrl: !!state.pdfUrl, printReady: !!state.printReady, pdfBlob: undefined }),
+    getState: () => ({ ...state, pdfUrl: !!state.pdfUrl, printReady: !!state.printReady, pdfBlob: undefined, standalone: isStandaloneDisplay() }),
     tickAllRules: () => {
       state.rulesChecked = state.rulesChecked.map(() => true);
       document.querySelectorAll(".rule").forEach((el) => el.classList.add("checked"));
